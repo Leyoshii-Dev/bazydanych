@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>procedury.md</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+.nav-container {
+        display: flex;
+        gap: 15px;
+        padding: 20px;
+        background: #1e1e1e; /* Ciemne tło paska */
+        border-bottom: 1px solid #333;
+        margin-bottom: 30px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .nav-btn {
+        text-decoration: none;
+        color: #fff;
+        background: #007acc; /* Niebieski "Visual Studio" */
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .nav-btn:hover {
+        background: #005a9e;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .nav-btn.active {
+        background: #333;
+        border: 1px solid #007acc;
+    }
+	
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+html,footer,header{
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Custom MD PDF CSS
+ */
+html,footer,header{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+
+ }
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file:///r%3A/2.Travail/1.Enseignement/Cours/_1.Outils/2.Developpement/1.SCSS/main.css" type="text/css"><link rel="stylesheet" href="file:///d%3A/rdaros/Cours/_1.Outils/2.Developpement/1.SCSS/main.css" type="text/css">
+</head>
+
+<body>
+
+	<div class="nav-container">
+    <!-- Tu wstaw odpowiedni link poniżej -->
+    <a href="index.html" class="nav-btn">🏠 Strona Główna</a>
+    <a href="cursory.html" class="nav-btn">🚀 Kursory</a>
+	<a href="procedury.html" class="nav-btn"> Procedury</a>
+</div>
+    <p><strong>Procedura</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">PROCEDURE</span> dodaj 
+    (p1 <span class="hljs-built_in">number</span> := <span class="hljs-number">100</span> ,p2 <span class="hljs-built_in">number</span> <span class="hljs-keyword">default</span> <span class="hljs-number">200</span>) <span class="hljs-comment">-- Wartosci domyslne, oczywiscie oracle ma downa i ma dwa rozne przypisania domyslne ktore sa tym samym</span>
+<span class="hljs-keyword">IS</span> <span class="hljs-comment">-- To zamienne slowo za declare bo w procedurach nie mozna uzywac declare XD ale to robi to samo :)</span>
+    p3 <span class="hljs-built_in">number</span>;
+<span class="hljs-keyword">Begin</span> 
+    p3 := p1 +p2;
+    DBMS_OUTPUT.PUT_LINE('wynik dodawania: ' || p3);
+<span class="hljs-keyword">end</span> dodaj;
+/
+
+<span class="hljs-comment">--Tu oracle jest zjebany i nie da sie po instrukcji napisac komentarza tylko trzeba przed</span>
+<span class="hljs-comment">-- dla debili</span>
+<span class="hljs-keyword">EXECUTE</span> dodaj; 
+<span class="hljs-comment">-- to to samo ale nie dla debili</span>
+<span class="hljs-keyword">EXECUTE</span> dodaj(); 
+<span class="hljs-comment">--nie zmieniajac p1 mozemy zmienic tak p2</span>
+<span class="hljs-keyword">EXECUTE</span> dodaj(p2 =&gt; <span class="hljs-number">100</span>); 
+<span class="hljs-comment">-- normalne przesylanie argumentow</span>
+<span class="hljs-keyword">EXECUTE</span> dodaj(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>);
+<span class="hljs-comment">-- tu tylko zmieniamy 1 argument </span>
+<span class="hljs-keyword">EXECUTE</span> dodaj(<span class="hljs-number">1</span>);
+</div></code></pre>
+<p><strong>Procedura rekurencyjna</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">PROCEDURE</span> enumeration (p_i <span class="hljs-built_in">NUMBER</span>) 
+<span class="hljs-keyword">AS</span> <span class="hljs-comment">-- wlasnie tutaj zamiast is jest as, jaka jest roznica? Zadna kurwa bo to ma downa :)</span>
+    v_iter <span class="hljs-built_in">NUMBER</span> := <span class="hljs-number">0</span>;
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">IF</span> p_i &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">THEN</span>
+        <span class="hljs-keyword">FOR</span> v_iter <span class="hljs-keyword">IN</span> <span class="hljs-number">1.</span>.p_i <span class="hljs-keyword">LOOP</span>
+
+        dbms_output.put(v_iter);
+        <span class="hljs-keyword">END</span> <span class="hljs-keyword">LOOP</span>;
+        dbms_output.put_line(' ');
+        enumeration(p_i-1); <span class="hljs-comment">-- ta linijka nam mowi ze to rekurencja, petla ktora za kazdym razem wypisuje jedna liczbe mniej 12345, 1234... itp</span>
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;
+<span class="hljs-keyword">END</span> enumeration;
+/
+<span class="hljs-comment">-- Trzy sposoby jak mozna wywolac procedure</span>
+<span class="hljs-keyword">execute</span> enumeration(<span class="hljs-number">2</span>);
+
+<span class="hljs-keyword">Begin</span>
+    enumeration(<span class="hljs-number">2</span>);
+<span class="hljs-keyword">end</span>;
+
+<span class="hljs-keyword">call</span> enumeration(<span class="hljs-number">2</span>); <span class="hljs-comment">-- to nie dziala albo po prostu jest zjebane chyba to dziala w sql tylko</span>
+
+<span class="hljs-keyword">DESCRIBE</span> enumeration; <span class="hljs-comment">-- Tu mozecie sobie zobaczyc co przyjmuje i jakies tam informacje o procedurze</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">text</span> <span class="hljs-keyword">FROM</span> user_source
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> = <span class="hljs-string">'ENUMERATION'</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">type</span> = <span class="hljs-string">'PROCEDURE'</span>; <span class="hljs-comment">-- To wgl jest ciekawe i każda linijke kodu tej procedury tym dostajecie</span>
+</div></code></pre>
+<p><strong>Przykladowa procedura IN OUT jak to dziala</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">PROCEDURE</span> zwiekszZasob
+(p_id <span class="hljs-keyword">IN</span> INVENTORIES.id%<span class="hljs-keyword">TYPE</span>,                   <span class="hljs-comment">-- IN chodzi o to ze przekazujemy tu dane do niej</span>
+    p_res_id <span class="hljs-keyword">IN</span> INVENTORIES.resource_id%<span class="hljs-keyword">TYPE</span>,   <span class="hljs-comment">-- IN chodzi o to ze przekazujemy tu dane do niej</span>
+    p_quantity <span class="hljs-keyword">OUT</span> INVENTORIES.quantity%<span class="hljs-keyword">TYPE</span>)   <span class="hljs-comment">-- OUT przekazujemy zmienna do ktorej bedzie wrzucone co do tej zmiennej</span>
+<span class="hljs-keyword">IS</span>
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">SELECT</span> quantity
+    <span class="hljs-keyword">INTO</span> p_quantity                             <span class="hljs-comment">-- Tutaj przypisujemy wartosc do p_quantity</span>
+    <span class="hljs-keyword">from</span> INVENTORIES
+    <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span> = p_id <span class="hljs-keyword">AND</span> resource_id = p_res_id; <span class="hljs-comment">-- Tutaj uzywamy tych id do wybrania ktory zasob chcemy </span>
+<span class="hljs-keyword">END</span> zwiekszZasob;
+/
+
+
+<span class="hljs-keyword">DECLARE</span>
+    v_quantity INVENTORIES.QUANTITY%<span class="hljs-keyword">TYPE</span>;       <span class="hljs-comment">-- W tej zmiennej bedzie wynik</span>
+<span class="hljs-keyword">BEGIN</span>
+    zwiekszZasob(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,v_quantity);                   <span class="hljs-comment">-- wywolanie procedury</span>
+    DBMS_OUTPUT.PUT_LINE('Ilosc zasobu: ' || v_quantity); 
+
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>Funkcje, roznia sie od procedur tym ze cos zwracaja</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">FUNCTION</span> mail (p_id <span class="hljs-built_in">number</span>) <span class="hljs-comment">-- Tworzenie funkcji</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">VARCHAR2</span>                           <span class="hljs-comment">-- Typ zwracany</span>
+<span class="hljs-keyword">IS</span>
+    v_mail <span class="hljs-built_in">Varchar2</span>(<span class="hljs-number">50</span>);
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">Lower</span>(last_name)||<span class="hljs-string">'@'</span>||            <span class="hljs-comment">-- jakies tam zapytanie ktore tworzy maila z imienia i id</span>
+        <span class="hljs-keyword">Lower</span>(<span class="hljs-keyword">Substr</span>(department_name,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)) ||
+        department_id ||<span class="hljs-string">'.com'</span>
+        <span class="hljs-keyword">INTO</span> v_mail
+        <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">JOIN</span> departments
+        <span class="hljs-keyword">USING</span> (department_id)
+        <span class="hljs-keyword">WHERE</span> employee_id = p_id;
+        RETURN v_mail;                        <span class="hljs-comment">-- zwracamy tego maila utworzonego</span>
+<span class="hljs-keyword">END</span> mail;
+
+
+<span class="hljs-keyword">declare</span>
+    mail <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">50</span>);
+<span class="hljs-keyword">begin</span>
+    mail := mail(<span class="hljs-number">5</span>);
+    dbms_output.put_line(mail);
+<span class="hljs-keyword">end</span>;
+
+<span class="hljs-keyword">SELECT</span> first_name, mail(employee_id) <span class="hljs-keyword">FROM</span> employees; <span class="hljs-comment">-- mozna tez w taki sposob uzyc funkcji</span>
+
+VARIABLE b_mail VARCHAR2(50);
+<span class="hljs-keyword">EXECUTE</span> :b_mail := mail(<span class="hljs-number">200</span>); <span class="hljs-comment">-- albo w taki sposob</span>
+PRINT b_mail; <span class="hljs-comment">-- i nastepnie wypisac mail</span>
+</div></code></pre>
+<p><strong>Package(Specyfikacja) - tutaj robimy taki interface do ktorego bedziemy sie potem odwolywac</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">PACKAGE</span> emp_wages <span class="hljs-keyword">AS</span>
+    <span class="hljs-keyword">FUNCTION</span> wages <span class="hljs-keyword">RETURN</span> <span class="hljs-built_in">NUMBER</span>;
+    FUNCTION wages_in_dep (p_id NUMBER)
+    RETURN NUMBER;
+    FUNCTION average RETURN NUMBER;
+    FUNCTION average_in_dep (p_id NUMBER)
+    RETURN NUMBER;
+    PROCEDURE increase(p_amount NUMBER);
+    PROCEDURE increase(p_amount NUMBER,
+    p_id NUMBER);
+<span class="hljs-keyword">END</span> emp_wages;
+</div></code></pre>
+<p><strong>Package body(ciało) - tu jest całe miesko naszych funkcji i danych wszystkich</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">PACKAGE</span> <span class="hljs-keyword">BODY</span> emp_wages
+<span class="hljs-keyword">AS</span>
+    <span class="hljs-keyword">FUNCTION</span> wages <span class="hljs-keyword">RETURN</span> <span class="hljs-built_in">NUMBER</span>            <span class="hljs-comment">-- Mozna tworzyc cokolwiek chcemy w tym, funkcje kursory, zmienne itp i ich kod nie bedzie widoczny z zewnatrz</span>
+    <span class="hljs-keyword">AS</span>                                      <span class="hljs-comment">-- po wywolaniu takiej paczki cała sie ona laduje do pamieci ram i mamy blyskawiczny dostep do funkcji itp</span>
+        v_sum <span class="hljs-built_in">NUMBER</span>;
+    <span class="hljs-keyword">BEGIN</span>
+        <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">Sum</span>(salary+Nvl(commission_pct,<span class="hljs-number">0</span>)*salary)
+        <span class="hljs-keyword">INTO</span> v_sum <span class="hljs-keyword">FROM</span> employees;
+        RETURN v_sum;
+    <span class="hljs-keyword">END</span> wages;
+
+    FUNCTION wages_in_dep(p_id NUMBER)
+        RETURN NUMBER
+    AS
+        v_sum NUMBER;
+    <span class="hljs-keyword">BEGIN</span>
+        <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">Sum</span>(salary+Nvl(commission_pct,<span class="hljs-number">0</span>)*salary)
+        <span class="hljs-keyword">INTO</span> v_sum <span class="hljs-keyword">FROM</span> employees
+        <span class="hljs-keyword">WHERE</span> department_id = p_id;
+        RETURN v_sum;
+    <span class="hljs-keyword">END</span> wages_in_dep;
+
+    FUNCTION average RETURN NUMBER
+    AS
+        v_ave NUMBER;
+    <span class="hljs-keyword">BEGIN</span>
+        <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">Avg</span>(salary) <span class="hljs-keyword">INTO</span> v_ave <span class="hljs-keyword">FROM</span> employees;
+        RETURN v_ave;
+<span class="hljs-keyword">END</span> average;
+
+
+
+
+<span class="hljs-keyword">SELECT</span> emp_wages.wages() <span class="hljs-keyword">FROM</span> dual;          <span class="hljs-comment">-- SQL  tak mozemy np to wywolac ladnie dual to jakas pusta tabela bo nie da sie nic nie napisac po FROM</span>
+
+<span class="hljs-keyword">begin</span>
+    DBMS_OUTPUT.PUT_LINE(emp_wages.wages()); <span class="hljs-comment">-- PL/SQL</span>
+<span class="hljs-keyword">end</span>;
+</div></code></pre>
+
+</body>
+
+</html>
