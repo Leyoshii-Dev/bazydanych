@@ -361,11 +361,49 @@ code {
 	page-break-after: always;
 }
 
+
+.nav-container {
+        display: flex;
+        gap: 15px;
+        padding: 20px;
+        background: #1e1e1e; /* Ciemne tło paska */
+        border-bottom: 1px solid #333;
+        margin-bottom: 30px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .nav-btn {
+        text-decoration: none;
+        color: #fff;
+        background: #007acc; /* Niebieski "Visual Studio" */
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .nav-btn:hover {
+        background: #005a9e;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .nav-btn.active {
+        background: #333;
+        border: 1px solid #007acc;
+    }
+
 </style>
 <link rel="stylesheet" href="file:///r%3A/2.Travail/1.Enseignement/Cours/_1.Outils/2.Developpement/1.SCSS/main.css" type="text/css"><link rel="stylesheet" href="file:///d%3A/rdaros/Cours/_1.Outils/2.Developpement/1.SCSS/main.css" type="text/css">
 </head>
 
 <body>
+<div class="nav-container">
+    <!-- Tu wstaw odpowiedni link poniżej -->
+    <a href="index.html" class="nav-btn">🏠 Strona Główna</a>
+    <a href="cursory.html" class="nav-btn">🚀 Kursory</a>
+</div>
     <p><strong>Deklaracja Zmiennych</strong></p>
 <pre class="hljs"><code><div><span class="hljs-keyword">Declare</span>
  v_age <span class="hljs-built_in">NUMBER</span>(<span class="hljs-number">3</span>);
