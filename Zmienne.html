@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Zmienne.md</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+html,footer,header{
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Custom MD PDF CSS
+ */
+html,footer,header{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+
+ }
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file:///r%3A/2.Travail/1.Enseignement/Cours/_1.Outils/2.Developpement/1.SCSS/main.css" type="text/css"><link rel="stylesheet" href="file:///d%3A/rdaros/Cours/_1.Outils/2.Developpement/1.SCSS/main.css" type="text/css">
+</head>
+
+<body>
+    <p><strong>Deklaracja Zmiennych</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Declare</span>
+ v_age <span class="hljs-built_in">NUMBER</span>(<span class="hljs-number">3</span>);
+<span class="hljs-keyword">Begin</span>
+    v_age := <span class="hljs-number">15</span>;
+    DBMS_OUTPUT.PUT_LINE('Masz ' || v_age || 'lat');
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>Cytaty i znaki specjalne</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Declare</span>
+    v_string <span class="hljs-built_in">VARCHAR2</span>(<span class="hljs-number">30</span>) := <span class="hljs-string">'I''m learning'</span>;
+<span class="hljs-keyword">Begin</span>
+    DBMS_OUTPUT.PUT_LINE(v_string);
+    v_string := q'[I'm bored]';
+    DBMS_OUTPUT.PUT_LINE(v_string);
+    v_string := nq'[Zażółć gęślą jaźń']';
+    DBMS_OUTPUT.PUT_LINE(v_string);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>q - cytaty</strong><br>
+<strong>nq - znaki specjalne</strong></p>
+<p><strong>Branie danych z tabelki</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Declare</span>
+    v_first_name astronauts.NAME%<span class="hljs-keyword">TYPE</span>; <span class="hljs-comment">-- typ danych z kolumny</span>
+    v_surname astronauts.SURNAME%TYPE;
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">NAME</span>, SURNAME 
+    <span class="hljs-keyword">into</span> v_first_name, v_surname
+    <span class="hljs-keyword">from</span> astronauts
+    <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span>=<span class="hljs-number">1</span>;
+
+    DBMS_OUTPUT.PUT_LINE(v_first_name);
+    DBMS_OUTPUT.PUT_LINE(v_surname);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>Recordy, dzialaja tak jakbyscie klase zrobili i chuj</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Declare</span>
+    <span class="hljs-keyword">TYPE</span> astronaut <span class="hljs-keyword">IS</span> <span class="hljs-built_in">RECORD</span>(
+        v_name <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>),
+        v_surname <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>)
+    );
+    vr_astronaut astronaut;
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">NAME</span>, SURNAME 
+    <span class="hljs-keyword">into</span> vr_astronaut.v_name, vr_astronaut.v_surname
+    <span class="hljs-keyword">from</span> astronauts
+    <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span>=<span class="hljs-number">1</span>;
+
+    DBMS_OUTPUT.PUT_LINE(vr_astronaut.v_name);
+    DBMS_OUTPUT.PUT_LINE(vr_astronaut.v_surname);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>Można wszystkie dane z tabelki wziac</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Declare</span>
+    vr_astronaut ASTRONAUTS%ROWTYPE;
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">SELECT</span> *
+    <span class="hljs-keyword">into</span> vr_astronaut
+    <span class="hljs-keyword">from</span> astronauts
+    <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span>=<span class="hljs-number">1</span>;
+
+    DBMS_OUTPUT.PUT_LINE(vr_astronaut.name);
+    DBMS_OUTPUT.PUT_LINE(vr_astronaut.surname);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>To jest juz spierdolone, zmienna globalna mozna powiedziec ze to jest</strong></p>
+<pre class="hljs"><code><div>VARIABLE b_salary NUMBER; <span class="hljs-comment">-- Tworzenie zmiennej globalnej</span>
+
+<span class="hljs-keyword">BEGIN</span>
+    :b_salary := <span class="hljs-number">2500</span>; <span class="hljs-comment">-- Przypisywanie jej zmiennej, wazny jest : bo to oznacza wlasnie zmienna globalna</span>
+<span class="hljs-keyword">END</span>;
+/ <span class="hljs-comment">-- To tez w chuj wazne bo to konczy pl/sql i mozna pisac potem print</span>
+
+PRINT b_salary
+</div></code></pre>
+<p><strong>Mozna uzywac funkcji wbudowanych</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    v_name <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">30</span>) := <span class="hljs-string">'Jakies imie'</span>;
+    v_wynik VARCHAR(30);
+    v_dlugosc number;
+    v_data NUMBER;
+<span class="hljs-keyword">begin</span>
+    v_wynik:= <span class="hljs-keyword">UPPER</span>(v_name); <span class="hljs-comment">-- Duze litery</span>
+    v_dlugosc := length(v_name); <span class="hljs-comment">-- ilosc znakow w slowie</span>
+    v_data := LAST_DAY(SYSDATE) - TRUNC(sysdate) +1; 
+    DBMS_OUTPUT.PUT_LINE(v_wynik);
+    DBMS_OUTPUT.PUT_LINE(v_dlugosc);
+    DBMS_OUTPUT.PUT_LINE(v_data);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>Wrzucanie dane prosto z inserta do zmiennej</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    v_birth_date <span class="hljs-built_in">DATE</span>;
+<span class="hljs-keyword">begin</span>
+    <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> astronauts
+    (<span class="hljs-keyword">id</span>,<span class="hljs-keyword">name</span>,surname,birth_date,death_date)
+    <span class="hljs-keyword">values</span>
+    (<span class="hljs-number">250</span>,<span class="hljs-string">'franek'</span>,<span class="hljs-string">'pomarancza'</span>,<span class="hljs-keyword">TO_DATE</span>(<span class="hljs-string">'07-05-1999'</span>,<span class="hljs-string">'DD-MM_YYYY'</span>),<span class="hljs-literal">NULL</span>)
+    <span class="hljs-keyword">returning</span> birth_date <span class="hljs-keyword">into</span> v_birth_date; <span class="hljs-comment">-- To wazne wrzucasz sobie dane z inserta do zmiennej</span>
+    
+    DBMS_OUTPUT.PUT_LINE(v_birth_date);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p>** Mozna wrzucic dane z rekordu ale musi wszystko pasować, chyba ze sobie wybierzecie dane**</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Declare</span>
+    <span class="hljs-keyword">TYPE</span> astronaut <span class="hljs-keyword">IS</span> <span class="hljs-built_in">RECORD</span>(
+        v_id <span class="hljs-built_in">number</span>,
+        v_name <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>),
+        v_surname <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>),
+        v_birth_date <span class="hljs-built_in">DATE</span>,
+        v_death_date <span class="hljs-built_in">DATE</span>
+    );
+    vr_astronaut astronaut;
+<span class="hljs-keyword">BEGIN</span>
+    vr_astronaut.v_id := <span class="hljs-number">300</span>;
+    vr_astronaut.v_name := 'Kolega';
+    vr_astronaut.v_surname := 'Twojej mamy';
+    vr_astronaut.v_birth_date := To_Date('2000-02-02','YYYY-MM-DD');
+    vr_astronaut.v_death_date := NULL;
+
+    <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> astronauts <span class="hljs-keyword">values</span> vr_astronaut;
+
+    <span class="hljs-comment">-- Tak mozna sobie wybrac jak cos</span>
+    <span class="hljs-comment">--INSERT INTO astronauts (name,surname,birth_date) values (vr_astronaut.v_name,vr_astronaut.v_surname,vr_astronaut.v_birth_date);</span>
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>Warunki</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    ale <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>) := <span class="hljs-string">'aaaaaaaaa'</span>; 
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">IF</span> <span class="hljs-keyword">length</span>(ale) &gt; <span class="hljs-number">10</span> <span class="hljs-keyword">THEN</span>
+        ale := <span class="hljs-string">'Imie'</span>;
+    ELSIF length(ale) &lt; 10 THEN <span class="hljs-comment">-- Uwaga na to scierwo ELSIF jebany ELSIF :)</span>
+        ale := 'Inne imie 1';
+    ELSE
+        ale := 'Inne imie 2';
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;
+    DBMS_OUTPUT.PUT_LINE(ale);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>CASE</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    ale <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>) := <span class="hljs-string">'aaa'</span>;
+<span class="hljs-keyword">BEGIN</span>
+
+    <span class="hljs-keyword">CASE</span> ale <span class="hljs-comment">-- to mozna na rozne sposoby robic ale pokazuje taki, mozna tez warunki dac po when ale bez tego ale po CASE musi byc wtedy</span>
+        <span class="hljs-keyword">when</span> <span class="hljs-string">'a'</span> <span class="hljs-keyword">THEN</span> ale := <span class="hljs-string">'instr1'</span>;
+        when 'aa' THEN ale := 'instr2';
+        when 'aaa' THEN ale := 'instr3';
+        else ale := 'else';
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">case</span>;
+    DBMS_OUTPUT.PUT_LINE(ale);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>loop to taka petla do while</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    ale <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>) := <span class="hljs-string">'aaa'</span>;
+<span class="hljs-keyword">BEGIN</span>
+
+    <span class="hljs-keyword">loop</span>
+        ale := <span class="hljs-keyword">CONCAT</span>(ale,<span class="hljs-string">'a'</span>);
+        exit when length(ale) &gt; 10;
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">loop</span>;
+    DBMS_OUTPUT.PUT_LINE(ale);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>While taki sam jak zwykle tylko ze trzeba dodac to jebane loop</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    ale <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>) := <span class="hljs-string">'aaa'</span>;
+<span class="hljs-keyword">BEGIN</span>
+
+    <span class="hljs-keyword">while</span> <span class="hljs-keyword">length</span>(ale) &lt; <span class="hljs-number">10</span> <span class="hljs-keyword">LOOP</span>
+        ale := <span class="hljs-keyword">CONCAT</span>(ale, <span class="hljs-string">'a'</span>);
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">LOOP</span>;
+    DBMS_OUTPUT.PUT_LINE(ale);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>for nawet ok ale mamy tu jebane loop znowu <img class="emoji" alt="smiley" src="data:image/png;base64,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" /></strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    ale <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>) := <span class="hljs-string">'aaa'</span>;
+<span class="hljs-keyword">BEGIN</span>
+
+    <span class="hljs-keyword">FOR</span> i <span class="hljs-keyword">IN</span> <span class="hljs-number">4.</span><span class="hljs-number">.10</span> <span class="hljs-keyword">LOOP</span>
+        ale := <span class="hljs-keyword">Concat</span>(ale,<span class="hljs-string">'a'</span>);
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">loop</span>;
+    DBMS_OUTPUT.PUT_LINE(length(ale));
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>Zrobione zadanie to zeby przecwiczyc</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment">--1. Write an anonymous block that displays the message "Hello mission!".</span>
+
+<span class="hljs-keyword">begin</span>
+    DBMS_OUTPUT.PUT_LINE(<span class="hljs-string">'Hello mission!'</span>);
+<span class="hljs-keyword">end</span>;
+/
+<span class="hljs-comment">--2. Create an anonymous block containing declarations of four variables and one constant of different data types. Initialize some of the variables and the constant with values. In the executable section, display the values of the variables.</span>
+
+<span class="hljs-keyword">DECLARE</span>
+    v_imie <span class="hljs-built_in">varchar</span>(<span class="hljs-number">30</span>);
+    v_wiek number;
+    v_data date;
+<span class="hljs-keyword">begin</span>
+    v_imie := <span class="hljs-string">'imie'</span>;
+    v_wiek := 5;
+    v_data := TO_DATE('2000-10-10','YYYY-MM-DD');
+    DBMS_OUTPUT.PUT_LINE(v_imie ||'  '|| v_wiek ||'lat  ' || v_data);
+<span class="hljs-keyword">end</span>;
+/
+
+<span class="hljs-comment">--3. Within an anonymous block, declare a record type copying the column types from any table and a variable of that record type. In the executable section, assign values to the fields of this variable and display the stored values.</span>
+
+<span class="hljs-keyword">DECLARE</span>
+    <span class="hljs-keyword">TYPE</span> astro <span class="hljs-keyword">is</span> <span class="hljs-built_in">RECORD</span>(
+        vr_id astronauts.id%<span class="hljs-keyword">TYPE</span>,
+        vr_name astronauts.name%<span class="hljs-keyword">TYPE</span>,
+        vr_surname astronauts.surname%<span class="hljs-keyword">TYPE</span>,
+        vr_birth_date astronauts.birth_date%<span class="hljs-keyword">TYPE</span>,
+        vr_death_date astronauts.death_date%<span class="hljs-keyword">TYPE</span>
+    );
+    vr_astro astro;
+<span class="hljs-keyword">BEGIN</span>
+    vr_astro.vr_id := <span class="hljs-number">1</span>;
+    vr_astro.vr_name := 'imie';
+    DBMS_OUTPUT.PUT_LINE(vr_astro.vr_id || ' '|| vr_astro.vr_name);
+<span class="hljs-keyword">end</span>;
+/
+
+<span class="hljs-comment">--4. Create a record type based on a row of a selected table. Assign values to the variable and display them.</span>
+
+<span class="hljs-keyword">DECLARE</span>
+    astro astronauts%ROWTYPE;
+<span class="hljs-keyword">BEGIN</span>
+    astro.name := <span class="hljs-string">'imie'</span>;
+    astro.surname := 'nazwisko';
+        DBMS_OUTPUT.PUT_LINE(astro.name || ' ' || astro.surname);
+<span class="hljs-keyword">END</span>;
+/
+
+<span class="hljs-comment">--5. Create a record type based on a row of a selected table. Retrieve values into it using a query (only one row!) and display them.</span>
+
+<span class="hljs-keyword">DECLARE</span>
+    astro astronauts%ROWTYPE;
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, surname
+    <span class="hljs-keyword">INTO</span> astro.name, astro.surname
+    <span class="hljs-keyword">FROM</span> astronauts
+    <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span> = <span class="hljs-number">1</span>;
+    DBMS_OUTPUT.PUT_LINE(astro.name || ' ' || astro.surname);
+<span class="hljs-keyword">END</span>;
+/
+
+<span class="hljs-comment">--6. Create a record type based on a row of a selected table and also declare a regular variable with a type copied from one attribute of the same table. In the executable section, assign values to the record variable. Then modify any row of the table using the UPDATE statement and the values from the record variable. At the same time, return an appropriate value (RETURNING INTO clause) into the additional variable.</span>
+
+<span class="hljs-keyword">DECLARE</span>
+    astro astronauts%ROWTYPE;
+    v_name astronauts.name%TYPE;
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">SELECT</span> * 
+    <span class="hljs-keyword">into</span> astro
+    <span class="hljs-keyword">from</span> astronauts <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span> = <span class="hljs-number">250</span>;
+    astro.name := 'kupa';
+
+    <span class="hljs-keyword">UPDATE</span> astronauts <span class="hljs-keyword">SET</span> <span class="hljs-keyword">ROW</span> = astro <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span> = <span class="hljs-number">250</span>
+    <span class="hljs-keyword">RETURNING</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">into</span> v_name;
+    DBMS_OUTPUT.PUT_LINE(v_name);
+<span class="hljs-keyword">END</span>;
+/
+
+<span class="hljs-comment">--7. Use the IF conditional statement to display a row from a selected table. Declare the necessary variables.</span>
+
+<span class="hljs-keyword">DECLARE</span> 
+    astro astronauts%ROWTYPE;
+<span class="hljs-keyword">begin</span>
+    <span class="hljs-keyword">SELECT</span> *
+    <span class="hljs-keyword">into</span> astro
+    <span class="hljs-keyword">from</span> astronauts
+    <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span> =<span class="hljs-number">250</span>;
+    DBMS_OUTPUT.PUT_LINE('halo');
+    if length(astro.name) &gt; 5 then
+        DBMS_OUTPUT.PUT_LINE('Twoje imie jest okej');
+    elsif length(astro.name) =5 then
+        DBMS_OUTPUT.PUT_LINE('Jeszcze jedna literka');
+    else
+        DBMS_OUTPUT.PUT_LINE('Za krótkie imie!!!');
+    <span class="hljs-keyword">end</span> <span class="hljs-keyword">if</span>;
+<span class="hljs-keyword">end</span>;
+/
+
+
+<span class="hljs-comment">--8. Retrieve any string from the database. Display it vertically, letter by letter, using three different types of loops in turn.</span>
+
+
+<span class="hljs-keyword">DECLARE</span>
+    v_name astronauts.NAME%<span class="hljs-keyword">TYPE</span>;
+    counter simple_integer := 1;
+<span class="hljs-keyword">begin</span>
+    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>
+    <span class="hljs-keyword">into</span> v_name
+    <span class="hljs-keyword">from</span> astronauts
+    <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span>=<span class="hljs-number">250</span>;
+
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(SUBSTR(v_name,counter,1)); <span class="hljs-comment">-- Trzeba pamietac ze tu indeksy sa od 1...</span>
+        counter := counter +1;
+        exit when counter = length(v_name)+1;
+    <span class="hljs-keyword">end</span> <span class="hljs-keyword">loop</span>;
+
+    DBMS_OUTPUT.PUT_LINE('');
+    counter := 1;
+
+    WHILE counter &lt;= length(v_name) loop
+        DBMS_OUTPUT.PUT_LINE(SUBSTR(v_name,counter,1)); <span class="hljs-comment">-- Trzeba pamietac ze tu indeksy sa od 1...</span>
+        counter := counter +1;
+    <span class="hljs-keyword">end</span> <span class="hljs-keyword">loop</span>;
+
+    DBMS_OUTPUT.PUT_LINE('');
+
+    FOR i IN 1..length(v_name) loop
+        DBMS_OUTPUT.PUT_LINE(SUBSTR(v_name,i,1)); <span class="hljs-comment">-- Trzeba pamietac ze tu indeksy sa od 1...</span>
+    <span class="hljs-keyword">end</span> <span class="hljs-keyword">loop</span>;
+<span class="hljs-keyword">end</span>;
+/
+</div></code></pre>
+
+</body>
+
+</html>
