@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>triggery.md</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" href="style.css">
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+html,footer,header{
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Custom MD PDF CSS
+ */
+html,footer,header{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+
+ }
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file:///r%3A/2.Travail/1.Enseignement/Cours/_1.Outils/2.Developpement/1.SCSS/main.css" type="text/css"><link rel="stylesheet" href="file:///d%3A/rdaros/Cours/_1.Outils/2.Developpement/1.SCSS/main.css" type="text/css">
+</head>
+
+<body>
+	<div class="nav-container">
+    <!-- Tu wstaw odpowiedni link poniżej -->
+    <a href="index.html" class="nav-btn">🏠 Strona Główna</a>
+    <a href="cursory.html" class="nav-btn">🚀 Kursory</a>
+	<a href="procedury.html" class="nav-btn"> Procedury</a>
+    <a href="triggery.html" class="nav-btn"> 👨🏿Triggery</a>
+</div>
+    <p><strong>DYNAMIC SQL</strong></p>
+<p><strong>Tu jest przyklad EXECUTE IMMEDIATE</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">PROCEDURE</span> add_dep
+    (p_name departments.department_name%<span class="hljs-keyword">TYPE</span>,
+    p_loc departments.location_id%<span class="hljs-keyword">TYPE</span>)
+<span class="hljs-keyword">AS</span>
+    v_id departments.department_id%<span class="hljs-keyword">TYPE</span>;
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">EXECUTE</span> <span class="hljs-keyword">IMMEDIATE</span>
+     ’<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">MAX</span>(department_id)
+        <span class="hljs-keyword">FROM</span> departments’
+        <span class="hljs-keyword">INTO</span> v_id;
+        <span class="hljs-keyword">EXECUTE</span> <span class="hljs-keyword">IMMEDIATE</span> ’<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> departments <span class="hljs-keyword">VALUES</span> <span class="hljs-comment">-- uzywamy tego tylko wtedy gdy CHCEMY bardzo wywolac jakies zapytanie w tym miejscu a normalnie by nie zadzialalo</span>
+        (:<span class="hljs-number">1</span>, :<span class="hljs-number">2</span>, <span class="hljs-literal">NULL</span>, :<span class="hljs-number">3</span>)’
+    <span class="hljs-keyword">USING</span> v_id+<span class="hljs-number">10</span>, p_name, p_loc;
+
+    <span class="hljs-keyword">COMMIT</span>;
+<span class="hljs-keyword">END</span> add_dep;
+/
+<span class="hljs-keyword">EXECUTE</span> add_dep(’Logistics’, <span class="hljs-number">2400</span>);
+
+</div></code></pre>
+<p><strong>CURSORY</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    <span class="hljs-keyword">TYPE</span> EmpCurTyp <span class="hljs-keyword">IS</span> <span class="hljs-keyword">REF</span> <span class="hljs-keyword">CURSOR</span>;
+    v_emp_cursor EmpCurTyp;
+    emp_record employees%ROWTYPE;
+    v_stmt_str VARCHAR2(200);
+    v_e_job employees.job%TYPE;
+<span class="hljs-keyword">BEGIN</span>
+    v_stmt_str := ’<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">WHERE</span> job_id = :j’; <span class="hljs-comment">-- cursor do stringa zostal wrzucony</span>
+    OPEN v_emp_cursor FOR v_stmt_str USING ’MANAGER’;
+    LOOP
+        FETCH v_emp_cursor INTO emp_record;
+        EXIT WHEN v_emp_cursor%NOTFOUND;
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">LOOP</span>;
+    CLOSE v_emp_cursor;
+<span class="hljs-keyword">END</span>;
+/
+</div></code></pre>
+<p><strong>Triggery</strong></p>
+<p><strong>Duze litery</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">TRIGGER</span> Initcap_names
+    <span class="hljs-keyword">AFTER</span> <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">ON</span> astronauts <span class="hljs-comment">-- Po dodaniu nowego rekordu do astronauts</span>
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">UPDATE</span> astronauts <span class="hljs-keyword">SET</span>      <span class="hljs-comment">-- zmienia imie i nazwisko na pierwsze duze litery slowa, czyli szymon na Szymon</span>
+        <span class="hljs-keyword">name</span> = Initcap(<span class="hljs-keyword">name</span>),  
+        surname = Initcap(surname);
+<span class="hljs-keyword">END</span>;
+/
+</div></code></pre>
+<p><strong>To to samo ale z tym new, czyli przed dodaniem</strong></p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">TRIGGER</span> Initcap_names
+    <span class="hljs-keyword">BEFORE</span> <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">ON</span> astronauts <span class="hljs-comment">-- before przed dodaniem zmienia i przy dodawaniu juz beda nowe wartosci takie</span>
+    <span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> <span class="hljs-keyword">ROW</span>
+<span class="hljs-keyword">BEGIN</span>
+    :NEW.name := Initcap(:NEW.name);
+    :NEW.surname := Initcap(:NEW.surname);
+<span class="hljs-keyword">END</span>;
+/
+
+</div></code></pre>
+<p><strong>Warunki</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">TRIGGER</span> pay_rise
+    <span class="hljs-keyword">BEFORE</span> <span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">OF</span> salary <span class="hljs-keyword">ON</span> employees <span class="hljs-comment">--przed zmiana</span>
+    <span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> <span class="hljs-keyword">ROW</span>
+    <span class="hljs-keyword">WHEN</span> (<span class="hljs-keyword">Upper</span>(NEW.job_id) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">LIKE</span> ’PRES%’ <span class="hljs-comment">-- gdy id nie bedzie pres, mgr, man i vp... ma zrobic begin</span>
+        <span class="hljs-keyword">AND</span> <span class="hljs-keyword">Upper</span>(NEW.job_id) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">LIKE</span> ’%MGR%’
+        <span class="hljs-keyword">AND</span> <span class="hljs-keyword">Upper</span>(NEW.job_id) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">LIKE</span> ’%MAN%’
+        <span class="hljs-keyword">AND</span> <span class="hljs-keyword">Upper</span>(NEW.job_id) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">LIKE</span> ’%VP%’)
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">IF</span> :NEW.salary &gt; :OLD.salary * <span class="hljs-number">1.1</span> <span class="hljs-keyword">THEN</span> <span class="hljs-comment">-- no i tu jesli nowa wartosc jest wieksza niz 110% starej to zmieniamy na 110% starej wartosci</span>
+        :NEW.salary := :OLD.salary * <span class="hljs-number">1.1</span>;       <span class="hljs-comment">-- czyli, jak ktos ma 100 i chcemy mu zwiekszyc o 20% to sie nie da tylko zwiekszy o 10% a jak mu o 5% zwiekszymy to nic sie nie stanie</span>
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;
+<span class="hljs-keyword">END</span>;
+/
+
+</div></code></pre>
+<p><strong>Wiele operacji</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">TRIGGER</span> emp_change
+    <span class="hljs-keyword">AFTER</span> <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">ON</span> employees <span class="hljs-comment">-- tu sobie wybieramy ktora operacje chcemy</span>
+    <span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> <span class="hljs-keyword">ROW</span>
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">IF</span> INSERTING <span class="hljs-keyword">THEN</span>                               <span class="hljs-comment">-- i wtedy przez ify mozna sie odwolac, jesli akurat taka operacja jest to robimy to itp, tu akurat jest historia co kto zrobil itp</span>
+        <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> aud <span class="hljs-keyword">VALUES</span>(’employees’, <span class="hljs-keyword">CURRENT_TIMESTAMP</span>,
+        <span class="hljs-literal">NULL</span>, ’Inserting <span class="hljs-keyword">of</span> <span class="hljs-keyword">new</span> employee’);
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;
+    IF DELETING THEN
+        <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> aud <span class="hljs-keyword">VALUES</span>(’employees’, <span class="hljs-keyword">CURRENT_TIMESTAMP</span>,
+        <span class="hljs-literal">NULL</span>, ’Deleting <span class="hljs-keyword">of</span> employee’);
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;
+    IF UPDATING THEN
+        <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> aud <span class="hljs-keyword">VALUES</span>(’employees’, <span class="hljs-keyword">CURRENT_TIMESTAMP</span>,
+        <span class="hljs-literal">NULL</span>, ’<span class="hljs-keyword">Modification</span> <span class="hljs-keyword">of</span> employees <span class="hljs-keyword">data</span>’);
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;
+<span class="hljs-keyword">END</span>;
+
+</div></code></pre>
+<p><strong>Modyfikacja widoku triggerem instead of</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> loc_coun <span class="hljs-keyword">AS</span>                             <span class="hljs-comment">-- jakis tam widok</span>
+    <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> locations <span class="hljs-keyword">NATURAL</span> <span class="hljs-keyword">JOIN</span> countries;
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">TRIGGER</span> tr_loc_coun
+    INSTEAD <span class="hljs-keyword">OF</span> <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">ON</span> loc_coun             <span class="hljs-comment">-- czyli tutaj jak chcemy zmienic widok jakis to po prostu</span>
+    <span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-comment">-- ... check if it doesn’t already exists</span>
+    <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> locations <span class="hljs-keyword">VALUES</span> (:NEW.location_id,      <span class="hljs-comment">-- zamiast tego dodajemy do tej konkretnej tabeli która jest w widoku</span>
+    :NEW.street_address,:NEW.postal_code,
+    :NEW.city, :NEW.state_province,
+    :NEW.country_id);
+    <span class="hljs-comment">-- ... check if it doesn’t already exists</span>
+    <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> countries <span class="hljs-keyword">VALUES</span> (:NEW.country_id,        <span class="hljs-comment">-- akurat tu sa dwie wiec do dwoch te nowe dane</span>
+    :NEW.country_name, :NEW.region_id);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>triggery systemowe</strong><br>
+<strong>Tu akurat uniemozliwia to usuwanie, takie sztuczne to jest, zamiast uprawnieniami to po prostu uniemozliwia usuwanie</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">TRIGGER</span> no_drop
+    <span class="hljs-keyword">BEFORE</span> <span class="hljs-keyword">DROP</span>
+    <span class="hljs-keyword">ON</span> <span class="hljs-keyword">SCHEMA</span>
+<span class="hljs-keyword">BEGIN</span>
+    RAISE_APPLICATION_ERROR(<span class="hljs-number">-20123</span>,
+    <span class="hljs-keyword">User</span>||’ <span class="hljs-built_in">number</span> ’||Uid||’ cannot <span class="hljs-keyword">drop</span> objects.’);
+<span class="hljs-keyword">END</span>;
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TRIGGER</span> log_errors
+    <span class="hljs-keyword">AFTER</span> <span class="hljs-keyword">SERVERERROR</span> <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DATABASE</span>
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">IF</span> (IS_SERVERERROR (<span class="hljs-number">1017</span>)) <span class="hljs-keyword">THEN</span>
+        <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> server_audit(<span class="hljs-keyword">Current_timestamp</span>,’<span class="hljs-keyword">Error</span> - <span class="hljs-number">1017</span>’)
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>8.1 Exercises for Self-Practice</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment">--1. Create a table in which you will store logs of operations performed on a selected table (inserts, deletes, updates). Create a trigger that, after a change is made to the selected table, inserts an appropriate comment into the audit table.</span>
+
+<span class="hljs-comment">--2. Extend the comments with details of the modified rows by using a row-level trigger.</span>
+<span class="hljs-comment">-- Akurat to drugie tez przez przypadek zrobilem xd do drugiego potrzebne jest dodanie:</span>
+<span class="hljs-comment">-- For each row to umozliwia uzycie :NEW.name</span>
+<span class="hljs-comment">-- 'Insert - added Astronaut (' || :NEW.name || ', ' ||:NEW.surname || ')';</span>
+<span class="hljs-comment">--</span>
+<span class="hljs-keyword">Create</span> <span class="hljs-keyword">table</span> <span class="hljs-keyword">logs</span>(
+    <span class="hljs-keyword">id</span> <span class="hljs-built_in">number</span>,
+    operation_name <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">250</span>),
+    recorded_at <span class="hljs-built_in">date</span>,
+    who <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">50</span>)
+);
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">TRIGGER</span> tg_logs
+    <span class="hljs-keyword">BEFORE</span> <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">DELETE</span>
+    <span class="hljs-keyword">ON</span> astronauts
+    <span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> <span class="hljs-keyword">ROW</span>
+<span class="hljs-keyword">DECLARE</span>
+    v_max_id <span class="hljs-built_in">number</span>;
+    v_operation Varchar2(250);
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">SELECT</span> nvl(<span class="hljs-keyword">max</span>(<span class="hljs-keyword">id</span>), <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>  <span class="hljs-keyword">into</span> v_max_id <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">logs</span>;
+    if inserting then
+        v_operation := '<span class="hljs-keyword">Insert</span> - added Astronaut (<span class="hljs-string">' || :NEW.name || '</span>, <span class="hljs-string">' ||:NEW.surname || '</span>)<span class="hljs-string">';
+    elsif updating then
+        v_operation := '</span><span class="hljs-keyword">Update</span><span class="hljs-string">';
+    elsif deleting then
+        v_operation := '</span><span class="hljs-keyword">Delete</span><span class="hljs-string">';
+    end if;
+    INSERT INTO logs(id,operation_name,recorded_at,who) values (v_max_id,v_operation,CURRENT_TIMESTAMP,USER);
+end;
+/
+
+
+INSERT into astronauts (name,surname,birth_date,death_date) values ('</span>agata<span class="hljs-string">','</span>szczota<span class="hljs-string">',To_Date('</span><span class="hljs-number">11</span><span class="hljs-number">-11</span><span class="hljs-number">-2046</span><span class="hljs-string">','</span>DD-MM-YYYY<span class="hljs-string">'),NULL);
+</span></div></code></pre>
+<pre class="hljs"><code><div>
+</div></code></pre>
+
+</body>
+
+</html>
