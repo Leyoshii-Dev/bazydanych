@@ -358,4 +358,51 @@ end;
 
 
 
+-- stworz pakiet swoich funkcji
+
+
+create or replace package gownofunkcje
+AS
+
+FUNCTION PLEYOSHII_SCHEMA_636ZE.jakasfunkcja (p_name Varchar) return Varchar;
+function PLEYOSHII_SCHEMA_636ZE.ObliczSredniaEnergie(p_id_base bases.id%type, date_from energy.recorded_at%type, date_to energy.recorded_at%type);
+
+end gownofunkcje;
+
+create or replace package body gownofunkcje
+AS
+
+
+
+FUNCTION PLEYOSHII_SCHEMA_636ZE.jakasfunkcja (p_name Varchar)   
+return Varchar
+
+as
+
+BEGIN
+    dbms_output.put_line(p_name);
+    return p_name;
+end jakasfunkcja;
+
+
+function PLEYOSHII_SCHEMA_636ZE.ObliczSredniaEnergie(p_id_base bases.id%type, date_from energy.recorded_at%type, date_to energy.recorded_at%type)
+return NUMBER
+
+is
+    v_srednia number;
+begin
+
+    select avg(energy_produced_kwh-energy_consumed_kwh) into v_srednia
+     from energy where base_id = p_id_base and recorded_at between date_from and date_to;
+
+    return v_srednia;
+
+end ObliczSredniaEnergie;
+
+end gownofunkcje;
+
+
+
+
+
 ```

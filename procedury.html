@@ -4,45 +4,14 @@
 <head>
     <title>procedury.md</title>
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-    
+    <link rel="stylesheet" href="style.css">
 <style>
 /* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
 /*---------------------------------------------------------------------------------------------
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-.nav-container {
-        display: flex;
-        gap: 15px;
-        padding: 20px;
-        background: #1e1e1e; /* Ciemne tło paska */
-        border-bottom: 1px solid #333;
-        margin-bottom: 30px;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
 
-    .nav-btn {
-        text-decoration: none;
-        color: #fff;
-        background: #007acc; /* Niebieski "Visual Studio" */
-        padding: 10px 20px;
-        border-radius: 5px;
-        font-weight: bold;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    }
-
-    .nav-btn:hover {
-        background: #005a9e;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-
-    .nav-btn.active {
-        background: #333;
-        border: 1px solid #007acc;
-    }
-	
 body {
 	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
 	font-size: var(--vscode-markdown-font-size, 14px);
@@ -397,8 +366,7 @@ code {
 </head>
 
 <body>
-
-	<div class="nav-container">
+<div class="nav-container">
     <!-- Tu wstaw odpowiedni link poniżej -->
     <a href="index.html" class="nav-btn">🏠 Strona Główna</a>
     <a href="cursory.html" class="nav-btn">🚀 Kursory</a>
@@ -560,6 +528,226 @@ PRINT b_mail; <span class="hljs-comment">-- i nastepnie wypisac mail</span>
 <span class="hljs-keyword">begin</span>
     DBMS_OUTPUT.PUT_LINE(emp_wages.wages()); <span class="hljs-comment">-- PL/SQL</span>
 <span class="hljs-keyword">end</span>;
+</div></code></pre>
+<p><strong>Zadania 6.1</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment">--1. Create a procedure that inserts the text "Hello mission!" into a test table. Test the procedure.</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">PROCEDURE</span> jakistekst
+<span class="hljs-keyword">IS</span>
+    v_zmienna <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>);
+    v_zmienna2 Varchar(30) := 'Hello mission!';
+<span class="hljs-keyword">begin</span>
+    v_zmienna := <span class="hljs-string">'Hello mission!'</span>;
+    dbms_output.put_line(v_zmienna);
+<span class="hljs-keyword">end</span> jakistekst;
+/
+
+<span class="hljs-keyword">execute</span> jakistekst;
+
+<span class="hljs-comment">--2. Create a procedure that displays the text "Hello " </span>
+<span class="hljs-comment">-- followed by a name provided as an input parameter. Test its operation.</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">PROCEDURE</span> jakistekst(p_name <span class="hljs-built_in">Varchar</span> <span class="hljs-keyword">default</span> <span class="hljs-string">'Hello World!'</span>)
+<span class="hljs-keyword">IS</span>
+
+<span class="hljs-keyword">begin</span>
+    dbms_output.put_line(p_name);
+<span class="hljs-keyword">end</span> jakistekst;
+/
+
+<span class="hljs-keyword">execute</span> jakistekst;
+<span class="hljs-keyword">execute</span> jakistekst(<span class="hljs-string">'hello world!'</span>);
+<span class="hljs-keyword">execute</span> jakistekst(p_name =&gt; <span class="hljs-string">'hello world!1'</span>);
+
+<span class="hljs-comment">--3. Add an OUT parameter to the procedure from the previous task.</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">PROCEDURE</span> jakistekst(p_name <span class="hljs-keyword">OUT</span> <span class="hljs-built_in">Varchar</span>)
+<span class="hljs-keyword">IS</span>
+<span class="hljs-keyword">begin</span>
+    p_name := <span class="hljs-string">'Udalo sie zmienic'</span>;
+    dbms_output.put_line(p_name);
+<span class="hljs-keyword">end</span> jakistekst;
+/
+
+
+<span class="hljs-keyword">DECLARE</span>
+    v_name <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>);
+<span class="hljs-keyword">BEGIN</span>
+    jakistekst(v_name);
+    dbms_output.put_line(v_name);
+<span class="hljs-keyword">END</span>;
+
+<span class="hljs-comment">--4. Test the IN OUT parameter mode.</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">PROCEDURE</span> jakistekst(p_name <span class="hljs-keyword">IN</span> <span class="hljs-keyword">OUT</span> <span class="hljs-built_in">Varchar</span>)
+<span class="hljs-keyword">IS</span>
+<span class="hljs-keyword">begin</span>
+    dbms_output.put_line(p_name);
+    p_name := 'Udalo sie zmienic';
+<span class="hljs-keyword">end</span> jakistekst;
+/
+
+
+
+<span class="hljs-keyword">DECLARE</span>
+    v_name <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>) := <span class="hljs-string">'Hello Wordl!'</span>;
+<span class="hljs-keyword">BEGIN</span>
+    jakistekst(v_name);
+    dbms_output.put_line(v_name);
+<span class="hljs-keyword">END</span>;
+
+
+<span class="hljs-comment">--5. Create a function analogous to the procedure from task 2. Test it inside a query.</span>
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">FUNCTION</span> jakasfunkcja (p_name <span class="hljs-built_in">Varchar</span>)   
+<span class="hljs-keyword">return</span> <span class="hljs-built_in">Varchar</span>
+
+<span class="hljs-keyword">as</span>
+
+<span class="hljs-keyword">BEGIN</span>
+    dbms_output.put_line(p_name);
+    return p_name;
+<span class="hljs-keyword">end</span> jakasfunkcja;
+/
+
+
+<span class="hljs-keyword">SELECT</span> jakasfunkcja(<span class="hljs-string">'hello world!'</span>) <span class="hljs-keyword">as</span> funkcja <span class="hljs-keyword">from</span> dual;
+
+
+<span class="hljs-comment">--6. Create a procedure that displays and modifies selected rows of your table.</span>
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">or</span> <span class="hljs-keyword">replace</span> <span class="hljs-keyword">procedure</span> edytuj(p_name astronauts.name%<span class="hljs-keyword">type</span>, p_new_name astronauts.name%<span class="hljs-keyword">type</span>)
+<span class="hljs-keyword">IS</span>
+
+<span class="hljs-keyword">begin</span>
+    dbms_output.put_line(p_name);
+    <span class="hljs-keyword">UPDATE</span> astronauts <span class="hljs-keyword">set</span> <span class="hljs-keyword">name</span> = p_new_name <span class="hljs-keyword">where</span> <span class="hljs-keyword">name</span> = p_name;
+<span class="hljs-keyword">end</span> edytuj;
+/
+
+
+<span class="hljs-keyword">DECLARE</span>
+    v_name astronauts.name%<span class="hljs-keyword">type</span>;
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">into</span> v_name <span class="hljs-keyword">from</span> astronauts <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span> = <span class="hljs-number">250</span>;
+    edytuj(v_name,'gejuszek');
+<span class="hljs-keyword">END</span>;
+/
+
+<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> astronauts;
+
+
+<span class="hljs-comment">--7. Create a procedure that handles</span>
+<span class="hljs-comment">-- two cursors, where the second cursor is parameterized with values obtained from the first one.</span>
+
+
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">or</span> <span class="hljs-keyword">replace</span> <span class="hljs-keyword">procedure</span> jakiesgowno
+<span class="hljs-keyword">is</span>
+    <span class="hljs-keyword">CURSOR</span> c_mission <span class="hljs-keyword">IS</span>
+        <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">id</span> <span class="hljs-keyword">from</span> missions <span class="hljs-keyword">where</span> finished_at <span class="hljs-keyword">is</span> <span class="hljs-literal">null</span>;
+    
+    v_mission missions.id%type;
+
+    CURSOR c_astronauts(c_id missions.id%type) IS
+        <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">from</span> astronauts <span class="hljs-keyword">join</span> mission_astronauts <span class="hljs-keyword">on</span> astronauts.id = mission_astronauts.astronaut_id <span class="hljs-keyword">where</span> mission_id = c_id;
+    v_astronaut astronauts.name%type;
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">Open</span> c_mission;
+    loop 
+        fetch c_mission into v_mission;
+        exit when c_mission%notfound OR c_mission%notfound is null;
+        Open c_astronauts(v_mission);
+        dbms_output.put_line('Misja: ' || v_mission);
+        loop
+            fetch c_astronauts into v_astronaut;
+            exit when c_astronauts%notfound OR c_astronauts%notfound is null;
+            dbms_output.put_line(v_astronaut);
+        <span class="hljs-keyword">end</span> <span class="hljs-keyword">loop</span>;
+        close c_astronauts;
+
+    <span class="hljs-keyword">end</span> <span class="hljs-keyword">loop</span>;
+    close c_mission;
+<span class="hljs-keyword">end</span> jakiesgowno;
+/
+<span class="hljs-keyword">execute</span> jakiesgowno;
+
+</div></code></pre>
+<p><strong>7.1 Exercises for Self-Practice</strong></p>
+<pre class="hljs"><code><div>
+<span class="hljs-comment">--1. Implement a parameterized function that calculates a value based on your data,</span>
+<span class="hljs-comment">-- for example: the difference in an astronaut’s weight over a given period of time,</span>
+<span class="hljs-comment">-- the average temperature at a specific location, the number of potato packages ;) etc. Test the function.</span>
+
+
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">or</span> <span class="hljs-keyword">replace</span> <span class="hljs-keyword">function</span> ObliczSredniaEnergie(p_id_base bases.id%<span class="hljs-keyword">type</span>, date_from energy.recorded_at%<span class="hljs-keyword">type</span>, date_to energy.recorded_at%<span class="hljs-keyword">type</span>)
+<span class="hljs-keyword">return</span> <span class="hljs-built_in">NUMBER</span>
+
+<span class="hljs-keyword">is</span>
+    v_srednia <span class="hljs-built_in">number</span>;
+<span class="hljs-keyword">begin</span>
+
+    <span class="hljs-keyword">select</span> <span class="hljs-keyword">avg</span>(energy_produced_kwh-energy_consumed_kwh) <span class="hljs-keyword">into</span> v_srednia
+     <span class="hljs-keyword">from</span> energy <span class="hljs-keyword">where</span> base_id = p_id_base <span class="hljs-keyword">and</span> recorded_at <span class="hljs-keyword">between</span> date_from <span class="hljs-keyword">and</span> date_to;
+
+    return v_srednia;
+
+<span class="hljs-keyword">end</span> ObliczSredniaEnergie;
+/
+
+
+<span class="hljs-keyword">DECLARE</span>
+
+<span class="hljs-keyword">begin</span>
+    dbms_output.put_line(ObliczSredniaEnergie(<span class="hljs-number">1</span>,<span class="hljs-keyword">TO_DATE</span>(<span class="hljs-string">'10-03-2046'</span>,<span class="hljs-string">'DD-MM-YYYY'</span>),<span class="hljs-keyword">TO_DATE</span>(<span class="hljs-string">'10-03-2046'</span>,<span class="hljs-string">'DD-MM-YYYY'</span>)));
+<span class="hljs-keyword">end</span>;
+
+
+
+
+
+
+<span class="hljs-comment">-- stworz pakiet swoich funkcji</span>
+
+
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">or</span> <span class="hljs-keyword">replace</span> <span class="hljs-keyword">package</span> gownofunkcje
+<span class="hljs-keyword">AS</span>
+
+<span class="hljs-keyword">FUNCTION</span> PLEYOSHII_SCHEMA_636ZE.jakasfunkcja (p_name <span class="hljs-built_in">Varchar</span>) <span class="hljs-keyword">return</span> <span class="hljs-built_in">Varchar</span>;
+function PLEYOSHII_SCHEMA_636ZE.ObliczSredniaEnergie(p_id_base bases.id%type, date_from energy.recorded_at%type, date_to energy.recorded_at%type);
+
+<span class="hljs-keyword">end</span> gownofunkcje;
+
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">or</span> <span class="hljs-keyword">replace</span> <span class="hljs-keyword">package</span> <span class="hljs-keyword">body</span> gownofunkcje
+<span class="hljs-keyword">AS</span>
+
+
+
+<span class="hljs-keyword">FUNCTION</span> PLEYOSHII_SCHEMA_636ZE.jakasfunkcja (p_name <span class="hljs-built_in">Varchar</span>)   
+<span class="hljs-keyword">return</span> <span class="hljs-built_in">Varchar</span>
+
+<span class="hljs-keyword">as</span>
+
+<span class="hljs-keyword">BEGIN</span>
+    dbms_output.put_line(p_name);
+    return p_name;
+<span class="hljs-keyword">end</span> jakasfunkcja;
+
+
+function PLEYOSHII_SCHEMA_636ZE.ObliczSredniaEnergie(p_id_base bases.id%type, date_from energy.recorded_at%type, date_to energy.recorded_at%type)
+return NUMBER
+
+is
+    v_srednia number;
+<span class="hljs-keyword">begin</span>
+
+    <span class="hljs-keyword">select</span> <span class="hljs-keyword">avg</span>(energy_produced_kwh-energy_consumed_kwh) <span class="hljs-keyword">into</span> v_srednia
+     <span class="hljs-keyword">from</span> energy <span class="hljs-keyword">where</span> base_id = p_id_base <span class="hljs-keyword">and</span> recorded_at <span class="hljs-keyword">between</span> date_from <span class="hljs-keyword">and</span> date_to;
+
+    return v_srednia;
+
+<span class="hljs-keyword">end</span> ObliczSredniaEnergie;
+
+<span class="hljs-keyword">end</span> gownofunkcje;
+
+
+
+
+
 </div></code></pre>
 
 </body>
