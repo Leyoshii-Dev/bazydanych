@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>cursory.md</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+.nav-container {
+        display: flex;
+        gap: 15px;
+        padding: 20px;
+        background: #1e1e1e; /* Ciemne tło paska */
+        border-bottom: 1px solid #333;
+        margin-bottom: 30px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .nav-btn {
+        text-decoration: none;
+        color: #fff;
+        background: #007acc; /* Niebieski "Visual Studio" */
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .nav-btn:hover {
+        background: #005a9e;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .nav-btn.active {
+        background: #333;
+        border: 1px solid #007acc;
+    }
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+html,footer,header{
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Custom MD PDF CSS
+ */
+html,footer,header{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+
+ }
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file:///r%3A/2.Travail/1.Enseignement/Cours/_1.Outils/2.Developpement/1.SCSS/main.css" type="text/css"><link rel="stylesheet" href="file:///d%3A/rdaros/Cours/_1.Outils/2.Developpement/1.SCSS/main.css" type="text/css">
+</head>
+
+<body>
+<div class="nav-container">
+    <!-- Tu wstaw odpowiedni link poniżej -->
+    <a href="index.html" class="nav-btn">🏠 Strona Główna</a>
+    <a href="cursory.html" class="nav-btn">🚀 Kursory</a>
+	<a href="procedury.html" class="nav-btn"> ©️Procedury</a>
+    <a href="triggery.html" class="nav-btn"> 👨🏿Triggery</a>
+    <a href="zadania.html" class="nav-btn"> 🏳️‍🌈Zadania</a>
+</div>
+    <p><strong>Deklaracja Zmiennych</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Declare</span>
+ v_age <span class="hljs-built_in">NUMBER</span>(<span class="hljs-number">3</span>);
+<span class="hljs-keyword">Begin</span>
+    v_age := <span class="hljs-number">15</span>;
+    DBMS_OUTPUT.PUT_LINE('Masz ' || v_age || 'lat');
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>Cytaty i znaki specjalne</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Declare</span>
+    v_string <span class="hljs-built_in">VARCHAR2</span>(<span class="hljs-number">30</span>) := <span class="hljs-string">'I''m learning'</span>;
+<span class="hljs-keyword">Begin</span>
+    DBMS_OUTPUT.PUT_LINE(v_string);
+    v_string := q'[I'm bored]';
+    DBMS_OUTPUT.PUT_LINE(v_string);
+    v_string := nq'[Zażółć gęślą jaźń']';
+    DBMS_OUTPUT.PUT_LINE(v_string);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>q - cytaty</strong><br>
+<strong>nq - znaki specjalne</strong></p>
+<p><strong>Branie danych z tabelki</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Declare</span>
+    v_first_name astronauts.NAME%<span class="hljs-keyword">TYPE</span>; <span class="hljs-comment">-- typ danych z kolumny</span>
+    v_surname astronauts.SURNAME%TYPE;
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">NAME</span>, SURNAME 
+    <span class="hljs-keyword">into</span> v_first_name, v_surname
+    <span class="hljs-keyword">from</span> astronauts
+    <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span>=<span class="hljs-number">1</span>;
+
+    DBMS_OUTPUT.PUT_LINE(v_first_name);
+    DBMS_OUTPUT.PUT_LINE(v_surname);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>Recordy, dzialaja tak jakbyscie klase zrobili i chuj</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Declare</span>
+    <span class="hljs-keyword">TYPE</span> astronaut <span class="hljs-keyword">IS</span> <span class="hljs-built_in">RECORD</span>(
+        v_name <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>),
+        v_surname <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>)
+    );
+    vr_astronaut astronaut;
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">NAME</span>, SURNAME 
+    <span class="hljs-keyword">into</span> vr_astronaut.v_name, vr_astronaut.v_surname
+    <span class="hljs-keyword">from</span> astronauts
+    <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span>=<span class="hljs-number">1</span>;
+
+    DBMS_OUTPUT.PUT_LINE(vr_astronaut.v_name);
+    DBMS_OUTPUT.PUT_LINE(vr_astronaut.v_surname);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>Można wszystkie dane z tabelki wziac</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Declare</span>
+    vr_astronaut ASTRONAUTS%ROWTYPE;
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">SELECT</span> *
+    <span class="hljs-keyword">into</span> vr_astronaut
+    <span class="hljs-keyword">from</span> astronauts
+    <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span>=<span class="hljs-number">1</span>;
+
+    DBMS_OUTPUT.PUT_LINE(vr_astronaut.name);
+    DBMS_OUTPUT.PUT_LINE(vr_astronaut.surname);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>To jest juz spierdolone, zmienna globalna mozna powiedziec ze to jest</strong></p>
+<pre class="hljs"><code><div>VARIABLE b_salary NUMBER; <span class="hljs-comment">-- Tworzenie zmiennej globalnej</span>
+
+<span class="hljs-keyword">BEGIN</span>
+    :b_salary := <span class="hljs-number">2500</span>; <span class="hljs-comment">-- Przypisywanie jej zmiennej, wazny jest : bo to oznacza wlasnie zmienna globalna</span>
+<span class="hljs-keyword">END</span>;
+/ <span class="hljs-comment">-- To tez w chuj wazne bo to konczy pl/sql i mozna pisac potem print</span>
+
+PRINT b_salary
+</div></code></pre>
+<p><strong>Mozna uzywac funkcji wbudowanych</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    v_name <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">30</span>) := <span class="hljs-string">'Jakies imie'</span>;
+    v_wynik VARCHAR(30);
+    v_dlugosc number;
+    v_data NUMBER;
+<span class="hljs-keyword">begin</span>
+    v_wynik:= <span class="hljs-keyword">UPPER</span>(v_name); <span class="hljs-comment">-- Duze litery</span>
+    v_dlugosc := length(v_name); <span class="hljs-comment">-- ilosc znakow w slowie</span>
+    v_data := LAST_DAY(SYSDATE) - TRUNC(sysdate) +1; 
+    DBMS_OUTPUT.PUT_LINE(v_wynik);
+    DBMS_OUTPUT.PUT_LINE(v_dlugosc);
+    DBMS_OUTPUT.PUT_LINE(v_data);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>Wrzucanie dane prosto z inserta do zmiennej</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    v_birth_date <span class="hljs-built_in">DATE</span>;
+<span class="hljs-keyword">begin</span>
+    <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> astronauts
+    (<span class="hljs-keyword">id</span>,<span class="hljs-keyword">name</span>,surname,birth_date,death_date)
+    <span class="hljs-keyword">values</span>
+    (<span class="hljs-number">250</span>,<span class="hljs-string">'franek'</span>,<span class="hljs-string">'pomarancza'</span>,<span class="hljs-keyword">TO_DATE</span>(<span class="hljs-string">'07-05-1999'</span>,<span class="hljs-string">'DD-MM_YYYY'</span>),<span class="hljs-literal">NULL</span>)
+    <span class="hljs-keyword">returning</span> birth_date <span class="hljs-keyword">into</span> v_birth_date; <span class="hljs-comment">-- To wazne wrzucasz sobie dane z inserta do zmiennej</span>
+    
+    DBMS_OUTPUT.PUT_LINE(v_birth_date);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p>** Mozna wrzucic dane z rekordu ale musi wszystko pasować, chyba ze sobie wybierzecie dane**</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">Declare</span>
+    <span class="hljs-keyword">TYPE</span> astronaut <span class="hljs-keyword">IS</span> <span class="hljs-built_in">RECORD</span>(
+        v_id <span class="hljs-built_in">number</span>,
+        v_name <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>),
+        v_surname <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>),
+        v_birth_date <span class="hljs-built_in">DATE</span>,
+        v_death_date <span class="hljs-built_in">DATE</span>
+    );
+    vr_astronaut astronaut;
+<span class="hljs-keyword">BEGIN</span>
+    vr_astronaut.v_id := <span class="hljs-number">300</span>;
+    vr_astronaut.v_name := 'Kolega';
+    vr_astronaut.v_surname := 'Twojej mamy';
+    vr_astronaut.v_birth_date := To_Date('2000-02-02','YYYY-MM-DD');
+    vr_astronaut.v_death_date := NULL;
+
+    <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> astronauts <span class="hljs-keyword">values</span> vr_astronaut;
+
+    <span class="hljs-comment">-- Tak mozna sobie wybrac jak cos</span>
+    <span class="hljs-comment">--INSERT INTO astronauts (name,surname,birth_date) values (vr_astronaut.v_name,vr_astronaut.v_surname,vr_astronaut.v_birth_date);</span>
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>Warunki</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    ale <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>) := <span class="hljs-string">'aaaaaaaaa'</span>; 
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">IF</span> <span class="hljs-keyword">length</span>(ale) &gt; <span class="hljs-number">10</span> <span class="hljs-keyword">THEN</span>
+        ale := <span class="hljs-string">'Imie'</span>;
+    ELSIF length(ale) &lt; 10 THEN <span class="hljs-comment">-- Uwaga na to scierwo ELSIF jebany ELSIF :)</span>
+        ale := 'Inne imie 1';
+    ELSE
+        ale := 'Inne imie 2';
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;
+    DBMS_OUTPUT.PUT_LINE(ale);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>CASE</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    ale <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>) := <span class="hljs-string">'aaa'</span>;
+<span class="hljs-keyword">BEGIN</span>
+
+    <span class="hljs-keyword">CASE</span> ale <span class="hljs-comment">-- to mozna na rozne sposoby robic ale pokazuje taki, mozna tez warunki dac po when ale bez tego ale po CASE musi byc wtedy</span>
+        <span class="hljs-keyword">when</span> <span class="hljs-string">'a'</span> <span class="hljs-keyword">THEN</span> ale := <span class="hljs-string">'instr1'</span>;
+        when 'aa' THEN ale := 'instr2';
+        when 'aaa' THEN ale := 'instr3';
+        else ale := 'else';
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">case</span>;
+    DBMS_OUTPUT.PUT_LINE(ale);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>loop to taka petla do while</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    ale <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>) := <span class="hljs-string">'aaa'</span>;
+<span class="hljs-keyword">BEGIN</span>
+
+    <span class="hljs-keyword">loop</span>
+        ale := <span class="hljs-keyword">CONCAT</span>(ale,<span class="hljs-string">'a'</span>);
+        exit when length(ale) &gt; 10;
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">loop</span>;
+    DBMS_OUTPUT.PUT_LINE(ale);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>While taki sam jak zwykle tylko ze trzeba dodac to jebane loop</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    ale <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>) := <span class="hljs-string">'aaa'</span>;
+<span class="hljs-keyword">BEGIN</span>
+
+    <span class="hljs-keyword">while</span> <span class="hljs-keyword">length</span>(ale) &lt; <span class="hljs-number">10</span> <span class="hljs-keyword">LOOP</span>
+        ale := <span class="hljs-keyword">CONCAT</span>(ale, <span class="hljs-string">'a'</span>);
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">LOOP</span>;
+    DBMS_OUTPUT.PUT_LINE(ale);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>for nawet ok ale mamy tu jebane loop znowu <img class="emoji" alt="smiley" src="data:image/png;base64,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" /></strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    ale <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>) := <span class="hljs-string">'aaa'</span>;
+<span class="hljs-keyword">BEGIN</span>
+
+    <span class="hljs-keyword">FOR</span> i <span class="hljs-keyword">IN</span> <span class="hljs-number">4.</span><span class="hljs-number">.10</span> <span class="hljs-keyword">LOOP</span>
+        ale := <span class="hljs-keyword">Concat</span>(ale,<span class="hljs-string">'a'</span>);
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">loop</span>;
+    DBMS_OUTPUT.PUT_LINE(length(ale));
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>Zrobione zadanie to zeby przecwiczyc</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment">--1. Write an anonymous block that displays the message "Hello mission!".</span>
+
+<span class="hljs-keyword">begin</span>
+    DBMS_OUTPUT.PUT_LINE(<span class="hljs-string">'Hello mission!'</span>);
+<span class="hljs-keyword">end</span>;
+/
+<span class="hljs-comment">--2. Create an anonymous block containing declarations of four variables and one constant of different data types. Initialize some of the variables and the constant with values. In the executable section, display the values of the variables.</span>
+
+<span class="hljs-keyword">DECLARE</span>
+    v_imie <span class="hljs-built_in">varchar</span>(<span class="hljs-number">30</span>);
+    v_wiek number;
+    v_data date;
+<span class="hljs-keyword">begin</span>
+    v_imie := <span class="hljs-string">'imie'</span>;
+    v_wiek := 5;
+    v_data := TO_DATE('2000-10-10','YYYY-MM-DD');
+    DBMS_OUTPUT.PUT_LINE(v_imie ||'  '|| v_wiek ||'lat  ' || v_data);
+<span class="hljs-keyword">end</span>;
+/
+
+<span class="hljs-comment">--3. Within an anonymous block, declare a record type copying the column types from any table and a variable of that record type. In the executable section, assign values to the fields of this variable and display the stored values.</span>
+
+<span class="hljs-keyword">DECLARE</span>
+    <span class="hljs-keyword">TYPE</span> astro <span class="hljs-keyword">is</span> <span class="hljs-built_in">RECORD</span>(
+        vr_id astronauts.id%<span class="hljs-keyword">TYPE</span>,
+        vr_name astronauts.name%<span class="hljs-keyword">TYPE</span>,
+        vr_surname astronauts.surname%<span class="hljs-keyword">TYPE</span>,
+        vr_birth_date astronauts.birth_date%<span class="hljs-keyword">TYPE</span>,
+        vr_death_date astronauts.death_date%<span class="hljs-keyword">TYPE</span>
+    );
+    vr_astro astro;
+<span class="hljs-keyword">BEGIN</span>
+    vr_astro.vr_id := <span class="hljs-number">1</span>;
+    vr_astro.vr_name := 'imie';
+    DBMS_OUTPUT.PUT_LINE(vr_astro.vr_id || ' '|| vr_astro.vr_name);
+<span class="hljs-keyword">end</span>;
+/
+
+<span class="hljs-comment">--4. Create a record type based on a row of a selected table. Assign values to the variable and display them.</span>
+
+<span class="hljs-keyword">DECLARE</span>
+    astro astronauts%ROWTYPE;
+<span class="hljs-keyword">BEGIN</span>
+    astro.name := <span class="hljs-string">'imie'</span>;
+    astro.surname := 'nazwisko';
+        DBMS_OUTPUT.PUT_LINE(astro.name || ' ' || astro.surname);
+<span class="hljs-keyword">END</span>;
+/
+
+<span class="hljs-comment">--5. Create a record type based on a row of a selected table. Retrieve values into it using a query (only one row!) and display them.</span>
+
+<span class="hljs-keyword">DECLARE</span>
+    astro astronauts%ROWTYPE;
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>, surname
+    <span class="hljs-keyword">INTO</span> astro.name, astro.surname
+    <span class="hljs-keyword">FROM</span> astronauts
+    <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span> = <span class="hljs-number">1</span>;
+    DBMS_OUTPUT.PUT_LINE(astro.name || ' ' || astro.surname);
+<span class="hljs-keyword">END</span>;
+/
+
+<span class="hljs-comment">--6. Create a record type based on a row of a selected table and also declare a regular variable with a type copied from one attribute of the same table. In the executable section, assign values to the record variable. Then modify any row of the table using the UPDATE statement and the values from the record variable. At the same time, return an appropriate value (RETURNING INTO clause) into the additional variable.</span>
+
+<span class="hljs-keyword">DECLARE</span>
+    astro astronauts%ROWTYPE;
+    v_name astronauts.name%TYPE;
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">SELECT</span> * 
+    <span class="hljs-keyword">into</span> astro
+    <span class="hljs-keyword">from</span> astronauts <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span> = <span class="hljs-number">250</span>;
+    astro.name := 'kupa';
+
+    <span class="hljs-keyword">UPDATE</span> astronauts <span class="hljs-keyword">SET</span> <span class="hljs-keyword">ROW</span> = astro <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span> = <span class="hljs-number">250</span>
+    <span class="hljs-keyword">RETURNING</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">into</span> v_name;
+    DBMS_OUTPUT.PUT_LINE(v_name);
+<span class="hljs-keyword">END</span>;
+/
+
+<span class="hljs-comment">--7. Use the IF conditional statement to display a row from a selected table. Declare the necessary variables.</span>
+
+<span class="hljs-keyword">DECLARE</span> 
+    astro astronauts%ROWTYPE;
+<span class="hljs-keyword">begin</span>
+    <span class="hljs-keyword">SELECT</span> *
+    <span class="hljs-keyword">into</span> astro
+    <span class="hljs-keyword">from</span> astronauts
+    <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span> =<span class="hljs-number">250</span>;
+    DBMS_OUTPUT.PUT_LINE('halo');
+    if length(astro.name) &gt; 5 then
+        DBMS_OUTPUT.PUT_LINE('Twoje imie jest okej');
+    elsif length(astro.name) =5 then
+        DBMS_OUTPUT.PUT_LINE('Jeszcze jedna literka');
+    else
+        DBMS_OUTPUT.PUT_LINE('Za krótkie imie!!!');
+    <span class="hljs-keyword">end</span> <span class="hljs-keyword">if</span>;
+<span class="hljs-keyword">end</span>;
+/
+
+
+<span class="hljs-comment">--8. Retrieve any string from the database. Display it vertically, letter by letter, using three different types of loops in turn.</span>
+
+
+<span class="hljs-keyword">DECLARE</span>
+    v_name astronauts.NAME%<span class="hljs-keyword">TYPE</span>;
+    counter simple_integer := 1;
+<span class="hljs-keyword">begin</span>
+    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span>
+    <span class="hljs-keyword">into</span> v_name
+    <span class="hljs-keyword">from</span> astronauts
+    <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span>=<span class="hljs-number">250</span>;
+
+    LOOP
+        DBMS_OUTPUT.PUT_LINE(SUBSTR(v_name,counter,1)); <span class="hljs-comment">-- Trzeba pamietac ze tu indeksy sa od 1...</span>
+        counter := counter +1;
+        exit when counter = length(v_name)+1;
+    <span class="hljs-keyword">end</span> <span class="hljs-keyword">loop</span>;
+
+    DBMS_OUTPUT.PUT_LINE('');
+    counter := 1;
+
+    WHILE counter &lt;= length(v_name) loop
+        DBMS_OUTPUT.PUT_LINE(SUBSTR(v_name,counter,1)); <span class="hljs-comment">-- Trzeba pamietac ze tu indeksy sa od 1...</span>
+        counter := counter +1;
+    <span class="hljs-keyword">end</span> <span class="hljs-keyword">loop</span>;
+
+    DBMS_OUTPUT.PUT_LINE('');
+
+    FOR i IN 1..length(v_name) loop
+        DBMS_OUTPUT.PUT_LINE(SUBSTR(v_name,i,1)); <span class="hljs-comment">-- Trzeba pamietac ze tu indeksy sa od 1...</span>
+    <span class="hljs-keyword">end</span> <span class="hljs-keyword">loop</span>;
+<span class="hljs-keyword">end</span>;
+/
+</div></code></pre>
+
+
+    <p><strong>Cursors and Exception Handling</strong></p>
+<p><strong>Podstawowy kursor, służa one do pobierania wielu wierszy w przeciwienstwie do takiego select * into ktory tylko jeden pobierze nam</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    <span class="hljs-keyword">CURSOR</span> c_astronauts(c_id <span class="hljs-built_in">number</span>) <span class="hljs-keyword">IS</span> <span class="hljs-comment">-- jak funkcja ma po prostu argument, ALE NIE MUSI MIEC</span>
+        <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">from</span> astronauts <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span> = c_id; <span class="hljs-comment">-- zapytanie przez ktore chcemy otrzymac dane</span>
+    v_astronaut astronauts%ROWTYPE;
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">Open</span> c_astronauts(<span class="hljs-number">1</span>); <span class="hljs-comment">-- Wysylamy ze chcemy id 1 no i to nam da tego astroanute co ma id 1</span>
+    FETCH c_astronauts INTO v_astronaut; <span class="hljs-comment">-- Tu mozemy przypisac do tej zmiennej tego astroanute</span>
+    DBMS_OUTPUT.PUT_LINE(v_astronaut.name); <span class="hljs-comment">-- No i wypisac go na spokojnie</span>
+    CLOSE c_astronauts; <span class="hljs-comment">-- Pamietajcie zeby zamknac bo chujnia bedzie potem</span>
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>Uzywanie petli chociaz to jest taki chujowy przyklad no ale taki mamy pozniej bedzie lepszy</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    <span class="hljs-keyword">CURSOR</span> c_astronauts(c_id <span class="hljs-built_in">number</span>) <span class="hljs-keyword">IS</span>
+        <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">from</span> astronauts <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span> = c_id;
+    v_astronaut astronauts%ROWTYPE;
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">Open</span> c_astronauts(<span class="hljs-number">1</span>);
+    LOOP
+        FETCH c_astronauts INTO v_astronaut;
+        exit when c_astronauts%NOTFOUND OR c_astronauts%NOTFOUND IS NULL; <span class="hljs-comment">-- O to chodzi w tym przykladzie ze mozna sobie wyjsc jak sie skoncza rekordy</span>
+        DBMS_OUTPUT.PUT_LINE(v_astronaut.name);
+    <span class="hljs-keyword">end</span> <span class="hljs-keyword">loop</span>;
+    DBMS_OUTPUT.PUT_LINE(c_astronauts%ROWCOUNT || ' astronautow'); <span class="hljs-comment">-- Rowcount pokazuje ile jest wierszy</span>
+
+    CLOSE c_astronauts;
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>Tu fajny przyklad jak mozna sobie wszystkie dane wyciagnac, czyli po prostu robimy kursor bez argumentow i petla for sobie wypisujemy</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    <span class="hljs-keyword">CURSOR</span> c_astronauts <span class="hljs-keyword">IS</span>
+        <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">from</span> astronauts <span class="hljs-keyword">where</span> <span class="hljs-number">1</span>;
+<span class="hljs-keyword">BEGIN</span>
+    
+    <span class="hljs-keyword">FOR</span> v_astronaut <span class="hljs-keyword">IN</span> c_astronauts <span class="hljs-keyword">LOOP</span>
+        DBMS_OUTPUT.PUT_LINE(c_astronauts%ROWCOUNT || v_astronaut.name);
+    <span class="hljs-keyword">end</span> <span class="hljs-keyword">loop</span>;
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>Mozna rowniez robic cos takiego, czyli zamiast cursor to tutaj sobie to wpisac jakby ktos bardzo chcial, raczej chujowe ale mozna</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">FOR</span> v_astronaut <span class="hljs-keyword">IN</span> (<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">from</span> astronauts <span class="hljs-keyword">where</span> <span class="hljs-number">1</span>) <span class="hljs-keyword">LOOP</span>
+        DBMS_OUTPUT.PUT_LINE(v_astronaut.name);
+    <span class="hljs-keyword">end</span> <span class="hljs-keyword">loop</span>;
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>Exceptions - czyli wyjątki <img class="emoji" alt="smiley" src="data:image/png;base64,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" /></strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    v_liczba <span class="hljs-built_in">number</span> := <span class="hljs-number">10</span>;
+    v_liczba1 number := 0;
+<span class="hljs-keyword">BEGIN</span>
+    v_liczba := v_liczba / v_liczba1;
+
+    EXCEPTION <span class="hljs-comment">-- Jesli cos pojdzie nie tak w kodzie to exception zostanie wyłapany tutaj, jesli mamy nazwe tego wyjatku to mozna wpisac zamiast zero divide</span>
+        when zero_divide then
+            DBMS_OUTPUT.PUT_LINE ('Nie dziel przez 0'); <span class="hljs-comment">-- wiadomosc dla debila co popelnil blad</span>
+            DBMS_OUTPUT.PUT_LINE(SQLCODE); <span class="hljs-comment">-- to jest kod erroru za chwile powiem co to jest, znaczy no napisze</span>
+            DBMS_OUTPUT.PUT_LINE(SQLERRM); <span class="hljs-comment">-- to jest Co to za error, wiadomosc czego dotyczy</span>
+<span class="hljs-keyword">end</span>;
+</div></code></pre>
+<p><strong>To jest ten sam kod ale uzywamy tutaj tego kodu error z SQLCODE zamiast nazwy wyjatku</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    v_liczba <span class="hljs-built_in">number</span> := <span class="hljs-number">10</span>;
+    v_liczba1 number := 0;
+    exp1 EXCEPTION;
+    <span class="hljs-keyword">PRAGMA</span> EXCEPTION_INIT(exp1, <span class="hljs-number">-1476</span>); <span class="hljs-comment">-- trzeba zapamietac to gowno</span>
+<span class="hljs-keyword">BEGIN</span>
+    v_liczba := v_liczba / v_liczba1;
+
+    EXCEPTION
+        when exp1 then <span class="hljs-comment">-- i potem odwolujemy sie do nazwy naszego wyjatku ktorego stworzylismy zamiast do jego prawdziwej nazwy, niektore wyjatki nie posiadaja nazw ale te najczestrze juz maja odsylam do pdfa jak ktos chce zobaczyc ich nazwy :)</span>
+            DBMS_OUTPUT.PUT_LINE ('Nie dziel przez 0');
+            DBMS_OUTPUT.PUT_LINE(SQLCODE);
+            DBMS_OUTPUT.PUT_LINE(SQLERRM);
+<span class="hljs-keyword">end</span>;
+</div></code></pre>
+<p><strong>Tu jest przyklad jak mozna samemu wywolywac wlasne wyjatki</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    e_zero_value <span class="hljs-keyword">Exception</span>;
+    v_id SIMPLE_INTEGER :=0;
+<span class="hljs-keyword">Begin</span>
+    <span class="hljs-keyword">BEGIN</span>
+
+        <span class="hljs-keyword">IF</span> v_id = <span class="hljs-number">0</span> <span class="hljs-keyword">THEN</span>
+            <span class="hljs-keyword">RAISE</span> e_zero_value; <span class="hljs-comment">-- To jest ta linijka, no i potem jest w tych przykladach pokazane ze jak ...</span>
+        <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;
+            dbms_output.put_line('cos');
+        EXCEPTION
+            WHEN TOO_MANY_ROWS THEN <span class="hljs-comment">-- ...tutaj nie zostanie wylapany...</span>
+                dbms_output.put_line('Too many rows.'); 
+    <span class="hljs-keyword">END</span>;
+
+    EXCEPTION <span class="hljs-comment">-- To tutaj go sie zlapie :)</span>
+        WHEN e_zero_value THEN
+            dbms_output.put_line('Invalid ID value.');
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>Tu jest przyklad jak mozna wywolywac wyjatki systemowe, dodalem do tego rowniez jak to wylapac bo oczywiscie chuj wie jaka to ma nazwe</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    v_id <span class="hljs-built_in">number</span> := <span class="hljs-number">0</span>;
+    exp Exception;
+    <span class="hljs-keyword">PRAGMA</span> EXCEPTION_INIT(<span class="hljs-keyword">exp</span>,<span class="hljs-number">-20002</span>); <span class="hljs-comment">-- trzeba dodac to gowno</span>
+<span class="hljs-keyword">BEGIN</span>
+
+    <span class="hljs-keyword">if</span> v_id = <span class="hljs-number">0</span> <span class="hljs-keyword">then</span>
+        Raise_application_error(<span class="hljs-number">-20002</span>,<span class="hljs-string">'Invalid ID'</span>); <span class="hljs-comment">-- Ta linijka odpowiada za wywolanie wyjatku systemowego</span>
+    else
+        dbms_output.put_line('dziala');
+    <span class="hljs-keyword">end</span> <span class="hljs-keyword">if</span>;
+
+    Exception
+        when exp then <span class="hljs-comment">-- i tu sie odwolac</span>
+            dbms_output.put_line('error'); 
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+
+
+
+    <p><strong>Procedura</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">PROCEDURE</span> dodaj 
+    (p1 <span class="hljs-built_in">number</span> := <span class="hljs-number">100</span> ,p2 <span class="hljs-built_in">number</span> <span class="hljs-keyword">default</span> <span class="hljs-number">200</span>) <span class="hljs-comment">-- Wartosci domyslne, oczywiscie oracle ma downa i ma dwa rozne przypisania domyslne ktore sa tym samym</span>
+<span class="hljs-keyword">IS</span> <span class="hljs-comment">-- To zamienne slowo za declare bo w procedurach nie mozna uzywac declare XD ale to robi to samo :)</span>
+    p3 <span class="hljs-built_in">number</span>;
+<span class="hljs-keyword">Begin</span> 
+    p3 := p1 +p2;
+    DBMS_OUTPUT.PUT_LINE('wynik dodawania: ' || p3);
+<span class="hljs-keyword">end</span> dodaj;
+/
+
+<span class="hljs-comment">--Tu oracle jest zjebany i nie da sie po instrukcji napisac komentarza tylko trzeba przed</span>
+<span class="hljs-comment">-- dla debili</span>
+<span class="hljs-keyword">EXECUTE</span> dodaj; 
+<span class="hljs-comment">-- to to samo ale nie dla debili</span>
+<span class="hljs-keyword">EXECUTE</span> dodaj(); 
+<span class="hljs-comment">--nie zmieniajac p1 mozemy zmienic tak p2</span>
+<span class="hljs-keyword">EXECUTE</span> dodaj(p2 =&gt; <span class="hljs-number">100</span>); 
+<span class="hljs-comment">-- normalne przesylanie argumentow</span>
+<span class="hljs-keyword">EXECUTE</span> dodaj(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>);
+<span class="hljs-comment">-- tu tylko zmieniamy 1 argument </span>
+<span class="hljs-keyword">EXECUTE</span> dodaj(<span class="hljs-number">1</span>);
+</div></code></pre>
+<p><strong>Procedura rekurencyjna</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">PROCEDURE</span> enumeration (p_i <span class="hljs-built_in">NUMBER</span>) 
+<span class="hljs-keyword">AS</span> <span class="hljs-comment">-- wlasnie tutaj zamiast is jest as, jaka jest roznica? Zadna kurwa bo to ma downa :)</span>
+    v_iter <span class="hljs-built_in">NUMBER</span> := <span class="hljs-number">0</span>;
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">IF</span> p_i &gt; <span class="hljs-number">0</span> <span class="hljs-keyword">THEN</span>
+        <span class="hljs-keyword">FOR</span> v_iter <span class="hljs-keyword">IN</span> <span class="hljs-number">1.</span>.p_i <span class="hljs-keyword">LOOP</span>
+
+        dbms_output.put(v_iter);
+        <span class="hljs-keyword">END</span> <span class="hljs-keyword">LOOP</span>;
+        dbms_output.put_line(' ');
+        enumeration(p_i-1); <span class="hljs-comment">-- ta linijka nam mowi ze to rekurencja, petla ktora za kazdym razem wypisuje jedna liczbe mniej 12345, 1234... itp</span>
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;
+<span class="hljs-keyword">END</span> enumeration;
+/
+<span class="hljs-comment">-- Trzy sposoby jak mozna wywolac procedure</span>
+<span class="hljs-keyword">execute</span> enumeration(<span class="hljs-number">2</span>);
+
+<span class="hljs-keyword">Begin</span>
+    enumeration(<span class="hljs-number">2</span>);
+<span class="hljs-keyword">end</span>;
+
+<span class="hljs-keyword">call</span> enumeration(<span class="hljs-number">2</span>); <span class="hljs-comment">-- to nie dziala albo po prostu jest zjebane chyba to dziala w sql tylko</span>
+
+<span class="hljs-keyword">DESCRIBE</span> enumeration; <span class="hljs-comment">-- Tu mozecie sobie zobaczyc co przyjmuje i jakies tam informacje o procedurze</span>
+<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">text</span> <span class="hljs-keyword">FROM</span> user_source
+<span class="hljs-keyword">WHERE</span> <span class="hljs-keyword">name</span> = <span class="hljs-string">'ENUMERATION'</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">type</span> = <span class="hljs-string">'PROCEDURE'</span>; <span class="hljs-comment">-- To wgl jest ciekawe i każda linijke kodu tej procedury tym dostajecie</span>
+</div></code></pre>
+<p><strong>Przykladowa procedura IN OUT jak to dziala</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">PROCEDURE</span> zwiekszZasob
+(p_id <span class="hljs-keyword">IN</span> INVENTORIES.id%<span class="hljs-keyword">TYPE</span>,                   <span class="hljs-comment">-- IN chodzi o to ze przekazujemy tu dane do niej</span>
+    p_res_id <span class="hljs-keyword">IN</span> INVENTORIES.resource_id%<span class="hljs-keyword">TYPE</span>,   <span class="hljs-comment">-- IN chodzi o to ze przekazujemy tu dane do niej</span>
+    p_quantity <span class="hljs-keyword">OUT</span> INVENTORIES.quantity%<span class="hljs-keyword">TYPE</span>)   <span class="hljs-comment">-- OUT przekazujemy zmienna do ktorej bedzie wrzucone co do tej zmiennej</span>
+<span class="hljs-keyword">IS</span>
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">SELECT</span> quantity
+    <span class="hljs-keyword">INTO</span> p_quantity                             <span class="hljs-comment">-- Tutaj przypisujemy wartosc do p_quantity</span>
+    <span class="hljs-keyword">from</span> INVENTORIES
+    <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span> = p_id <span class="hljs-keyword">AND</span> resource_id = p_res_id; <span class="hljs-comment">-- Tutaj uzywamy tych id do wybrania ktory zasob chcemy </span>
+<span class="hljs-keyword">END</span> zwiekszZasob;
+/
+
+
+<span class="hljs-keyword">DECLARE</span>
+    v_quantity INVENTORIES.QUANTITY%<span class="hljs-keyword">TYPE</span>;       <span class="hljs-comment">-- W tej zmiennej bedzie wynik</span>
+<span class="hljs-keyword">BEGIN</span>
+    zwiekszZasob(<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,v_quantity);                   <span class="hljs-comment">-- wywolanie procedury</span>
+    DBMS_OUTPUT.PUT_LINE('Ilosc zasobu: ' || v_quantity); 
+
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>Funkcje, roznia sie od procedur tym ze cos zwracaja</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">FUNCTION</span> mail (p_id <span class="hljs-built_in">number</span>) <span class="hljs-comment">-- Tworzenie funkcji</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">VARCHAR2</span>                           <span class="hljs-comment">-- Typ zwracany</span>
+<span class="hljs-keyword">IS</span>
+    v_mail <span class="hljs-built_in">Varchar2</span>(<span class="hljs-number">50</span>);
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">Lower</span>(last_name)||<span class="hljs-string">'@'</span>||            <span class="hljs-comment">-- jakies tam zapytanie ktore tworzy maila z imienia i id</span>
+        <span class="hljs-keyword">Lower</span>(<span class="hljs-keyword">Substr</span>(department_name,<span class="hljs-number">1</span>,<span class="hljs-number">2</span>)) ||
+        department_id ||<span class="hljs-string">'.com'</span>
+        <span class="hljs-keyword">INTO</span> v_mail
+        <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">JOIN</span> departments
+        <span class="hljs-keyword">USING</span> (department_id)
+        <span class="hljs-keyword">WHERE</span> employee_id = p_id;
+        RETURN v_mail;                        <span class="hljs-comment">-- zwracamy tego maila utworzonego</span>
+<span class="hljs-keyword">END</span> mail;
+
+
+<span class="hljs-keyword">declare</span>
+    mail <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">50</span>);
+<span class="hljs-keyword">begin</span>
+    mail := mail(<span class="hljs-number">5</span>);
+    dbms_output.put_line(mail);
+<span class="hljs-keyword">end</span>;
+
+<span class="hljs-keyword">SELECT</span> first_name, mail(employee_id) <span class="hljs-keyword">FROM</span> employees; <span class="hljs-comment">-- mozna tez w taki sposob uzyc funkcji</span>
+
+VARIABLE b_mail VARCHAR2(50);
+<span class="hljs-keyword">EXECUTE</span> :b_mail := mail(<span class="hljs-number">200</span>); <span class="hljs-comment">-- albo w taki sposob</span>
+PRINT b_mail; <span class="hljs-comment">-- i nastepnie wypisac mail</span>
+</div></code></pre>
+<p><strong>Package(Specyfikacja) - tutaj robimy taki interface do ktorego bedziemy sie potem odwolywac</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">PACKAGE</span> emp_wages <span class="hljs-keyword">AS</span>
+    <span class="hljs-keyword">FUNCTION</span> wages <span class="hljs-keyword">RETURN</span> <span class="hljs-built_in">NUMBER</span>;
+    FUNCTION wages_in_dep (p_id NUMBER)
+    RETURN NUMBER;
+    FUNCTION average RETURN NUMBER;
+    FUNCTION average_in_dep (p_id NUMBER)
+    RETURN NUMBER;
+    PROCEDURE increase(p_amount NUMBER);
+    PROCEDURE increase(p_amount NUMBER,
+    p_id NUMBER);
+<span class="hljs-keyword">END</span> emp_wages;
+</div></code></pre>
+<p><strong>Package body(ciało) - tu jest całe miesko naszych funkcji i danych wszystkich</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">PACKAGE</span> <span class="hljs-keyword">BODY</span> emp_wages
+<span class="hljs-keyword">AS</span>
+    <span class="hljs-keyword">FUNCTION</span> wages <span class="hljs-keyword">RETURN</span> <span class="hljs-built_in">NUMBER</span>            <span class="hljs-comment">-- Mozna tworzyc cokolwiek chcemy w tym, funkcje kursory, zmienne itp i ich kod nie bedzie widoczny z zewnatrz</span>
+    <span class="hljs-keyword">AS</span>                                      <span class="hljs-comment">-- po wywolaniu takiej paczki cała sie ona laduje do pamieci ram i mamy blyskawiczny dostep do funkcji itp</span>
+        v_sum <span class="hljs-built_in">NUMBER</span>;
+    <span class="hljs-keyword">BEGIN</span>
+        <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">Sum</span>(salary+Nvl(commission_pct,<span class="hljs-number">0</span>)*salary)
+        <span class="hljs-keyword">INTO</span> v_sum <span class="hljs-keyword">FROM</span> employees;
+        RETURN v_sum;
+    <span class="hljs-keyword">END</span> wages;
+
+    FUNCTION wages_in_dep(p_id NUMBER)
+        RETURN NUMBER
+    AS
+        v_sum NUMBER;
+    <span class="hljs-keyword">BEGIN</span>
+        <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">Sum</span>(salary+Nvl(commission_pct,<span class="hljs-number">0</span>)*salary)
+        <span class="hljs-keyword">INTO</span> v_sum <span class="hljs-keyword">FROM</span> employees
+        <span class="hljs-keyword">WHERE</span> department_id = p_id;
+        RETURN v_sum;
+    <span class="hljs-keyword">END</span> wages_in_dep;
+
+    FUNCTION average RETURN NUMBER
+    AS
+        v_ave NUMBER;
+    <span class="hljs-keyword">BEGIN</span>
+        <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">Avg</span>(salary) <span class="hljs-keyword">INTO</span> v_ave <span class="hljs-keyword">FROM</span> employees;
+        RETURN v_ave;
+<span class="hljs-keyword">END</span> average;
+
+
+
+
+<span class="hljs-keyword">SELECT</span> emp_wages.wages() <span class="hljs-keyword">FROM</span> dual;          <span class="hljs-comment">-- SQL  tak mozemy np to wywolac ladnie dual to jakas pusta tabela bo nie da sie nic nie napisac po FROM</span>
+
+<span class="hljs-keyword">begin</span>
+    DBMS_OUTPUT.PUT_LINE(emp_wages.wages()); <span class="hljs-comment">-- PL/SQL</span>
+<span class="hljs-keyword">end</span>;
+</div></code></pre>
+<p><strong>Zadania 6.1</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment">--1. Create a procedure that inserts the text "Hello mission!" into a test table. Test the procedure.</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">PROCEDURE</span> jakistekst
+<span class="hljs-keyword">IS</span>
+    v_zmienna <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>);
+    v_zmienna2 Varchar(30) := 'Hello mission!';
+<span class="hljs-keyword">begin</span>
+    v_zmienna := <span class="hljs-string">'Hello mission!'</span>;
+    dbms_output.put_line(v_zmienna);
+<span class="hljs-keyword">end</span> jakistekst;
+/
+
+<span class="hljs-keyword">execute</span> jakistekst;
+
+<span class="hljs-comment">--2. Create a procedure that displays the text "Hello " </span>
+<span class="hljs-comment">-- followed by a name provided as an input parameter. Test its operation.</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">PROCEDURE</span> jakistekst(p_name <span class="hljs-built_in">Varchar</span> <span class="hljs-keyword">default</span> <span class="hljs-string">'Hello World!'</span>)
+<span class="hljs-keyword">IS</span>
+
+<span class="hljs-keyword">begin</span>
+    dbms_output.put_line(p_name);
+<span class="hljs-keyword">end</span> jakistekst;
+/
+
+<span class="hljs-keyword">execute</span> jakistekst;
+<span class="hljs-keyword">execute</span> jakistekst(<span class="hljs-string">'hello world!'</span>);
+<span class="hljs-keyword">execute</span> jakistekst(p_name =&gt; <span class="hljs-string">'hello world!1'</span>);
+
+<span class="hljs-comment">--3. Add an OUT parameter to the procedure from the previous task.</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">PROCEDURE</span> jakistekst(p_name <span class="hljs-keyword">OUT</span> <span class="hljs-built_in">Varchar</span>)
+<span class="hljs-keyword">IS</span>
+<span class="hljs-keyword">begin</span>
+    p_name := <span class="hljs-string">'Udalo sie zmienic'</span>;
+    dbms_output.put_line(p_name);
+<span class="hljs-keyword">end</span> jakistekst;
+/
+
+
+<span class="hljs-keyword">DECLARE</span>
+    v_name <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>);
+<span class="hljs-keyword">BEGIN</span>
+    jakistekst(v_name);
+    dbms_output.put_line(v_name);
+<span class="hljs-keyword">END</span>;
+
+<span class="hljs-comment">--4. Test the IN OUT parameter mode.</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">PROCEDURE</span> jakistekst(p_name <span class="hljs-keyword">IN</span> <span class="hljs-keyword">OUT</span> <span class="hljs-built_in">Varchar</span>)
+<span class="hljs-keyword">IS</span>
+<span class="hljs-keyword">begin</span>
+    dbms_output.put_line(p_name);
+    p_name := 'Udalo sie zmienic';
+<span class="hljs-keyword">end</span> jakistekst;
+/
+
+
+
+<span class="hljs-keyword">DECLARE</span>
+    v_name <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">30</span>) := <span class="hljs-string">'Hello Wordl!'</span>;
+<span class="hljs-keyword">BEGIN</span>
+    jakistekst(v_name);
+    dbms_output.put_line(v_name);
+<span class="hljs-keyword">END</span>;
+
+
+<span class="hljs-comment">--5. Create a function analogous to the procedure from task 2. Test it inside a query.</span>
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">FUNCTION</span> jakasfunkcja (p_name <span class="hljs-built_in">Varchar</span>)   
+<span class="hljs-keyword">return</span> <span class="hljs-built_in">Varchar</span>
+
+<span class="hljs-keyword">as</span>
+
+<span class="hljs-keyword">BEGIN</span>
+    dbms_output.put_line(p_name);
+    return p_name;
+<span class="hljs-keyword">end</span> jakasfunkcja;
+/
+
+
+<span class="hljs-keyword">SELECT</span> jakasfunkcja(<span class="hljs-string">'hello world!'</span>) <span class="hljs-keyword">as</span> funkcja <span class="hljs-keyword">from</span> dual;
+
+
+<span class="hljs-comment">--6. Create a procedure that displays and modifies selected rows of your table.</span>
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">or</span> <span class="hljs-keyword">replace</span> <span class="hljs-keyword">procedure</span> edytuj(p_name astronauts.name%<span class="hljs-keyword">type</span>, p_new_name astronauts.name%<span class="hljs-keyword">type</span>)
+<span class="hljs-keyword">IS</span>
+
+<span class="hljs-keyword">begin</span>
+    dbms_output.put_line(p_name);
+    <span class="hljs-keyword">UPDATE</span> astronauts <span class="hljs-keyword">set</span> <span class="hljs-keyword">name</span> = p_new_name <span class="hljs-keyword">where</span> <span class="hljs-keyword">name</span> = p_name;
+<span class="hljs-keyword">end</span> edytuj;
+/
+
+
+<span class="hljs-keyword">DECLARE</span>
+    v_name astronauts.name%<span class="hljs-keyword">type</span>;
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">into</span> v_name <span class="hljs-keyword">from</span> astronauts <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span> = <span class="hljs-number">250</span>;
+    edytuj(v_name,'gejuszek');
+<span class="hljs-keyword">END</span>;
+/
+
+<span class="hljs-keyword">select</span> * <span class="hljs-keyword">from</span> astronauts;
+
+
+<span class="hljs-comment">--7. Create a procedure that handles</span>
+<span class="hljs-comment">-- two cursors, where the second cursor is parameterized with values obtained from the first one.</span>
+
+
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">or</span> <span class="hljs-keyword">replace</span> <span class="hljs-keyword">procedure</span> jakiesgowno
+<span class="hljs-keyword">is</span>
+    <span class="hljs-keyword">CURSOR</span> c_mission <span class="hljs-keyword">IS</span>
+        <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">id</span> <span class="hljs-keyword">from</span> missions <span class="hljs-keyword">where</span> finished_at <span class="hljs-keyword">is</span> <span class="hljs-literal">null</span>;
+    
+    v_mission missions.id%type;
+
+    CURSOR c_astronauts(c_id missions.id%type) IS
+        <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">name</span> <span class="hljs-keyword">from</span> astronauts <span class="hljs-keyword">join</span> mission_astronauts <span class="hljs-keyword">on</span> astronauts.id = mission_astronauts.astronaut_id <span class="hljs-keyword">where</span> mission_id = c_id;
+    v_astronaut astronauts.name%type;
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">Open</span> c_mission;
+    loop 
+        fetch c_mission into v_mission;
+        exit when c_mission%notfound OR c_mission%notfound is null;
+        Open c_astronauts(v_mission);
+        dbms_output.put_line('Misja: ' || v_mission);
+        loop
+            fetch c_astronauts into v_astronaut;
+            exit when c_astronauts%notfound OR c_astronauts%notfound is null;
+            dbms_output.put_line(v_astronaut);
+        <span class="hljs-keyword">end</span> <span class="hljs-keyword">loop</span>;
+        close c_astronauts;
+
+    <span class="hljs-keyword">end</span> <span class="hljs-keyword">loop</span>;
+    close c_mission;
+<span class="hljs-keyword">end</span> jakiesgowno;
+/
+<span class="hljs-keyword">execute</span> jakiesgowno;
+
+</div></code></pre>
+<p><strong>7.1 Exercises for Self-Practice</strong></p>
+<pre class="hljs"><code><div>
+<span class="hljs-comment">--1. Implement a parameterized function that calculates a value based on your data,</span>
+<span class="hljs-comment">-- for example: the difference in an astronaut’s weight over a given period of time,</span>
+<span class="hljs-comment">-- the average temperature at a specific location, the number of potato packages ;) etc. Test the function.</span>
+
+
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">or</span> <span class="hljs-keyword">replace</span> <span class="hljs-keyword">function</span> ObliczSredniaEnergie(p_id_base bases.id%<span class="hljs-keyword">type</span>, date_from energy.recorded_at%<span class="hljs-keyword">type</span>, date_to energy.recorded_at%<span class="hljs-keyword">type</span>)
+<span class="hljs-keyword">return</span> <span class="hljs-built_in">NUMBER</span>
+
+<span class="hljs-keyword">is</span>
+    v_srednia <span class="hljs-built_in">number</span>;
+<span class="hljs-keyword">begin</span>
+
+    <span class="hljs-keyword">select</span> <span class="hljs-keyword">avg</span>(energy_produced_kwh-energy_consumed_kwh) <span class="hljs-keyword">into</span> v_srednia
+     <span class="hljs-keyword">from</span> energy <span class="hljs-keyword">where</span> base_id = p_id_base <span class="hljs-keyword">and</span> recorded_at <span class="hljs-keyword">between</span> date_from <span class="hljs-keyword">and</span> date_to;
+
+    return v_srednia;
+
+<span class="hljs-keyword">end</span> ObliczSredniaEnergie;
+/
+
+
+<span class="hljs-keyword">DECLARE</span>
+
+<span class="hljs-keyword">begin</span>
+    dbms_output.put_line(ObliczSredniaEnergie(<span class="hljs-number">1</span>,<span class="hljs-keyword">TO_DATE</span>(<span class="hljs-string">'10-03-2046'</span>,<span class="hljs-string">'DD-MM-YYYY'</span>),<span class="hljs-keyword">TO_DATE</span>(<span class="hljs-string">'10-03-2046'</span>,<span class="hljs-string">'DD-MM-YYYY'</span>)));
+<span class="hljs-keyword">end</span>;
+
+
+
+
+
+
+<span class="hljs-comment">-- stworz pakiet swoich funkcji</span>
+
+
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">or</span> <span class="hljs-keyword">replace</span> <span class="hljs-keyword">package</span> gownofunkcje
+<span class="hljs-keyword">AS</span>
+
+<span class="hljs-keyword">FUNCTION</span> PLEYOSHII_SCHEMA_636ZE.jakasfunkcja (p_name <span class="hljs-built_in">Varchar</span>) <span class="hljs-keyword">return</span> <span class="hljs-built_in">Varchar</span>;
+function PLEYOSHII_SCHEMA_636ZE.ObliczSredniaEnergie(p_id_base bases.id%type, date_from energy.recorded_at%type, date_to energy.recorded_at%type);
+
+<span class="hljs-keyword">end</span> gownofunkcje;
+
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">or</span> <span class="hljs-keyword">replace</span> <span class="hljs-keyword">package</span> <span class="hljs-keyword">body</span> gownofunkcje
+<span class="hljs-keyword">AS</span>
+
+
+
+<span class="hljs-keyword">FUNCTION</span> PLEYOSHII_SCHEMA_636ZE.jakasfunkcja (p_name <span class="hljs-built_in">Varchar</span>)   
+<span class="hljs-keyword">return</span> <span class="hljs-built_in">Varchar</span>
+
+<span class="hljs-keyword">as</span>
+
+<span class="hljs-keyword">BEGIN</span>
+    dbms_output.put_line(p_name);
+    return p_name;
+<span class="hljs-keyword">end</span> jakasfunkcja;
+
+
+function PLEYOSHII_SCHEMA_636ZE.ObliczSredniaEnergie(p_id_base bases.id%type, date_from energy.recorded_at%type, date_to energy.recorded_at%type)
+return NUMBER
+
+is
+    v_srednia number;
+<span class="hljs-keyword">begin</span>
+
+    <span class="hljs-keyword">select</span> <span class="hljs-keyword">avg</span>(energy_produced_kwh-energy_consumed_kwh) <span class="hljs-keyword">into</span> v_srednia
+     <span class="hljs-keyword">from</span> energy <span class="hljs-keyword">where</span> base_id = p_id_base <span class="hljs-keyword">and</span> recorded_at <span class="hljs-keyword">between</span> date_from <span class="hljs-keyword">and</span> date_to;
+
+    return v_srednia;
+
+<span class="hljs-keyword">end</span> ObliczSredniaEnergie;
+
+<span class="hljs-keyword">end</span> gownofunkcje;
+
+</div></code></pre>
+
+    <p><strong>DYNAMIC SQL</strong></p>
+<p><strong>Tu jest przyklad EXECUTE IMMEDIATE</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">PROCEDURE</span> add_dep
+    (p_name departments.department_name%<span class="hljs-keyword">TYPE</span>,
+    p_loc departments.location_id%<span class="hljs-keyword">TYPE</span>)
+<span class="hljs-keyword">AS</span>
+    v_id departments.department_id%<span class="hljs-keyword">TYPE</span>;
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">EXECUTE</span> <span class="hljs-keyword">IMMEDIATE</span>
+     ’<span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">MAX</span>(department_id)
+        <span class="hljs-keyword">FROM</span> departments’
+        <span class="hljs-keyword">INTO</span> v_id;
+        <span class="hljs-keyword">EXECUTE</span> <span class="hljs-keyword">IMMEDIATE</span> ’<span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> departments <span class="hljs-keyword">VALUES</span> <span class="hljs-comment">-- uzywamy tego tylko wtedy gdy CHCEMY bardzo wywolac jakies zapytanie w tym miejscu a normalnie by nie zadzialalo</span>
+        (:<span class="hljs-number">1</span>, :<span class="hljs-number">2</span>, <span class="hljs-literal">NULL</span>, :<span class="hljs-number">3</span>)’
+    <span class="hljs-keyword">USING</span> v_id+<span class="hljs-number">10</span>, p_name, p_loc;
+
+    <span class="hljs-keyword">COMMIT</span>;
+<span class="hljs-keyword">END</span> add_dep;
+/
+<span class="hljs-keyword">EXECUTE</span> add_dep(’Logistics’, <span class="hljs-number">2400</span>);
+
+</div></code></pre>
+<p><strong>CURSORY</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">DECLARE</span>
+    <span class="hljs-keyword">TYPE</span> EmpCurTyp <span class="hljs-keyword">IS</span> <span class="hljs-keyword">REF</span> <span class="hljs-keyword">CURSOR</span>;
+    v_emp_cursor EmpCurTyp;
+    emp_record employees%ROWTYPE;
+    v_stmt_str VARCHAR2(200);
+    v_e_job employees.job%TYPE;
+<span class="hljs-keyword">BEGIN</span>
+    v_stmt_str := ’<span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> employees <span class="hljs-keyword">WHERE</span> job_id = :j’; <span class="hljs-comment">-- cursor do stringa zostal wrzucony</span>
+    OPEN v_emp_cursor FOR v_stmt_str USING ’MANAGER’;
+    LOOP
+        FETCH v_emp_cursor INTO emp_record;
+        EXIT WHEN v_emp_cursor%NOTFOUND;
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">LOOP</span>;
+    CLOSE v_emp_cursor;
+<span class="hljs-keyword">END</span>;
+/
+</div></code></pre>
+<p><strong>Triggery</strong></p>
+<p><strong>Duze litery</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">TRIGGER</span> Initcap_names
+    <span class="hljs-keyword">AFTER</span> <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">ON</span> astronauts <span class="hljs-comment">-- Po dodaniu nowego rekordu do astronauts</span>
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">UPDATE</span> astronauts <span class="hljs-keyword">SET</span>      <span class="hljs-comment">-- zmienia imie i nazwisko na pierwsze duze litery slowa, czyli szymon na Szymon</span>
+        <span class="hljs-keyword">name</span> = Initcap(<span class="hljs-keyword">name</span>),  
+        surname = Initcap(surname);
+<span class="hljs-keyword">END</span>;
+/
+</div></code></pre>
+<p><strong>To to samo ale z tym new, czyli przed dodaniem</strong></p>
+<pre class="hljs"><code><div>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">TRIGGER</span> Initcap_names
+    <span class="hljs-keyword">BEFORE</span> <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">ON</span> astronauts <span class="hljs-comment">-- before przed dodaniem zmienia i przy dodawaniu juz beda nowe wartosci takie</span>
+    <span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> <span class="hljs-keyword">ROW</span>
+<span class="hljs-keyword">BEGIN</span>
+    :NEW.name := Initcap(:NEW.name);
+    :NEW.surname := Initcap(:NEW.surname);
+<span class="hljs-keyword">END</span>;
+/
+
+</div></code></pre>
+<p><strong>Warunki</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">TRIGGER</span> pay_rise
+    <span class="hljs-keyword">BEFORE</span> <span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">OF</span> salary <span class="hljs-keyword">ON</span> employees <span class="hljs-comment">--przed zmiana</span>
+    <span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> <span class="hljs-keyword">ROW</span>
+    <span class="hljs-keyword">WHEN</span> (<span class="hljs-keyword">Upper</span>(NEW.job_id) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">LIKE</span> ’PRES%’ <span class="hljs-comment">-- gdy id nie bedzie pres, mgr, man i vp... ma zrobic begin</span>
+        <span class="hljs-keyword">AND</span> <span class="hljs-keyword">Upper</span>(NEW.job_id) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">LIKE</span> ’%MGR%’
+        <span class="hljs-keyword">AND</span> <span class="hljs-keyword">Upper</span>(NEW.job_id) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">LIKE</span> ’%MAN%’
+        <span class="hljs-keyword">AND</span> <span class="hljs-keyword">Upper</span>(NEW.job_id) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">LIKE</span> ’%VP%’)
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">IF</span> :NEW.salary &gt; :OLD.salary * <span class="hljs-number">1.1</span> <span class="hljs-keyword">THEN</span> <span class="hljs-comment">-- no i tu jesli nowa wartosc jest wieksza niz 110% starej to zmieniamy na 110% starej wartosci</span>
+        :NEW.salary := :OLD.salary * <span class="hljs-number">1.1</span>;       <span class="hljs-comment">-- czyli, jak ktos ma 100 i chcemy mu zwiekszyc o 20% to sie nie da tylko zwiekszy o 10% a jak mu o 5% zwiekszymy to nic sie nie stanie</span>
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;
+<span class="hljs-keyword">END</span>;
+/
+
+</div></code></pre>
+<p><strong>Wiele operacji</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">TRIGGER</span> emp_change
+    <span class="hljs-keyword">AFTER</span> <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">DELETE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">ON</span> employees <span class="hljs-comment">-- tu sobie wybieramy ktora operacje chcemy</span>
+    <span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> <span class="hljs-keyword">ROW</span>
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">IF</span> INSERTING <span class="hljs-keyword">THEN</span>                               <span class="hljs-comment">-- i wtedy przez ify mozna sie odwolac, jesli akurat taka operacja jest to robimy to itp, tu akurat jest historia co kto zrobil itp</span>
+        <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> aud <span class="hljs-keyword">VALUES</span>(’employees’, <span class="hljs-keyword">CURRENT_TIMESTAMP</span>,
+        <span class="hljs-literal">NULL</span>, ’Inserting <span class="hljs-keyword">of</span> <span class="hljs-keyword">new</span> employee’);
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;
+    IF DELETING THEN
+        <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> aud <span class="hljs-keyword">VALUES</span>(’employees’, <span class="hljs-keyword">CURRENT_TIMESTAMP</span>,
+        <span class="hljs-literal">NULL</span>, ’Deleting <span class="hljs-keyword">of</span> employee’);
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;
+    IF UPDATING THEN
+        <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> aud <span class="hljs-keyword">VALUES</span>(’employees’, <span class="hljs-keyword">CURRENT_TIMESTAMP</span>,
+        <span class="hljs-literal">NULL</span>, ’<span class="hljs-keyword">Modification</span> <span class="hljs-keyword">of</span> employees <span class="hljs-keyword">data</span>’);
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;
+<span class="hljs-keyword">END</span>;
+
+</div></code></pre>
+<p><strong>Modyfikacja widoku triggerem instead of</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">VIEW</span> loc_coun <span class="hljs-keyword">AS</span>                             <span class="hljs-comment">-- jakis tam widok</span>
+    <span class="hljs-keyword">SELECT</span> * <span class="hljs-keyword">FROM</span> locations <span class="hljs-keyword">NATURAL</span> <span class="hljs-keyword">JOIN</span> countries;
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">TRIGGER</span> tr_loc_coun
+    INSTEAD <span class="hljs-keyword">OF</span> <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">ON</span> loc_coun             <span class="hljs-comment">-- czyli tutaj jak chcemy zmienic widok jakis to po prostu</span>
+    <span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-comment">-- ... check if it doesn’t already exists</span>
+    <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> locations <span class="hljs-keyword">VALUES</span> (:NEW.location_id,      <span class="hljs-comment">-- zamiast tego dodajemy do tej konkretnej tabeli która jest w widoku</span>
+    :NEW.street_address,:NEW.postal_code,
+    :NEW.city, :NEW.state_province,
+    :NEW.country_id);
+    <span class="hljs-comment">-- ... check if it doesn’t already exists</span>
+    <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> countries <span class="hljs-keyword">VALUES</span> (:NEW.country_id,        <span class="hljs-comment">-- akurat tu sa dwie wiec do dwoch te nowe dane</span>
+    :NEW.country_name, :NEW.region_id);
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>triggery systemowe</strong><br>
+<strong>Tu akurat uniemozliwia to usuwanie, takie sztuczne to jest, zamiast uprawnieniami to po prostu uniemozliwia usuwanie</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">TRIGGER</span> no_drop
+    <span class="hljs-keyword">BEFORE</span> <span class="hljs-keyword">DROP</span>
+    <span class="hljs-keyword">ON</span> <span class="hljs-keyword">SCHEMA</span>
+<span class="hljs-keyword">BEGIN</span>
+    RAISE_APPLICATION_ERROR(<span class="hljs-number">-20123</span>,
+    <span class="hljs-keyword">User</span>||’ <span class="hljs-built_in">number</span> ’||Uid||’ cannot <span class="hljs-keyword">drop</span> objects.’);
+<span class="hljs-keyword">END</span>;
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TRIGGER</span> log_errors
+    <span class="hljs-keyword">AFTER</span> <span class="hljs-keyword">SERVERERROR</span> <span class="hljs-keyword">ON</span> <span class="hljs-keyword">DATABASE</span>
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">IF</span> (IS_SERVERERROR (<span class="hljs-number">1017</span>)) <span class="hljs-keyword">THEN</span>
+        <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> server_audit(<span class="hljs-keyword">Current_timestamp</span>,’<span class="hljs-keyword">Error</span> - <span class="hljs-number">1017</span>’)
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;
+<span class="hljs-keyword">END</span>;
+</div></code></pre>
+<p><strong>8.1 Exercises for Self-Practice</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment">--1. Create a table in which you will store logs of operations performed on a selected table (inserts, deletes, updates). Create a trigger that, after a change is made to the selected table, inserts an appropriate comment into the audit table.</span>
+
+<span class="hljs-comment">--2. Extend the comments with details of the modified rows by using a row-level trigger.</span>
+<span class="hljs-comment">-- Akurat to drugie tez przez przypadek zrobilem xd do drugiego potrzebne jest dodanie:</span>
+<span class="hljs-comment">-- For each row to umozliwia uzycie :NEW.name</span>
+<span class="hljs-comment">-- 'Insert - added Astronaut (' || :NEW.name || ', ' ||:NEW.surname || ')';</span>
+<span class="hljs-comment">--</span>
+<span class="hljs-keyword">Create</span> <span class="hljs-keyword">table</span> <span class="hljs-keyword">logs</span>(
+    <span class="hljs-keyword">id</span> <span class="hljs-built_in">number</span>,
+    operation_name <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">250</span>),
+    recorded_at <span class="hljs-built_in">date</span>,
+    who <span class="hljs-built_in">Varchar</span>(<span class="hljs-number">50</span>)
+);
+
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">TRIGGER</span> tg_logs
+    <span class="hljs-keyword">BEFORE</span> <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">DELETE</span>
+    <span class="hljs-keyword">ON</span> astronauts
+    <span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> <span class="hljs-keyword">ROW</span>
+<span class="hljs-keyword">DECLARE</span>
+    v_max_id <span class="hljs-built_in">number</span>;
+    v_operation Varchar2(250);
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-keyword">SELECT</span> nvl(<span class="hljs-keyword">max</span>(<span class="hljs-keyword">id</span>), <span class="hljs-number">0</span>) + <span class="hljs-number">1</span>  <span class="hljs-keyword">into</span> v_max_id <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">logs</span>;
+    if inserting then
+        v_operation := '<span class="hljs-keyword">Insert</span> - added Astronaut (<span class="hljs-string">' || :NEW.name || '</span>, <span class="hljs-string">' ||:NEW.surname || '</span>)<span class="hljs-string">';
+    elsif updating then
+        v_operation := '</span><span class="hljs-keyword">Update</span><span class="hljs-string">';
+    elsif deleting then
+        v_operation := '</span><span class="hljs-keyword">Delete</span><span class="hljs-string">';
+    end if;
+    INSERT INTO logs(id,operation_name,recorded_at,who) values (v_max_id,v_operation,CURRENT_TIMESTAMP,USER);
+end;
+/
+
+
+INSERT into astronauts (name,surname,birth_date,death_date) values ('</span>agata<span class="hljs-string">','</span>szczota<span class="hljs-string">',To_Date('</span><span class="hljs-number">11</span><span class="hljs-number">-11</span><span class="hljs-number">-2046</span><span class="hljs-string">','</span>DD-MM-YYYY<span class="hljs-string">'),NULL);
+</span></div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">--3. Build a trigger that, during data modification, validates a relationship between the entered value and another table, e.g., a discount limited by values from another table, a salary within a defined salary range, the quantity of ordered goods not exceeding stock levels, etc.</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">TRIGGER</span> check_salary_range
+    <span class="hljs-keyword">BEFORE</span> <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">UPDATE</span> <span class="hljs-keyword">OF</span> salary <span class="hljs-keyword">ON</span> astronauts <span class="hljs-comment">-- przed dodaniem/zmiana pensji</span>
+    <span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> <span class="hljs-keyword">ROW</span>
+<span class="hljs-keyword">DECLARE</span>
+    v_min_sal jobs.min_salary%<span class="hljs-keyword">TYPE</span>;
+    v_max_sal jobs.max_salary%TYPE;
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-comment">-- Pobieramy limity z innej tabeli (jobs) dla konkretnego stanowiska</span>
+    <span class="hljs-keyword">SELECT</span> min_salary, max_salary 
+    <span class="hljs-keyword">INTO</span> v_min_sal, v_max_sal
+    <span class="hljs-keyword">FROM</span> jobs 
+    <span class="hljs-keyword">WHERE</span> job_id = :NEW.job_id;
+
+    <span class="hljs-comment">-- Sprawdzamy, czy nowa pensja nie wykracza poza te dane</span>
+    IF :NEW.salary &lt; v_min_sal OR :NEW.salary &gt; v_max_sal THEN
+        RAISE_APPLICATION_ERROR(-20500, 
+            'Blad: Pensja ' || :NEW.salary || ' nie miesci sie w widelkach (' 
+            || v_min_sal || ' - ' || v_max_sal || ') dla tego stanowiska!');
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        <span class="hljs-comment">-- Jesli nie ma takiego job_id w tabeli jobs, to tez blokujemy</span>
+        RAISE_APPLICATION_ERROR(-20501, 'Nie ma takiego stanowiska w bazie!');
+<span class="hljs-keyword">END</span>;
+/
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">--4. Create a trigger that completes and standardizes data being inserted into the table.</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">TRIGGER</span> standardize_astronaut_data
+    <span class="hljs-keyword">BEFORE</span> <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">ON</span> astronauts <span class="hljs-comment">-- przed wstawieniem danych</span>
+    <span class="hljs-keyword">FOR</span> <span class="hljs-keyword">EACH</span> <span class="hljs-keyword">ROW</span>
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-comment">-- 1. Nazwisko zawsze z duzej litery (Initcap)</span>
+    :NEW.surname := Initcap(:NEW.surname);
+    
+    <span class="hljs-comment">-- 2. Mail zawsze z malych liter, zeby sie nie dublowaly przy logowaniu</span>
+    :NEW.email := Lower(:NEW.email);
+    
+    <span class="hljs-comment">-- 3. Jesli ktos zapomnial podac daty rekrutacji (hire_date), wpisujemy aktualna</span>
+    IF :NEW.hire_date IS NULL THEN
+        :NEW.hire_date := SYSDATE;
+    <span class="hljs-keyword">END</span> <span class="hljs-keyword">IF</span>;
+    
+    <span class="hljs-comment">-- 4. Generujemy automatyczny login (pierwsza litera imienia + nazwisko)</span>
+    :NEW.login := Lower(Substr(:NEW.name, 1, 1) || :NEW.surname);
+<span class="hljs-keyword">END</span>;
+/
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">--5. Create a view, and then a trigger that enables data modification through that view.</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">VIEW</span> v_mission_roster <span class="hljs-keyword">AS</span>
+    <span class="hljs-keyword">SELECT</span> m.id <span class="hljs-keyword">AS</span> mission_id, m.name <span class="hljs-keyword">AS</span> mission_name, a.id <span class="hljs-keyword">AS</span> astronaut_id, a.surname
+    <span class="hljs-keyword">FROM</span> missions m
+    <span class="hljs-keyword">JOIN</span> mission_astronauts ma <span class="hljs-keyword">ON</span> m.id = ma.mission_id
+    <span class="hljs-keyword">JOIN</span> astronauts a <span class="hljs-keyword">ON</span> ma.astronaut_id = a.id;
+
+<span class="hljs-comment">-- Trigger, który pozwoli "dodawać astronautów do misji" przez ten widok</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">OR</span> <span class="hljs-keyword">REPLACE</span> <span class="hljs-keyword">TRIGGER</span> tr_manage_roster
+    INSTEAD <span class="hljs-keyword">OF</span> <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">ON</span> v_mission_roster <span class="hljs-comment">-- zamiast wstawiac do widoku...</span>
+<span class="hljs-keyword">BEGIN</span>
+    <span class="hljs-comment">-- Logika: Widok jest tylko do odczytu, wiec trigger musi </span>
+    <span class="hljs-comment">-- recznie dodac powiazanie do tabeli laczacej (mission_astronauts)</span>
+    <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> mission_astronauts (mission_id, astronaut_id)
+    <span class="hljs-keyword">VALUES</span> (:NEW.mission_id, :NEW.astronaut_id);
+    
+    <span class="hljs-comment">-- Mozemy tez przy okazji zaktualizowac info w logach</span>
+    <span class="hljs-keyword">INSERT</span> <span class="hljs-keyword">INTO</span> <span class="hljs-keyword">logs</span>(<span class="hljs-keyword">id</span>, operation_name, recorded_at, who)
+    <span class="hljs-keyword">VALUES</span> ((<span class="hljs-keyword">SELECT</span> nvl(<span class="hljs-keyword">max</span>(<span class="hljs-keyword">id</span>),<span class="hljs-number">0</span>)+<span class="hljs-number">1</span> <span class="hljs-keyword">FROM</span> <span class="hljs-keyword">logs</span>), 
+            <span class="hljs-string">'New crew assignment: Mission '</span> || :NEW.mission_id, 
+            <span class="hljs-keyword">CURRENT_TIMESTAMP</span>, <span class="hljs-keyword">USER</span>);
+<span class="hljs-keyword">END</span>;
+/
+</div></code></pre>
+
+    <p><strong>Wybrana tabela: ROVERS</strong></p>
+<p><strong>1. Funkcja: Status i lokalizacja operacyjna</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment">--Zadanie: Napisz funkcję, która dla łazika o podanym ID (parametr) zwróci łańcuch znaków zawierający jego nazwę, aktualny status (tekstowo z tabeli rover_statuses) oraz nazwę bazy, w której aktualnie przebywa.</span>
+
+<span class="hljs-comment">--Wymagania: Obsługa błędów (brak łazika o danym ID) oraz zwrot pełnego zdania (np. "Łazik Curiosity II jest obecnie w stanie: W bazie - Ładowanie, przypisany do bazy: Ares Prime").</span>
+
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">or</span> <span class="hljs-keyword">replace</span> <span class="hljs-keyword">function</span> roverStatus
+(p_id rovers.id%<span class="hljs-keyword">Type</span>) <span class="hljs-keyword">return</span> <span class="hljs-built_in">varchar2</span>
+<span class="hljs-keyword">as</span>
+  v_info <span class="hljs-built_in">varchar2</span>(<span class="hljs-number">200</span>);
+  v_nazwa_rover varchar2(30);
+  v_status varchar2(30);
+  v_nazwa_bazy varchar2(30);
+<span class="hljs-keyword">begin</span>
+
+    <span class="hljs-keyword">Select</span> rovers.name <span class="hljs-keyword">as</span> r_name, rover_statuses.name <span class="hljs-keyword">as</span> rs_name, bases.name <span class="hljs-keyword">as</span> b_name 
+    <span class="hljs-keyword">into</span> v_nazwa_rover, v_status, v_nazwa_bazy
+    <span class="hljs-keyword">from</span> rovers 
+    <span class="hljs-keyword">join</span> rover_statuses <span class="hljs-keyword">on</span> rovers.rover_status_id = rover_statuses.id
+    <span class="hljs-keyword">join</span> bases <span class="hljs-keyword">on</span> bases.id = rovers.base_id
+    <span class="hljs-keyword">where</span> rovers.id = p_id;
+    v_info := v_nazwa_rover || ' ' || v_status || ' '|| v_nazwa_bazy;
+    
+    return v_info;
+    Exception
+        when NO_DATA_FOUND then return 'Nie znaleziono rover o takim id';
+<span class="hljs-keyword">end</span> roverStatus;
+/
+<span class="hljs-keyword">begin</span>
+    dbms_output.put_line(roverStatus(<span class="hljs-number">55</span>));
+<span class="hljs-keyword">end</span>;
+/
+
+
+
+</div></code></pre>
+<p><strong>2. Funkcja: Audyt wydajności i ładunku</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment">--Zadanie: Napisz funkcję, która dla łazika o podanej nazwie (parametr) zwróci opis jego parametrów technicznych: poziom baterii oraz informację o maksymalnej ładowności (max_capacity_kg).</span>
+
+<span class="hljs-comment">--Wymagania: Dodatkowa logika wewnątrz: jeśli bateria jest poniżej 20%, opis musi zawierać ostrzeżenie "WYMAGANE ŁADOWANIE". Jeśli powyżej 80% – "GOTOWY DO TRASY". Obsługa błędu przy błędnej nazwie łazika.</span>
+
+
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">or</span> <span class="hljs-keyword">replace</span> <span class="hljs-keyword">function</span> audit_wyd(p_name rovers.name%<span class="hljs-keyword">type</span>) <span class="hljs-keyword">return</span> <span class="hljs-built_in">Varchar2</span>
+<span class="hljs-keyword">is</span>
+    v_battery_level rovers.BATTERY_LEVEL%<span class="hljs-keyword">TYPE</span>;
+    v_max_capacity_kg rovers.MAX_CAPACITY_KG%TYPE;
+    v_info varchar2(50) := '';
+<span class="hljs-keyword">begin</span>
+    <span class="hljs-keyword">Select</span> battery_level, max_capacity_kg <span class="hljs-keyword">into</span> v_battery_level, v_max_capacity_kg <span class="hljs-keyword">from</span> rovers <span class="hljs-keyword">where</span> <span class="hljs-keyword">name</span> = p_name;
+
+    if v_battery_level &gt;=80 then
+        v_info := 'Gotowy <span class="hljs-keyword">do</span> trasy<span class="hljs-string">';
+    elsif v_battery_level &lt;= 20 then
+        v_info := '</span>WYMAGANE ŁADOWANIE<span class="hljs-string">';
+    end if;
+
+    return v_info || '</span> <span class="hljs-string">' || v_battery_level || '</span>% <span class="hljs-string">'|| v_max_capacity_kg || '</span> kg<span class="hljs-string">';
+
+    exception
+        when no_data_found then return '</span>Brak lazika o takiej nazwie<span class="hljs-string">';
+end audit_wyd;
+/
+
+begin 
+    dbms_output.put_line(audit_wyd('</span>Scout D<span class="hljs-string">'));
+    dbms_output.put_line(audit_wyd('</span>Goliath<span class="hljs-string">'));
+    dbms_output.put_line(audit_wyd('</span>Ares Transport <span class="hljs-number">1</span><span class="hljs-string">'));
+    dbms_output.put_line(audit_wyd('</span>aaaaa<span class="hljs-string">'));
+end;
+/
+</span></div></code></pre>
+<p><strong>3. Funkcja: Ostatnia aktywność (Anomalia/Misja)</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment">--Zadanie: Napisz funkcję, która dla konkretnego łazika (parametr ID) zwróci opis ostatniej misji (objective), która nie została jeszcze zakończona (brak daty finished_at), wraz z informacją o jej poziomie trudności (severity_levels).</span>
+
+<span class="hljs-comment">--Wymagania: Jeśli łazik nie jest w żadnej misji, funkcja powinna zwrócić komunikat: "Łazik jest obecnie wolny od zadań operacyjnych". Obsługa błędów dla nieistniejącego ID</span>
+
+
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">or</span> <span class="hljs-keyword">replace</span> <span class="hljs-keyword">function</span> anomalia
+(p_id rovers.id%<span class="hljs-keyword">type</span>) <span class="hljs-keyword">return</span> <span class="hljs-built_in">varchar2</span>
+<span class="hljs-keyword">is</span>
+    <span class="hljs-keyword">type</span> r1 <span class="hljs-keyword">is</span> <span class="hljs-built_in">record</span>(
+        obj missions.objective%<span class="hljs-keyword">type</span>,
+        sev severity_levels.name%<span class="hljs-keyword">type</span>
+    );
+    v_info r1;
+<span class="hljs-keyword">begin</span>
+    <span class="hljs-keyword">SELECT</span> objective, severity_levels.name <span class="hljs-keyword">as</span> s_name
+    <span class="hljs-keyword">into</span> v_info.obj, v_info.sev
+    <span class="hljs-keyword">from</span> missions
+    <span class="hljs-keyword">join</span> severity_levels <span class="hljs-keyword">on</span> severity_levels.id = missions.severity_level_id
+    <span class="hljs-keyword">where</span> finished_at <span class="hljs-keyword">is</span> <span class="hljs-literal">null</span> <span class="hljs-keyword">and</span> rover_id = p_id <span class="hljs-keyword">order</span> <span class="hljs-keyword">by</span> started_at <span class="hljs-keyword">desc</span> <span class="hljs-keyword">FETCH</span> <span class="hljs-keyword">FIRST</span> <span class="hljs-number">1</span> <span class="hljs-keyword">ROWS</span> <span class="hljs-keyword">ONLY</span>;
+
+    return 'Cel - '||v_info.obj || ' Poziom zagrozenia - ' || v_info.sev;
+    exception
+        when no_data_found then return 'Łazik jest obecnie wolny od zadań operacyjnych';
+
+<span class="hljs-keyword">end</span> anomalia;
+/
+<span class="hljs-keyword">begin</span>
+
+    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> (<span class="hljs-keyword">Select</span> <span class="hljs-keyword">id</span> <span class="hljs-keyword">from</span> rovers) <span class="hljs-keyword">loop</span>
+        dbms_output.put_line(anomalia(i.id));
+    <span class="hljs-keyword">end</span> <span class="hljs-keyword">loop</span>;
+
+<span class="hljs-keyword">end</span>;
+/
+</div></code></pre>
+<p><strong>Niggery</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment">--1. Wyzwalacz: Strażnik Energii (Walidacja przed misją) Ten wyzwalacz ma za zadanie pilnować bezpieczeństwa łazików przed wyruszeniem w teren.  Moment uruchomienia: Reaguje przed (BEFORE) każdą aktualizacją (UPDATE) statusu w tabeli łazików.  Warunek (Condition): Sprawdza, czy nowa wartość statusu (:NEW) to "Aktywny - W misji" oraz czy poziom baterii tego łazika jest niższy niż 20%.  Działanie (Action): Jeśli bateria jest zbyt słaba, wyzwalacz wywołuje błąd aplikacji, który przerywa transakcję i uniemożliwia zmianę statusu. Dzięki temu żaden rozładowany łazik nie opuści bazy.</span>
+
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">or</span> <span class="hljs-keyword">replace</span> <span class="hljs-keyword">trigger</span> tg_straznik
+    <span class="hljs-keyword">before</span> <span class="hljs-keyword">update</span> <span class="hljs-keyword">on</span> rovers
+    <span class="hljs-keyword">for</span> <span class="hljs-keyword">each</span> <span class="hljs-keyword">row</span>
+<span class="hljs-keyword">declare</span>
+    v_rover_status_id rover_statuses.id%<span class="hljs-keyword">type</span>;
+    v_rover_battery rovers.battery_level%type;
+<span class="hljs-keyword">begin</span>
+    <span class="hljs-keyword">Select</span> <span class="hljs-keyword">id</span> <span class="hljs-keyword">into</span> v_rover_status_id <span class="hljs-keyword">from</span> rover_statuses <span class="hljs-keyword">where</span> <span class="hljs-keyword">name</span> = <span class="hljs-string">'Aktywny - W misji'</span>;
+    if :new.rover_status_id = v_rover_status_id then
+        if :old.battery_level &lt;= 20 then
+            raise_application_error(-20001, 'Rover is too low on battery to go on mission');
+        <span class="hljs-keyword">end</span> <span class="hljs-keyword">if</span>;
+    <span class="hljs-keyword">end</span> <span class="hljs-keyword">if</span>;
+<span class="hljs-keyword">end</span> tg_straznik;
+/
+
+<span class="hljs-keyword">UPDATE</span> rovers <span class="hljs-keyword">set</span> rover_status_id = <span class="hljs-number">1</span> <span class="hljs-keyword">where</span> <span class="hljs-keyword">id</span> = <span class="hljs-number">4</span>;
+
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">--2. Wyzwalacz: Blokada "Teleportacji" (Integralność lokalizacji)Ten mechanizm dba o to, aby dane o lokalizacji łazika były zgodne z jego stanem faktycznym.  Moment uruchomienia: Uruchamia się przed (BEFORE) próbą zmiany identyfikatora bazy macierzystej w tabeli łazików.  Warunek (Condition): Wyzwalacz sprawdza stan łazika sprzed edycji (:OLD). Jeśli łazik aktualnie posiada status "Aktywny - W misji", każda próba przypisania go do innej bazy zostaje uznana za błąd logiczny.  Działanie (Action): System blokuje operację i wyświetla komunikat, że nie można przenieść łazika do innej bazy, dopóki fizycznie nie wróci on z trasy i nie zmieni statusu na "W bazie".</span>
+
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">or</span> <span class="hljs-keyword">replace</span> <span class="hljs-keyword">trigger</span> tg_teleportation
+    <span class="hljs-keyword">before</span> <span class="hljs-keyword">update</span> <span class="hljs-keyword">on</span> rovers
+    <span class="hljs-keyword">for</span> <span class="hljs-keyword">each</span> <span class="hljs-keyword">row</span>
+<span class="hljs-keyword">declare</span>
+    v_id rover_statuses.id%<span class="hljs-keyword">type</span>;
+<span class="hljs-keyword">begin</span>
+    <span class="hljs-keyword">Select</span> <span class="hljs-keyword">id</span> <span class="hljs-keyword">into</span> v_id <span class="hljs-keyword">from</span> rover_statuses <span class="hljs-keyword">where</span> <span class="hljs-keyword">name</span> =<span class="hljs-string">'Aktywny - W misji'</span>;
+    if :old.rover_status_id = v_id then
+        if :old.base_id &lt;&gt; :new.base_id then
+            raise_application_error(-20067,'Nie mozna przeniesc lazika <span class="hljs-keyword">do</span> innej bazy dopoki nie skonczy misji<span class="hljs-string">');
+        end if;
+    end if;
+end;
+/
+
+Update rovers set base_id = 2 where id = 2;
+</span></div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">--3. Create a view, and then a trigger that enables data modification through that view.</span>
+
+<span class="hljs-keyword">create</span> <span class="hljs-keyword">or</span> <span class="hljs-keyword">replace</span> <span class="hljs-keyword">trigger</span> tg_modify_v_rover_fleet_status
+    instead <span class="hljs-keyword">of</span> <span class="hljs-keyword">update</span> <span class="hljs-keyword">on</span> v_rover_fleet_status
+    <span class="hljs-keyword">for</span> <span class="hljs-keyword">each</span> <span class="hljs-keyword">row</span>
+<span class="hljs-keyword">declare</span>
+    v_id rover_statuses.id%<span class="hljs-keyword">type</span>;
+    v_base_id bases.id%type;
+<span class="hljs-keyword">begin</span>
+    <span class="hljs-keyword">if</span> :old.current_status &lt;&gt; :new.current_status <span class="hljs-keyword">then</span>
+        <span class="hljs-keyword">Select</span> <span class="hljs-keyword">id</span> <span class="hljs-keyword">into</span> v_id <span class="hljs-keyword">from</span> rover_statuses <span class="hljs-keyword">where</span> <span class="hljs-keyword">name</span> = :new.current_status;
+        <span class="hljs-keyword">Update</span> rovers <span class="hljs-keyword">set</span> rover_status_id = v_id <span class="hljs-keyword">where</span> <span class="hljs-keyword">name</span> = :old.rover_name;
+    <span class="hljs-keyword">end</span> <span class="hljs-keyword">if</span>;
+    if :old.assigned_base &lt;&gt; :new.assigned_base then
+        <span class="hljs-keyword">SELECT</span> <span class="hljs-keyword">id</span> <span class="hljs-keyword">into</span> v_base_id <span class="hljs-keyword">from</span> bases <span class="hljs-keyword">where</span> <span class="hljs-keyword">name</span> = :new.assigned_base;
+        <span class="hljs-keyword">Update</span> rovers <span class="hljs-keyword">set</span> base_id = v_base_id <span class="hljs-keyword">where</span> <span class="hljs-keyword">name</span> = :old.rover_name;
+    <span class="hljs-keyword">end</span> <span class="hljs-keyword">if</span>;
+    if (:old.rover_name &lt;&gt; :new.rover_name) OR (:old.battery_percent &lt;&gt; :new.battery_percent) OR (:old.max_capacity_kg &lt;&gt; :new.max_capacity_kg) then
+        <span class="hljs-keyword">Update</span> rovers <span class="hljs-keyword">set</span> <span class="hljs-keyword">name</span> = :new.rover_name, battery_level = :new.battery_percent, max_capacity_kg = :new.max_capacity_kg <span class="hljs-keyword">where</span> <span class="hljs-keyword">name</span> = :old.rover_name <span class="hljs-keyword">and</span> battery_level = :old.battery_percent <span class="hljs-keyword">and</span> max_capacity_kg = :old.max_capacity_kg;
+    <span class="hljs-keyword">end</span> <span class="hljs-keyword">if</span>;
+
+    exception
+        when NO_DATA_FOUND then raise_application_error(-20067,'Nie znaleziono bazy lub statusu o podanej nazwie');
+<span class="hljs-keyword">end</span>;
+/
+
+
+<span class="hljs-keyword">UPDATE</span> v_rover_fleet_status 
+<span class="hljs-keyword">SET</span> current_status = <span class="hljs-string">'Aktywny - W misji'</span> 
+<span class="hljs-keyword">WHERE</span> rover_name = <span class="hljs-string">'Scout D'</span>;
+
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-keyword">create</span> <span class="hljs-keyword">or</span> <span class="hljs-keyword">replace</span> <span class="hljs-keyword">trigger</span> signed_energy
+    <span class="hljs-keyword">before</span> <span class="hljs-keyword">insert</span> <span class="hljs-keyword">on</span> energy
+    <span class="hljs-keyword">for</span> <span class="hljs-keyword">each</span> <span class="hljs-keyword">row</span>
+<span class="hljs-keyword">begin</span>
+    <span class="hljs-keyword">if</span> :new.energy_produced_kwh &lt; <span class="hljs-number">0</span>  <span class="hljs-keyword">or</span> :new.energy_consumed_kwh &lt; <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> :new.energy_stored_kwh &lt; <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> :new.energy_released_kwh &lt; <span class="hljs-number">0</span> <span class="hljs-keyword">or</span> :new.energy_wasted_kwh &lt; <span class="hljs-number">0</span> <span class="hljs-keyword">then</span>
+        raise_application_error(<span class="hljs-number">-20067</span>,<span class="hljs-string">'Blad kurwo jebana'</span>);
+    <span class="hljs-keyword">end</span> <span class="hljs-keyword">if</span>;
+
+<span class="hljs-keyword">end</span>;
+/
+ 
+
+<span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> energy(<span class="hljs-keyword">id</span>, recorded_at,energy_produced_kwh,energy_consumed_kwh,energy_stored_kwh,energy_released_kwh,energy_wasted_kwh,base_id)
+ <span class="hljs-keyword">values</span>(<span class="hljs-number">106</span>,<span class="hljs-keyword">To_Date</span>(<span class="hljs-string">'11-01-2046'</span>,<span class="hljs-string">'MM-DD-YYYY'</span>),  <span class="hljs-number">500</span>, <span class="hljs-number">100</span>,  <span class="hljs-number">100</span>, <span class="hljs-number">120</span>, <span class="hljs-number">-10</span>,<span class="hljs-number">1</span>);
+
+</div></code></pre>
+<p>create or replace trigger battery_name<br>
+before insert on energy<br>
+for each row</p>
+<p>begin</p>
+<pre><code>    :new.name := Initcap(:new.name);
+</code></pre>
+<p>end;<br>
+/</p>
+
+
+
+
+
+
+
+
+</body>
+
+</html>
