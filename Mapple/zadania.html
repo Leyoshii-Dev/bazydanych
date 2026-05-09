@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>zadania.md</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" href="style.css">
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+html,footer,header{
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Custom MD PDF CSS
+ */
+html,footer,header{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+
+ }
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file:///r%3A/2.Travail/1.Enseignement/Cours/_1.Outils/2.Developpement/1.SCSS/main.css" type="text/css"><link rel="stylesheet" href="file:///d%3A/rdaros/Cours/_1.Outils/2.Developpement/1.SCSS/main.css" type="text/css">
+</head>
+
+<body>
+<div class="nav-container">
+    <!-- Tu wstaw odpowiedni link poniżej -->
+    <a href="zadania.html" class="nav-btn">😴 1. Estymacja punktowa i przedziałowa</a>
+	<a href="zadania2.html" class="nav-btn">🤦‍♀️ 2. Testowanie hipotez  dla jednej populacji</a>
+	<a href="zadania3.html" class="nav-btn">😖 3. Testowanie hipotez  dla dwóch populacji</a>
+	<a href="zadania4.html" class="nav-btn">🤪 4. Test chi-kwadrat niezależności </a>
+    <a href="../index.html" class="nav-btn"> Strona Glowna</a>
+</div>
+    <p><strong>Witam, to jest plik z tego gównianego przedmiotu aby każdy mógł się nauczyć (nikt sie nie nauczy wiem) jebać ten przedmiot <img class="emoji" alt="smiley" src="data:image/png;base64,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" />)))</strong></p>
+<p><strong>Estymacja punktowa i przedziałowa</strong></p>
+<p><strong>Zadanie 1.1</strong> Wzory dla wartości oczekiwanej, średniej lub przeciętnej</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span>(Statistics); <span class="hljs-comment"># to mega wazne to jest jakas biblioteka</span>
+
+czasy := [<span class="hljs-number">133</span>, <span class="hljs-number">146</span>, <span class="hljs-number">151</span>, <span class="hljs-number">149</span>, <span class="hljs-number">162</span>, <span class="hljs-number">133</span>, <span class="hljs-number">142</span>, <span class="hljs-number">156</span>, <span class="hljs-number">155</span>, <span class="hljs-number">137</span>, <span class="hljs-number">139</span>, <span class="hljs-number">145</span>, <span class="hljs-number">152</span>, <span class="hljs-number">130</span>, <span class="hljs-number">140</span>]; <span class="hljs-comment"># tablica</span>
+
+srednia := evalf(Mean(czasy), <span class="hljs-number">3</span>); <span class="hljs-comment"># Mean to srednia, evalf zaokraglenie</span>
+
+print(srednia);
+                            <span class="hljs-number">145.</span>
+odchylenie := <span class="hljs-number">10</span>;
+
+n := nops(czasy); <span class="hljs-comment"># nops to length</span>
+                            n := <span class="hljs-number">15</span>
+
+blad_standardowy := evalf(odchylenie/sqrt(n), <span class="hljs-number">4</span>); <span class="hljs-comment"># taki wzór :)</span>
+                blad_standardowy := <span class="hljs-number">2.582</span>
+
+u_alfa := Quantile(Normal(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.05</span>/<span class="hljs-number">2</span>); <span class="hljs-comment"># taki wzór ;)</span>
+                u_alfa := <span class="hljs-number">1.95996398453944</span>
+
+blad_maksymalny := evalf(u_alfa*blad_standardowy, <span class="hljs-number">4</span>); <span class="hljs-comment"># taki wzór :)</span>
+                    blad_maksymalny := <span class="hljs-number">5.061</span>
+</div></code></pre>
+<p><strong>Zadanie 1.2</strong></p>
+<pre class="hljs"><code><div>zuzycie := [<span class="hljs-number">6.78</span>, <span class="hljs-number">7.52</span>, <span class="hljs-number">8.15</span>, <span class="hljs-number">7.35</span>, <span class="hljs-number">7.92</span>, <span class="hljs-number">8.28</span>, <span class="hljs-number">7.77</span>, <span class="hljs-number">7.51</span>, <span class="hljs-number">8.19</span>];
+odchylenie2 := StandardDeviation(zuzycie);      <span class="hljs-comment"># tym razem nie znamy naszego odchylenia wiec trzeba go tak obliczyc</span>
+                odchylenie2 := <span class="hljs-number">0.483022888806639</span>
+n2 := nops(zuzycie);
+                            n2 := <span class="hljs-number">9</span>
+blad_standardowy2 := evalf(odchylenie2/sqrt(nops(zuzycie)), <span class="hljs-number">4</span>); <span class="hljs-comment"># tu standardowo tak</span>
+                  blad_standardowy2 := <span class="hljs-number">0.1610</span>
+
+u_alfa2 := Quantile(StudentT(n2 - <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.01</span>/<span class="hljs-number">2</span>);      <span class="hljs-comment"># Uzywamy StudentT gdy nie znamy odchylenia albo jest mała ilosc prób (n2)</span>
+                  u_alfa2 := <span class="hljs-number">3.35537539111690</span>
+
+blad_maksymalny2 := evalf(u_alfa2*blad_standardowy2, <span class="hljs-number">4</span>); <span class="hljs-comment"># tu standardowo tak</span>
+                   blad_maksymalny2 := <span class="hljs-number">0.5402</span>
+dolny := evalf(Mean(zuzycie) - blad_maksymalny2, <span class="hljs-number">4</span>);    <span class="hljs-comment"># tu obliczamy to gówno 99% bo to przedzial</span>
+                         dolny := <span class="hljs-number">7.179</span>
+gorny := evalf(Mean(zuzycie) + blad_maksymalny2, <span class="hljs-number">4</span>);    <span class="hljs-comment"># a przedzial to od &lt;7.179, 8.259&gt;</span>
+                         gorny := <span class="hljs-number">8.259</span>
+</div></code></pre>
+<p><strong>Zadanie 1.3</strong></p>
+<pre class="hljs"><code><div>dni := [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>, <span class="hljs-number">7</span>, <span class="hljs-number">8</span>, <span class="hljs-number">9</span>, <span class="hljs-number">10</span>];                  <span class="hljs-comment"># Tu zajebiste zadanie z wagami</span>
+pracownicy := [<span class="hljs-number">5</span>, <span class="hljs-number">12</span>, <span class="hljs-number">10</span>, <span class="hljs-number">14</span>, <span class="hljs-number">17</span>, <span class="hljs-number">12</span>, <span class="hljs-number">7</span>, <span class="hljs-number">20</span>, <span class="hljs-number">11</span>, <span class="hljs-number">6</span>, <span class="hljs-number">3</span>];     <span class="hljs-comment"># 2 tabelki robimy</span>
+n3 := add(pracownicy);                                      <span class="hljs-comment"># to jest liczba prob bo bylo 117 pracownikow</span>
+                           n3 := <span class="hljs-number">117</span>
+
+srednia3 := evalf(Mean(dni, weights = pracownicy), <span class="hljs-number">4</span>);      <span class="hljs-comment"># i tu liczbymy srednia wazona, tym mean, srednia z dni ale bierzemy wagi jako pracownikow</span>
+                       srednia3 := <span class="hljs-number">4.752</span>
+
+odchylenie3 := evalf(StandardDeviation(dni, weights = pracownicy), <span class="hljs-number">4</span>);  <span class="hljs-comment"># liczymy sobie odchylenie tak samo jak srednia z wagami</span>
+                      odchylenie3 := <span class="hljs-number">2.824</span>
+
+blad_standardowy3 := evalf(odchylenie3/sqrt(n3), <span class="hljs-number">4</span>);    <span class="hljs-comment"># tu standardowo</span>
+                  blad_standardowy3 := <span class="hljs-number">0.2611</span>
+
+u_alfa3 := Quantile(StudentT(n3 - <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.05</span>/<span class="hljs-number">2</span>);      <span class="hljs-comment"># nie znamy odchylenia wiec uzywamy StudentT</span>
+                  u_alfa3 := <span class="hljs-number">1.98062600245820</span>
+
+blad_maksymalny3 := evalf(u_alfa3*blad_standardowy3, <span class="hljs-number">4</span>); <span class="hljs-comment"># tu standardowo</span>
+                   blad_maksymalny3 := <span class="hljs-number">0.5171</span>
+
+dolny2 := evalf(srednia3 - blad_maksymalny3, <span class="hljs-number">4</span>); <span class="hljs-comment"># tu standardowo</span>
+                        dolny2 := <span class="hljs-number">4.235</span>
+
+gorny2 := evalf(srednia3 + blad_maksymalny3, <span class="hljs-number">4</span>); <span class="hljs-comment"># tu standardowo</span>
+                        gorny2 := <span class="hljs-number">5.269</span>
+</div></code></pre>
+<p><strong>Zadanie 1.4</strong></p>
+<pre class="hljs"><code><div>przedzial := [<span class="hljs-number">5</span>, <span class="hljs-number">15</span>, <span class="hljs-number">25</span>, <span class="hljs-number">35</span>, <span class="hljs-number">45</span>];       <span class="hljs-comment"># Tu trzeba zapamietac ze jak sa przedzialy to wyciagamy srednia z kazdego przedzialu</span>
+oceniajacy := [<span class="hljs-number">7</span>, <span class="hljs-number">12</span>, <span class="hljs-number">68</span>, <span class="hljs-number">51</span>, <span class="hljs-number">35</span>];
+n4 := add(oceniajacy);
+srednia4 := evalf(Mean(przedzial, weights = oceniajacy), <span class="hljs-number">4</span>);
+                       srednia4 := <span class="hljs-number">30.49</span>
+odchylenie4 := evalf(StandardDeviation(przedzial, weights = oceniajacy), <span class="hljs-number">4</span>);
+                      odchylenie4 := <span class="hljs-number">12.06</span>
+blad_standardowy4 := evalf(odchylenie4/sqrt(n4), <span class="hljs-number">4</span>);
+                  blad_standardowy4 := <span class="hljs-number">0.9167</span>
+u_alfa4 := Quantile(StudentT(n4 - <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.02</span>/<span class="hljs-number">2</span>);
+                  u_alfa4 := <span class="hljs-number">2.34822320422780</span>
+blad_maksymalny4 := evalf(u_alfa4*blad_standardowy4, <span class="hljs-number">4</span>);
+                   blad_maksymalny4 := <span class="hljs-number">2.153</span>
+dolna4 := evalf(srednia4 - blad_maksymalny4, <span class="hljs-number">4</span>);
+                        dolna4 := <span class="hljs-number">28.34</span>
+gorna4 := evalf(srednia4 + blad_maksymalny4, <span class="hljs-number">4</span>);
+                        gorna4 := <span class="hljs-number">32.64</span>
+</div></code></pre>
+<p><strong>Zadanie 1.5</strong></p>
+<pre class="hljs"><code><div>dni_hospitalizacji := [<span class="hljs-number">2</span>, <span class="hljs-number">4.5</span>, <span class="hljs-number">7.5</span>, <span class="hljs-number">11.5</span>, <span class="hljs-number">18.5</span>, <span class="hljs-number">26.5</span>];
+     dni_hospitalizacji := [<span class="hljs-number">2</span>, <span class="hljs-number">4.5</span>, <span class="hljs-number">7.5</span>, <span class="hljs-number">11.5</span>, <span class="hljs-number">18.5</span>, <span class="hljs-number">26.5</span>]
+liczba_osob := [<span class="hljs-number">77</span>, <span class="hljs-number">44</span>, <span class="hljs-number">18</span>, <span class="hljs-number">6</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>];
+              liczba_osob := [<span class="hljs-number">77</span>, <span class="hljs-number">44</span>, <span class="hljs-number">18</span>, <span class="hljs-number">6</span>, <span class="hljs-number">4</span>, <span class="hljs-number">1</span>]
+n5 := add(liczba_osob);
+                           n5 := <span class="hljs-number">150</span>
+srednia5 := evalf(Mean(dni_hospitalizacji, weights = liczba_osob), <span class="hljs-number">4</span>);
+                       srednia5 := <span class="hljs-number">4.377</span>
+odchylenie5 := evalf(StandardDeviation(dni_hospitalizacji, weights = liczba_osob), <span class="hljs-number">4</span>);
+                      odchylenie5 := <span class="hljs-number">4.814</span>
+blad_standardowy5 := evalf(odchylenie5/sqrt(n5), <span class="hljs-number">4</span>);
+                  blad_standardowy5 := <span class="hljs-number">0.3931</span>
+u_alfa5 := Quantile(StudentT(n5 - <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.02</span>/<span class="hljs-number">2</span>);
+                  u_alfa5 := <span class="hljs-number">2.35163489506851</span>
+blad_maksymalny5 := evalf(u_alfa5*blad_standardowy5, <span class="hljs-number">4</span>);
+                   blad_maksymalny5 := <span class="hljs-number">0.9244</span>
+dolna5 := evalf(srednia5 - blad_maksymalny5, <span class="hljs-number">4</span>);
+                        dolna5 := <span class="hljs-number">3.453</span>
+gorna5 := evalf(srednia5 + blad_maksymalny5, <span class="hljs-number">4</span>);
+                        gorna5 := <span class="hljs-number">5.301</span>
+</div></code></pre>
+<p><strong>Zadanie 1.6</strong> Wzory są inne bo liczymy dla odchylenia standardowego</p>
+<pre class="hljs"><code><div>czasy_dojazdu := [<span class="hljs-number">25</span>, <span class="hljs-number">26</span>, <span class="hljs-number">23</span>, <span class="hljs-number">27</span>, <span class="hljs-number">22</span>, <span class="hljs-number">29</span>, <span class="hljs-number">22</span>, <span class="hljs-number">27</span>, <span class="hljs-number">21</span>, <span class="hljs-number">33</span>, <span class="hljs-number">29</span>, <span class="hljs-number">18</span>, <span class="hljs-number">22</span>, <span class="hljs-number">30</span>, <span class="hljs-number">19</span>, <span class="hljs-number">21</span>, <span class="hljs-number">27</span>, <span class="hljs-number">16</span>, <span class="hljs-number">32</span>, <span class="hljs-number">29</span>, <span class="hljs-number">32</span>, <span class="hljs-number">22</span>, <span class="hljs-number">21</span>, <span class="hljs-number">27</span>, <span class="hljs-number">24</span>, <span class="hljs-number">29</span>, <span class="hljs-number">22</span>, <span class="hljs-number">29</span>, <span class="hljs-number">24</span>, <span class="hljs-number">33</span>];
+                            n6 := <span class="hljs-number">30</span>
+wariancja6 := Variance(czasy_dojazdu);      <span class="hljs-comment"># tu mamy spierdolone zadanie bo trzeba obliczyc wariacje </span>
+                 wariancja6 := <span class="hljs-number">20.9988505747126</span>
+c1 := Quantile(ChiSquare(<span class="hljs-number">29</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.02</span>/<span class="hljs-number">2</span>);  <span class="hljs-comment">#wzor1</span>
+c2 := Quantile(ChiSquare(<span class="hljs-number">29</span>), <span class="hljs-number">0.02</span>/<span class="hljs-number">2</span>);      <span class="hljs-comment">#wzor2</span>
+                     c1 := <span class="hljs-number">49.5878846941643</span>
+                     c2 := <span class="hljs-number">14.2564555118153</span>
+dolny_sigma6 := evalf(sqrt(<span class="hljs-number">29</span>*wariancja6/c1), <span class="hljs-number">4</span>);   <span class="hljs-comment"># Dane do przedziału (wariancja i kwantyle Chi-kwadrat dla alfa=0.02) bo 98% było</span>
+gorny_sigma6 := evalf(sqrt(<span class="hljs-number">29</span>*wariancja6/c2), <span class="hljs-number">4</span>);   
+                     dolny_sigma6 := <span class="hljs-number">3.504</span>
+                     gorny_sigma6 := <span class="hljs-number">6.536</span>
+</div></code></pre>
+<p><strong>Zadanie 1.7</strong></p>
+<pre class="hljs"><code><div>srednice := [<span class="hljs-number">32.28</span>, <span class="hljs-number">35.05</span>, <span class="hljs-number">39.23</span>, <span class="hljs-number">40.03</span>, <span class="hljs-number">37.25</span>, <span class="hljs-number">33.33</span>, <span class="hljs-number">36.08</span>, <span class="hljs-number">35.02</span>, <span class="hljs-number">38.09</span>, <span class="hljs-number">37.21</span>, <span class="hljs-number">43.70</span>, <span class="hljs-number">31.25</span>, <span class="hljs-number">43.11</span>, <span class="hljs-number">37.93</span>, <span class="hljs-number">41.02</span>, <span class="hljs-number">38.29</span>, <span class="hljs-number">31.88</span>, <span class="hljs-number">37.17</span>, <span class="hljs-number">37.28</span>, <span class="hljs-number">37.09</span>, <span class="hljs-number">36.62</span>, <span class="hljs-number">38.05</span>, <span class="hljs-number">36.93</span>, <span class="hljs-number">36.99</span>, <span class="hljs-number">36.68</span>, <span class="hljs-number">37.90</span>, <span class="hljs-number">34.80</span>, <span class="hljs-number">35.67</span>, <span class="hljs-number">40.62</span>, <span class="hljs-number">39.01</span>];
+estymator_pkt := evalf(StandardDeviation(srednice), <span class="hljs-number">4</span>); <span class="hljs-comment"># tu estymator jest odchyleniem standardowym wiec tez taki wzor bierzemy</span>
+                     estymator_pkt := <span class="hljs-number">2.906</span>
+war7 := Variance(srednice);
+c1_7 := Quantile(ChiSquare(<span class="hljs-number">29</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.04</span>/<span class="hljs-number">2</span>);
+                    c1_7 := <span class="hljs-number">46.6926994532743</span>
+c2_7 := Quantile(ChiSquare(<span class="hljs-number">29</span>), <span class="hljs-number">0.04</span>/<span class="hljs-number">2</span>);
+                    c2_7 := <span class="hljs-number">15.5744866534261</span>
+dolny_sigma7 := evalf(sqrt(<span class="hljs-number">29</span>*war7/c1_7), <span class="hljs-number">4</span>);
+gorny_sigma7 := evalf(sqrt(<span class="hljs-number">29</span>*war7/c2_7), <span class="hljs-number">4</span>);
+                     dolny_sigma7 := <span class="hljs-number">2.290</span>
+                     gorny_sigma7 := <span class="hljs-number">3.966</span>
+</div></code></pre>
+<p><strong>Zadanie 1.8</strong> Tu obliczamy FRAKCJE <img class="emoji" alt="smiley" src="data:image/png;base64,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" /></p>
+<pre class="hljs"><code><div>odleglosci := [<span class="hljs-number">2.5</span>, <span class="hljs-number">7.5</span>, <span class="hljs-number">12.5</span>, <span class="hljs-number">20</span>, <span class="hljs-number">32.5</span>, <span class="hljs-number">50</span>, <span class="hljs-number">75</span>, <span class="hljs-number">95</span>];
+      odleglosci := [<span class="hljs-number">2.5</span>, <span class="hljs-number">7.5</span>, <span class="hljs-number">12.5</span>, <span class="hljs-number">20</span>, <span class="hljs-number">32.5</span>, <span class="hljs-number">50</span>, <span class="hljs-number">75</span>, <span class="hljs-number">95</span>]
+liczba_studentow := [<span class="hljs-number">60</span>, <span class="hljs-number">45</span>, <span class="hljs-number">37</span>, <span class="hljs-number">20</span>, <span class="hljs-number">12</span>, <span class="hljs-number">9</span>, <span class="hljs-number">6</span>, <span class="hljs-number">3</span>];
+       liczba_studentow := [<span class="hljs-number">60</span>, <span class="hljs-number">45</span>, <span class="hljs-number">37</span>, <span class="hljs-number">20</span>, <span class="hljs-number">12</span>, <span class="hljs-number">9</span>, <span class="hljs-number">6</span>, <span class="hljs-number">3</span>]
+n8 := add(liczba_studentow);                                    <span class="hljs-comment"># potrzebujemy do tego wszystkich studentow</span>
+                           n8 := <span class="hljs-number">192</span>
+m8 := liczba_studentow[<span class="hljs-number">1</span>] + liczba_studentow[<span class="hljs-number">2</span>] + liczba_studentow[<span class="hljs-number">3</span>];  <span class="hljs-comment"># i tylko tych co są z danego przedzialu &lt;0,15) km</span>
+                           m8 := <span class="hljs-number">142</span>
+p8 := evalf(m8/n8, <span class="hljs-number">4</span>);                              <span class="hljs-comment"># tu obliczamy Frakcje czyli proporcje</span>
+                          p8 := <span class="hljs-number">0.7396</span>
+blad_standardowy8 := evalf(sqrt(p8*(<span class="hljs-number">1</span> - p8)/n8), <span class="hljs-number">4</span>);
+                  blad_standardowy8 := <span class="hljs-number">0.03167</span>
+u_alfa8 := Quantile(Normal(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.05</span>/<span class="hljs-number">2</span>);      <span class="hljs-comment"># uzywamy tutaj Normal bo nie mamy sredniej</span>
+                  u_alfa8 := <span class="hljs-number">1.95996398453944</span>
+blad_maksymalny8 := evalf(u_alfa8*blad_standardowy8, <span class="hljs-number">4</span>);
+                  blad_maksymalny8 := <span class="hljs-number">0.06207</span>
+dolny8 := evalf(p8 - blad_maksymalny8, <span class="hljs-number">4</span>);  <span class="hljs-comment"># i ten wzor tez jest inny</span>
+                        dolny8 := <span class="hljs-number">0.6775</span>
+gorny8 := evalf(p8 + blad_maksymalny8, <span class="hljs-number">4</span>); <span class="hljs-comment"># i ten wzor tez jest inny</span>
+                        gorny8 := <span class="hljs-number">0.8017</span>
+</div></code></pre>
+<p><strong>Zadanie 1.9</strong></p>
+<pre class="hljs"><code><div>oceny := [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>];
+liczba_uczniow := [<span class="hljs-number">3</span>, <span class="hljs-number">14</span>, <span class="hljs-number">34</span>, <span class="hljs-number">45</span>, <span class="hljs-number">18</span>, <span class="hljs-number">3</span>];
+n9 := add(liczba_uczniow);
+                           n9 := <span class="hljs-number">117</span>
+m9 := liczba_uczniow[<span class="hljs-number">4</span>] + liczba_uczniow[<span class="hljs-number">5</span>] + liczba_uczniow[<span class="hljs-number">6</span>];
+                            m9 := <span class="hljs-number">66</span>
+p9 := evalf(m9/n9, <span class="hljs-number">4</span>);                                  <span class="hljs-comment"># estymator punktowy jest frakcja wiec to tez obliczamy</span>
+                          p9 := <span class="hljs-number">0.5641</span>
+blad_standardowy9 := evalf(sqrt(p9*(<span class="hljs-number">1</span> - p9)/n9), <span class="hljs-number">4</span>);
+                  blad_standardowy9 := <span class="hljs-number">0.04585</span>
+u_alfa9 := Quantile(Normal(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.05</span>/<span class="hljs-number">2</span>);              <span class="hljs-comment"># trzeba zapamietac ze Normal sie tu uzywa do tych frakcji</span>
+                  u_alfa9 := <span class="hljs-number">1.95996398453944</span>
+blad_maksymalny9 := evalf(u_alfa9*blad_standardowy9, <span class="hljs-number">4</span>);
+                  blad_maksymalny9 := <span class="hljs-number">0.08986</span>
+dolny9 := evalf(p9 - blad_maksymalny9, <span class="hljs-number">4</span>);
+                        dolny9 := <span class="hljs-number">0.4742</span>
+gorny := evalf(p9 + blad_maksymalny9, <span class="hljs-number">4</span>);
+                        gorny := <span class="hljs-number">0.6540</span>
+</div></code></pre>
+<p><strong>Zadanie 1.10</strong></p>
+<pre class="hljs"><code><div>numery_butow := [<span class="hljs-number">39</span>, <span class="hljs-number">40</span>, <span class="hljs-number">38</span>, <span class="hljs-number">37</span>, <span class="hljs-number">37</span>, <span class="hljs-number">36</span>, <span class="hljs-number">35</span>, <span class="hljs-number">37</span>, <span class="hljs-number">36</span>, <span class="hljs-number">39</span>, <span class="hljs-number">38</span>, <span class="hljs-number">40</span>, <span class="hljs-number">40</span>, <span class="hljs-number">41</span>, <span class="hljs-number">39</span>, <span class="hljs-number">38</span>, <span class="hljs-number">38</span>, <span class="hljs-number">36</span>, <span class="hljs-number">36</span>, <span class="hljs-number">37</span>, <span class="hljs-number">38</span>, <span class="hljs-number">38</span>, <span class="hljs-number">39</span>, <span class="hljs-number">39</span>, <span class="hljs-number">34</span>, <span class="hljs-number">35</span>, <span class="hljs-number">36</span>, <span class="hljs-number">36</span>, <span class="hljs-number">37</span>, <span class="hljs-number">37</span>, <span class="hljs-number">39</span>, <span class="hljs-number">37</span>, <span class="hljs-number">40</span>, <span class="hljs-number">37</span>, <span class="hljs-number">38</span>, <span class="hljs-number">37</span>, <span class="hljs-number">37</span>, <span class="hljs-number">40</span>, <span class="hljs-number">41</span>, <span class="hljs-number">36</span>, <span class="hljs-number">37</span>, <span class="hljs-number">35</span>, <span class="hljs-number">37</span>, <span class="hljs-number">37</span>, <span class="hljs-number">40</span>, <span class="hljs-number">36</span>, <span class="hljs-number">37</span>, <span class="hljs-number">37</span>, <span class="hljs-number">38</span>, <span class="hljs-number">37</span>, <span class="hljs-number">36</span>, <span class="hljs-number">37</span>, <span class="hljs-number">37</span>, <span class="hljs-number">39</span>, <span class="hljs-number">37</span>, <span class="hljs-number">38</span>, <span class="hljs-number">35</span>, <span class="hljs-number">36</span>, <span class="hljs-number">37</span>, <span class="hljs-number">37</span>];
+n10 := nops(numery_butow);
+                           n10 := <span class="hljs-number">60</span>
+m10 := table(Tally(numery_butow))[<span class="hljs-number">37</span>]; <span class="hljs-comment"># tu trzeba sobie jakos wyciagnac ilosc tych butow z numerem 37 Tally pokazuje ile dla np 37 jest elementow, table zamienia to w tablice jakas i potem sobie wyciagamy te z 37</span>
+                           m10 := <span class="hljs-number">21</span>
+p10 := evalf(m10/n10, <span class="hljs-number">4</span>);
+                         p10 := <span class="hljs-number">0.3500</span>
+blad_standardowy10 := evalf(sqrt(p10*(<span class="hljs-number">1</span> - p10)/n10), <span class="hljs-number">4</span>);
+                 blad_standardowy10 := <span class="hljs-number">0.06158</span>
+u_alfa10 := Quantile(Normal(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.05</span>/<span class="hljs-number">2</span>);
+                  u_alfa10 := <span class="hljs-number">1.95996398453944</span>
+blad_maksymalny10 := evalf(u_alfa10*blad_standardowy10, <span class="hljs-number">4</span>);
+                  blad_maksymalny10 := <span class="hljs-number">0.1207</span>
+dolny10 := evalf(p10 - blad_maksymalny10, <span class="hljs-number">4</span>);
+                       dolny10 := <span class="hljs-number">0.2293</span>
+gorny10 := evalf(p10 + blad_maksymalny10, <span class="hljs-number">4</span>);
+                       gorny10 := <span class="hljs-number">0.4707</span>
+</div></code></pre>
+
+</body>
+
+</html>

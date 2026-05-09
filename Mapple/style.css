@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .nav-container {
+.nav-container {
         display: flex;
         gap: 15px;
         padding: 20px;
@@ -37,16 +30,13 @@
         border: 1px solid #007acc;
 }
 
-    </style>
-</head>
-<body>
-    <div class="nav-container">
+/*
+<div class="nav-container">
     <!-- Tu wstaw odpowiedni link poniżej -->
-    <a href="Bazy/index.html" class="nav-btn">😶‍🌫️ Bazy</a>
-    <a href="Maple/zadania.html" class="nav-btn">📉 Maple</a>
-
+    <a href="index.html" class="nav-btn">🏠 Strona Główna</a>
+    <a href="cursory.html" class="nav-btn">🚀 Kursory</a>
+	<a href="procedury.html" class="nav-btn"> Procedury</a>
+    <a href="triggery.html" class="nav-btn"> 👨🏿Triggery</a>
 </div>
-<h1>To jest glowna strona :)</h1>
-    
-</body>
-</html>
+
+*/
