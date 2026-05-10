@@ -1,0 +1,118 @@
+**Zadanie 3: Testowanie hipotez o wartości oczekiwanej, wariancji i wskaźniku struktury dla dwóch populacji.**
+
+
+**Zadanie 3.1**
+```python
+with(Statistics);
+grupa1 := [3952, 3566, 4131, 3713, 4019, 3792, 3281, 3413, 3676, 2875, 2837, 3617, 4086, 3387, 3085, 2724, 5312, 3683, 2221, 3818]; #bierzemy 2 grupy i obliczamy ich srednia i ilosc osob
+odchylenie1 := 620;
+n1 := nops(grupa1);
+srednia1 := evalf(Mean(grupa1), 4);
+
+grupa2 := [4047, 4219, 3836, 4611, 3444, 4055, 4073, 3868, 3702, 4300, 3694, 3621, 4564, 4662, 4489, 3978, 3572, 4258, 3748, 3961];
+odchylenie2 := 440;
+n2 := nops(grupa2);
+srednia2 := evalf(Mean(grupa2), 4);
+z_obliczone1 := evalf((srednia2 - srednia1)/sqrt(odchylenie1^2/n1 + odchylenie2^2/n2), 4);  # i tu mamy taki super wzór :)
+                     z_obliczone1 := 2.800
+z_krytyczne1 := evalf(Quantile(Normal(0, 1), 1 - 0.01), 4);
+                     z_krytyczne1 := 2.326
+print("Tak, mozna stwierdzic ze pojemnosc pluc jest wieksza u studnetow czynnie uprawiajacych sport");
+    "Tak, mozna stwierdzic ze pojemnosc pluc jest wieksza u studnetow czynnie uprawiajacych sport"
+print("Statystyka testowa ma rozklad normalny 0  1");
+         "Statystyka testowa ma rozklad normalny 0  1"
+```
+
+**Zadanie 3.2**
+```python
+zespol1 := [188, 192, 187, 178, 179, 175, 177, 178, 185, 190, 176];
+n1 := nops(zespol1);
+srednia1 := evalf(Mean(zespol1), 4);
+odchylenie1 := evalf(StandardDeviation(zespol1), 4);
+
+zespol2 := [190, 179, 185, 186, 183, 184, 179, 180, 191, 189];
+n2 := nops(zespol2);
+srednia2 := evalf(Mean(zespol2), 4);
+odchylenie2 := evalf(StandardDeviation(zespol2), 4);
+
+wariacja1 := odchylenie1^2; # nie znamy wariacji wiec musimy ja obliczyc
+wariacja2 := odchylenie2^2; # nie znamy wariacji wiec musimy ja obliczyc
+polaczona_wariacja := evalf(sqrt(((n1 - 1)*wariacja1 + (n2 - 1)*wariacja2)/(n1 + n2 - 2)), 4);  # nowy wzor
+                  polaczona_wariacja := 5.442
+t_obliczone2 := evalf((srednia1 - srednia2)/(polaczona_wariacja*sqrt(1/n1 + 1/n2)), 4); # nowy wzor
+                    t_obliczone2 := -0.9674
+z_krytyczne21 := evalf(Quantile(StudentT(n1 + n2 - 2), 1 - 0.01/2), 4); # no i tu stopnie swobody sa inne n1+n2-2
+                     z_krytyczne21 := 2.861
+print("Tak sredni czas jest jednakowy na poziomie istotnosci 0.01");
+  "Tak sredni czas jest jednakowy na poziomie istotnosci 0.01"
+print("Statystyka testowa ma rozklad Studenta z n1 +n2 -2 stopniamy swobody");
+ "Statystyka testowa ma rozklad Studenta z n1 +n2 -2 stopniamy swobody"
+```
+
+**Zadanie 3.3**
+```python
+welnix := [74.8, 75.1, 73.0, 72.8, 76.2, 74.6, 76.0, 73.4, 72.9, 71.6];
+n1 := nops(welnix);
+srednia1 := evalf(Mean(welnix), 4);
+wariacja1 := evalf(Variance(welnix), 4);
+
+bialy_puch := [55.9, 57.8, 54.6, 59.0, 57.1, 58.2, 57.6, 60.3, 61.2, 65.5, 59.2, 64.3];
+n2 := nops(bialy_puch);
+srednia2 := evalf(Mean(bialy_puch), 4);
+odchylenie2 := evalf(StandardDeviation(bialy_puch), 4);
+wariacja2 := odchylenie2^2;
+
+t_obliczone3 := evalf((srednia1 - srednia2)/sqrt(wariacja1/n1 + wariacja2/n2), 4);
+                     t_obliczone3 := 14.20
+z_krytyczne3 := evalf(Quantile(StudentT(n1 + n2 - 2), 1 - 0.04), 4);
+                     z_krytyczne3 := 1.844
+print("Zdecydowanie welnix jest lepszy"); #skad wiemy ze welnix jest lepszy? w t_obliczone3 odejmujemy srednia1 od srednia2 wiec sprawdzamy tym CZY WELNIX jest rzeczywiscie lepszy od bialego puchu
+               "Zdecydowanie welnix jest lepszy"
+print("Statystyka testowa ma rozklad StudentaT z n1+n2-2 stopniamy swobody");
+ "Statystyka testowa ma rozklad StudentaT z n1+n2-2 stopniamy swobody"
+```
+
+**Zadanie 3.4**
+```python
+liczba_usterek1 := [0, 1, 2, 3, 4];
+liczba_wyrobow1 := [48, 95, 202, 103, 52];
+n1 := add(liczba_wyrobow);
+srednia1 := evalf(Mean(liczba_usterek1, weights = liczba_wyrobow1), 4);
+                       srednia1 := 2.032
+wariacja1 := evalf(Variance(liczba_usterek1, weights = liczba_wyrobow1), 4);
+                       wariacja1 := 1.618
+liczba_wyrobow2 := [30, 88, 142, 97, 43];
+n2 := add(liczba_wyrobow2);
+srednia2 := evalf(Mean(liczba_usterek1, weights = liczba_wyrobow2), 4);
+                       srednia2 := 2.087
+wariacja2 := evalf(Variance(liczba_usterek1, weights = liczba_wyrobow2), 4);
+                       wariacja2 := 1.580
+t_obliczone4 := evalf((srednia1 - srednia2)/sqrt(wariacja1/n1 + wariacja2/n2), 4);
+                    t_obliczone4 := -0.6488
+z_krytyczne4 := evalf(Quantile(StudentT(n1 + n2 - 2), 0.02), 4);
+                     z_krytyczne4 := -2.057
+print("Liczba usterek na odziale produkcji 1 nie jest istotnie nizsza niz na oddziale 2");
+"Liczba usterek na odziale produkcji 1 nie jest istotnie nizsza niz na oddziale 2"
+print("Statystyka testowa ma rozklad studenta z n1 + n2 - 2 stopniamy swobody "); # moznaby bylo tu uzyc normalnego ale i tak nie ma roznicy miedzy nimi gdy jest tak duzo prób(n1,n2)
+"Statystyka testowa ma rozklad studenta z n1 + n2 - 2 stopniamy swobody "
+```
+
+**Zadanie 3.5**
+```python
+przed_ciaza := [63.5, 65.0, 57.0, 69.5, 75.0, 73.5, 83.5, 76.5, 92.0, 72.5, 94.0, 100.0, 85.5, 97.0, 68.0];
+po_ciazy := [61.0, 60.0, 58.0, 66.5, 72.0, 69.0, 77.5, 76.5, 80.5, 71.0, 88.0, 75.5, 83.0, 94.5, 65.5];
+roznice := [seq(przed_ciaza[i] - po_ciazy[i], i = 1 .. n1)]; # i to jest zjebane bo teraz porownujemy te same osoby przed i po i dlatego trzeba ogarnac roznice z tego
+srednia_D := evalf(Mean(roznice), 4);
+                       srednia_D := 4.933
+odchylenie_D := evalf(StandardDeviation(roznice), 4);
+                     odchylenie_D := 6.158
+n := nops(roznice);
+t_obliczone5 := evalf(srednia_D*sqrt(n)/odchylenie_D, 4);  
+                     t_obliczone5 := 3.103
+z_krytyczne5 := evalf(Quantile(StudentT(n - 1), 1 - 0.02), 4);
+                     z_krytyczne5 := 2.264
+print("Tak, dieta jest skuteczna");
+                  "Tak, dieta jest skuteczna"
+print("Statystyka testowa ma rozklad studenta z n1-1 stopniami swobody");
+"Statystyka testowa ma rozklad studenta z n1-1 stopniami swobody"
+```

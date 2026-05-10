@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>zadania3.md</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" href="style.css">
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+html,footer,header{
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Custom MD PDF CSS
+ */
+html,footer,header{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+
+ }
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file:///r%3A/2.Travail/1.Enseignement/Cours/_1.Outils/2.Developpement/1.SCSS/main.css" type="text/css"><link rel="stylesheet" href="file:///d%3A/rdaros/Cours/_1.Outils/2.Developpement/1.SCSS/main.css" type="text/css">
+</head>
+
+<body>
+<div class="nav-container">
+    <!-- Tu wstaw odpowiedni link poniżej -->
+    <a href="zadania.html" class="nav-btn">😴 1. Estymacja punktowa i przedziałowa</a>
+	<a href="zadania2.html" class="nav-btn">🤦‍♀️ 2. Testowanie hipotez  dla jednej populacji</a>
+	<a href="zadania3.html" class="nav-btn">😖 3. Testowanie hipotez  dla dwóch populacji</a>
+	<a href="zadania4.html" class="nav-btn">🤪 4. Test chi-kwadrat niezależności </a>
+    <a href="../index.html" class="nav-btn"> Strona Glowna</a>
+</div>
+    <p><strong>Zadanie 3: Testowanie hipotez o wartości oczekiwanej, wariancji i wskaźniku struktury dla dwóch populacji.</strong></p>
+<p><strong>Zadanie 3.1</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span>(Statistics);
+grupa1 := [<span class="hljs-number">3952</span>, <span class="hljs-number">3566</span>, <span class="hljs-number">4131</span>, <span class="hljs-number">3713</span>, <span class="hljs-number">4019</span>, <span class="hljs-number">3792</span>, <span class="hljs-number">3281</span>, <span class="hljs-number">3413</span>, <span class="hljs-number">3676</span>, <span class="hljs-number">2875</span>, <span class="hljs-number">2837</span>, <span class="hljs-number">3617</span>, <span class="hljs-number">4086</span>, <span class="hljs-number">3387</span>, <span class="hljs-number">3085</span>, <span class="hljs-number">2724</span>, <span class="hljs-number">5312</span>, <span class="hljs-number">3683</span>, <span class="hljs-number">2221</span>, <span class="hljs-number">3818</span>]; <span class="hljs-comment">#bierzemy 2 grupy i obliczamy ich srednia i ilosc osob</span>
+odchylenie1 := <span class="hljs-number">620</span>;
+n1 := nops(grupa1);
+srednia1 := evalf(Mean(grupa1), <span class="hljs-number">4</span>);
+
+grupa2 := [<span class="hljs-number">4047</span>, <span class="hljs-number">4219</span>, <span class="hljs-number">3836</span>, <span class="hljs-number">4611</span>, <span class="hljs-number">3444</span>, <span class="hljs-number">4055</span>, <span class="hljs-number">4073</span>, <span class="hljs-number">3868</span>, <span class="hljs-number">3702</span>, <span class="hljs-number">4300</span>, <span class="hljs-number">3694</span>, <span class="hljs-number">3621</span>, <span class="hljs-number">4564</span>, <span class="hljs-number">4662</span>, <span class="hljs-number">4489</span>, <span class="hljs-number">3978</span>, <span class="hljs-number">3572</span>, <span class="hljs-number">4258</span>, <span class="hljs-number">3748</span>, <span class="hljs-number">3961</span>];
+odchylenie2 := <span class="hljs-number">440</span>;
+n2 := nops(grupa2);
+srednia2 := evalf(Mean(grupa2), <span class="hljs-number">4</span>);
+z_obliczone1 := evalf((srednia2 - srednia1)/sqrt(odchylenie1^<span class="hljs-number">2</span>/n1 + odchylenie2^<span class="hljs-number">2</span>/n2), <span class="hljs-number">4</span>);  <span class="hljs-comment"># i tu mamy taki super wzór :)</span>
+                     z_obliczone1 := <span class="hljs-number">2.800</span>
+z_krytyczne1 := evalf(Quantile(Normal(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.01</span>), <span class="hljs-number">4</span>);
+                     z_krytyczne1 := <span class="hljs-number">2.326</span>
+print(<span class="hljs-string">"Tak, mozna stwierdzic ze pojemnosc pluc jest wieksza u studnetow czynnie uprawiajacych sport"</span>);
+    <span class="hljs-string">"Tak, mozna stwierdzic ze pojemnosc pluc jest wieksza u studnetow czynnie uprawiajacych sport"</span>
+print(<span class="hljs-string">"Statystyka testowa ma rozklad normalny 0  1"</span>);
+         <span class="hljs-string">"Statystyka testowa ma rozklad normalny 0  1"</span>
+</div></code></pre>
+<p><strong>Zadanie 3.2</strong></p>
+<pre class="hljs"><code><div>zespol1 := [<span class="hljs-number">188</span>, <span class="hljs-number">192</span>, <span class="hljs-number">187</span>, <span class="hljs-number">178</span>, <span class="hljs-number">179</span>, <span class="hljs-number">175</span>, <span class="hljs-number">177</span>, <span class="hljs-number">178</span>, <span class="hljs-number">185</span>, <span class="hljs-number">190</span>, <span class="hljs-number">176</span>];
+n1 := nops(zespol1);
+srednia1 := evalf(Mean(zespol1), <span class="hljs-number">4</span>);
+odchylenie1 := evalf(StandardDeviation(zespol1), <span class="hljs-number">4</span>);
+
+zespol2 := [<span class="hljs-number">190</span>, <span class="hljs-number">179</span>, <span class="hljs-number">185</span>, <span class="hljs-number">186</span>, <span class="hljs-number">183</span>, <span class="hljs-number">184</span>, <span class="hljs-number">179</span>, <span class="hljs-number">180</span>, <span class="hljs-number">191</span>, <span class="hljs-number">189</span>];
+n2 := nops(zespol2);
+srednia2 := evalf(Mean(zespol2), <span class="hljs-number">4</span>);
+odchylenie2 := evalf(StandardDeviation(zespol2), <span class="hljs-number">4</span>);
+
+wariacja1 := odchylenie1^<span class="hljs-number">2</span>; <span class="hljs-comment"># nie znamy wariacji wiec musimy ja obliczyc</span>
+wariacja2 := odchylenie2^<span class="hljs-number">2</span>; <span class="hljs-comment"># nie znamy wariacji wiec musimy ja obliczyc</span>
+polaczona_wariacja := evalf(sqrt(((n1 - <span class="hljs-number">1</span>)*wariacja1 + (n2 - <span class="hljs-number">1</span>)*wariacja2)/(n1 + n2 - <span class="hljs-number">2</span>)), <span class="hljs-number">4</span>);  <span class="hljs-comment"># nowy wzor</span>
+                  polaczona_wariacja := <span class="hljs-number">5.442</span>
+t_obliczone2 := evalf((srednia1 - srednia2)/(polaczona_wariacja*sqrt(<span class="hljs-number">1</span>/n1 + <span class="hljs-number">1</span>/n2)), <span class="hljs-number">4</span>); <span class="hljs-comment"># nowy wzor</span>
+                    t_obliczone2 := <span class="hljs-number">-0.9674</span>
+z_krytyczne21 := evalf(Quantile(StudentT(n1 + n2 - <span class="hljs-number">2</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.01</span>/<span class="hljs-number">2</span>), <span class="hljs-number">4</span>); <span class="hljs-comment"># no i tu stopnie swobody sa inne n1+n2-2</span>
+                     z_krytyczne21 := <span class="hljs-number">2.861</span>
+print(<span class="hljs-string">"Tak sredni czas jest jednakowy na poziomie istotnosci 0.01"</span>);
+  <span class="hljs-string">"Tak sredni czas jest jednakowy na poziomie istotnosci 0.01"</span>
+print(<span class="hljs-string">"Statystyka testowa ma rozklad Studenta z n1 +n2 -2 stopniamy swobody"</span>);
+ <span class="hljs-string">"Statystyka testowa ma rozklad Studenta z n1 +n2 -2 stopniamy swobody"</span>
+</div></code></pre>
+<p><strong>Zadanie 3.3</strong></p>
+<pre class="hljs"><code><div>welnix := [<span class="hljs-number">74.8</span>, <span class="hljs-number">75.1</span>, <span class="hljs-number">73.0</span>, <span class="hljs-number">72.8</span>, <span class="hljs-number">76.2</span>, <span class="hljs-number">74.6</span>, <span class="hljs-number">76.0</span>, <span class="hljs-number">73.4</span>, <span class="hljs-number">72.9</span>, <span class="hljs-number">71.6</span>];
+n1 := nops(welnix);
+srednia1 := evalf(Mean(welnix), <span class="hljs-number">4</span>);
+wariacja1 := evalf(Variance(welnix), <span class="hljs-number">4</span>);
+
+bialy_puch := [<span class="hljs-number">55.9</span>, <span class="hljs-number">57.8</span>, <span class="hljs-number">54.6</span>, <span class="hljs-number">59.0</span>, <span class="hljs-number">57.1</span>, <span class="hljs-number">58.2</span>, <span class="hljs-number">57.6</span>, <span class="hljs-number">60.3</span>, <span class="hljs-number">61.2</span>, <span class="hljs-number">65.5</span>, <span class="hljs-number">59.2</span>, <span class="hljs-number">64.3</span>];
+n2 := nops(bialy_puch);
+srednia2 := evalf(Mean(bialy_puch), <span class="hljs-number">4</span>);
+odchylenie2 := evalf(StandardDeviation(bialy_puch), <span class="hljs-number">4</span>);
+wariacja2 := odchylenie2^<span class="hljs-number">2</span>;
+
+t_obliczone3 := evalf((srednia1 - srednia2)/sqrt(wariacja1/n1 + wariacja2/n2), <span class="hljs-number">4</span>);
+                     t_obliczone3 := <span class="hljs-number">14.20</span>
+z_krytyczne3 := evalf(Quantile(StudentT(n1 + n2 - <span class="hljs-number">2</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.04</span>), <span class="hljs-number">4</span>);
+                     z_krytyczne3 := <span class="hljs-number">1.844</span>
+print(<span class="hljs-string">"Zdecydowanie welnix jest lepszy"</span>); <span class="hljs-comment">#skad wiemy ze welnix jest lepszy? w t_obliczone3 odejmujemy srednia1 od srednia2 wiec sprawdzamy tym CZY WELNIX jest rzeczywiscie lepszy od bialego puchu</span>
+               <span class="hljs-string">"Zdecydowanie welnix jest lepszy"</span>
+print(<span class="hljs-string">"Statystyka testowa ma rozklad StudentaT z n1+n2-2 stopniamy swobody"</span>);
+ <span class="hljs-string">"Statystyka testowa ma rozklad StudentaT z n1+n2-2 stopniamy swobody"</span>
+</div></code></pre>
+<p><strong>Zadanie 3.4</strong></p>
+<pre class="hljs"><code><div>liczba_usterek1 := [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+liczba_wyrobow1 := [<span class="hljs-number">48</span>, <span class="hljs-number">95</span>, <span class="hljs-number">202</span>, <span class="hljs-number">103</span>, <span class="hljs-number">52</span>];
+n1 := add(liczba_wyrobow);
+srednia1 := evalf(Mean(liczba_usterek1, weights = liczba_wyrobow1), <span class="hljs-number">4</span>);
+                       srednia1 := <span class="hljs-number">2.032</span>
+wariacja1 := evalf(Variance(liczba_usterek1, weights = liczba_wyrobow1), <span class="hljs-number">4</span>);
+                       wariacja1 := <span class="hljs-number">1.618</span>
+liczba_wyrobow2 := [<span class="hljs-number">30</span>, <span class="hljs-number">88</span>, <span class="hljs-number">142</span>, <span class="hljs-number">97</span>, <span class="hljs-number">43</span>];
+n2 := add(liczba_wyrobow2);
+srednia2 := evalf(Mean(liczba_usterek1, weights = liczba_wyrobow2), <span class="hljs-number">4</span>);
+                       srednia2 := <span class="hljs-number">2.087</span>
+wariacja2 := evalf(Variance(liczba_usterek1, weights = liczba_wyrobow2), <span class="hljs-number">4</span>);
+                       wariacja2 := <span class="hljs-number">1.580</span>
+t_obliczone4 := evalf((srednia1 - srednia2)/sqrt(wariacja1/n1 + wariacja2/n2), <span class="hljs-number">4</span>);
+                    t_obliczone4 := <span class="hljs-number">-0.6488</span>
+z_krytyczne4 := evalf(Quantile(StudentT(n1 + n2 - <span class="hljs-number">2</span>), <span class="hljs-number">0.02</span>), <span class="hljs-number">4</span>);
+                     z_krytyczne4 := <span class="hljs-number">-2.057</span>
+print(<span class="hljs-string">"Liczba usterek na odziale produkcji 1 nie jest istotnie nizsza niz na oddziale 2"</span>);
+<span class="hljs-string">"Liczba usterek na odziale produkcji 1 nie jest istotnie nizsza niz na oddziale 2"</span>
+print(<span class="hljs-string">"Statystyka testowa ma rozklad studenta z n1 + n2 - 2 stopniamy swobody "</span>); <span class="hljs-comment"># moznaby bylo tu uzyc normalnego ale i tak nie ma roznicy miedzy nimi gdy jest tak duzo prób(n1,n2)</span>
+<span class="hljs-string">"Statystyka testowa ma rozklad studenta z n1 + n2 - 2 stopniamy swobody "</span>
+</div></code></pre>
+<p><strong>Zadanie 3.5</strong></p>
+<pre class="hljs"><code><div>przed_ciaza := [<span class="hljs-number">63.5</span>, <span class="hljs-number">65.0</span>, <span class="hljs-number">57.0</span>, <span class="hljs-number">69.5</span>, <span class="hljs-number">75.0</span>, <span class="hljs-number">73.5</span>, <span class="hljs-number">83.5</span>, <span class="hljs-number">76.5</span>, <span class="hljs-number">92.0</span>, <span class="hljs-number">72.5</span>, <span class="hljs-number">94.0</span>, <span class="hljs-number">100.0</span>, <span class="hljs-number">85.5</span>, <span class="hljs-number">97.0</span>, <span class="hljs-number">68.0</span>];
+po_ciazy := [<span class="hljs-number">61.0</span>, <span class="hljs-number">60.0</span>, <span class="hljs-number">58.0</span>, <span class="hljs-number">66.5</span>, <span class="hljs-number">72.0</span>, <span class="hljs-number">69.0</span>, <span class="hljs-number">77.5</span>, <span class="hljs-number">76.5</span>, <span class="hljs-number">80.5</span>, <span class="hljs-number">71.0</span>, <span class="hljs-number">88.0</span>, <span class="hljs-number">75.5</span>, <span class="hljs-number">83.0</span>, <span class="hljs-number">94.5</span>, <span class="hljs-number">65.5</span>];
+roznice := [seq(przed_ciaza[i] - po_ciazy[i], i = <span class="hljs-number">1</span> .. n1)]; <span class="hljs-comment"># i to jest zjebane bo teraz porownujemy te same osoby przed i po i dlatego trzeba ogarnac roznice z tego</span>
+srednia_D := evalf(Mean(roznice), <span class="hljs-number">4</span>);
+                       srednia_D := <span class="hljs-number">4.933</span>
+odchylenie_D := evalf(StandardDeviation(roznice), <span class="hljs-number">4</span>);
+                     odchylenie_D := <span class="hljs-number">6.158</span>
+n := nops(roznice);
+t_obliczone5 := evalf(srednia_D*sqrt(n)/odchylenie_D, <span class="hljs-number">4</span>);  
+                     t_obliczone5 := <span class="hljs-number">3.103</span>
+z_krytyczne5 := evalf(Quantile(StudentT(n - <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.02</span>), <span class="hljs-number">4</span>);
+                     z_krytyczne5 := <span class="hljs-number">2.264</span>
+print(<span class="hljs-string">"Tak, dieta jest skuteczna"</span>);
+                  <span class="hljs-string">"Tak, dieta jest skuteczna"</span>
+print(<span class="hljs-string">"Statystyka testowa ma rozklad studenta z n1-1 stopniami swobody"</span>);
+<span class="hljs-string">"Statystyka testowa ma rozklad studenta z n1-1 stopniami swobody"</span>
+</div></code></pre>
+
+</body>
+
+</html>
