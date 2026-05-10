@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>zadania2.md</title>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <link rel="stylesheet" href="style.css">
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+html,footer,header{
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Custom MD PDF CSS
+ */
+html,footer,header{
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+
+ }
+body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+<link rel="stylesheet" href="file:///r%3A/2.Travail/1.Enseignement/Cours/_1.Outils/2.Developpement/1.SCSS/main.css" type="text/css"><link rel="stylesheet" href="file:///d%3A/rdaros/Cours/_1.Outils/2.Developpement/1.SCSS/main.css" type="text/css">
+</head>
+
+<body>
+<div class="nav-container">
+    <!-- Tu wstaw odpowiedni link poniżej -->
+    <a href="zadania.html" class="nav-btn">😴 1. Estymacja punktowa i przedziałowa</a>
+	<a href="zadania2.html" class="nav-btn">🤦‍♀️ 2. Testowanie hipotez  dla jednej populacji</a>
+	<a href="zadania3.html" class="nav-btn">😖 3. Testowanie hipotez  dla dwóch populacji</a>
+	<a href="zadania4.html" class="nav-btn">🤪 4. Test chi-kwadrat niezależności </a>
+    <a href="../index.html" class="nav-btn"> Strona Glowna</a>
+</div>
+    <p><strong>Testowanie hipotez o wartości oczekiwanej, wariancji i wskaźniku struktury dla jednej populacji - chuj wie co to znaczy</strong></p>
+<p><strong>Zadnie 2.1</strong></p>
+<pre class="hljs"><code><div><span class="hljs-keyword">with</span>(Statistics);
+czasy_twojej_starej := [<span class="hljs-number">133</span>, <span class="hljs-number">146</span>, <span class="hljs-number">151</span>, <span class="hljs-number">149</span>, <span class="hljs-number">162</span>, <span class="hljs-number">133</span>, <span class="hljs-number">142</span>, <span class="hljs-number">156</span>, <span class="hljs-number">155</span>, <span class="hljs-number">137</span>, <span class="hljs-number">139</span>, <span class="hljs-number">145</span>, <span class="hljs-number">152</span>, <span class="hljs-number">130</span>, <span class="hljs-number">140</span>];
+n := nops(czasy_twojej_starej);
+                            n := <span class="hljs-number">15</span>
+mu0 := <span class="hljs-number">140</span>; <span class="hljs-comment"># to jest hipoteza zerowa</span>
+
+odchylenie := <span class="hljs-number">10</span>; <span class="hljs-comment">#odchylenie mamy w poleceniu napisane</span>
+                        odchylenie := <span class="hljs-number">10</span>
+srednia := evalf(Mean(czasy_twojej_starej), <span class="hljs-number">4</span>);
+                        srednia := <span class="hljs-number">144.7</span>
+z_obliczone := evalf((srednia - mu0)*sqrt(n)/odchylenie, <span class="hljs-number">4</span>); <span class="hljs-comment"># statystyka testowa </span>
+                      z_obliczone := <span class="hljs-number">1.820</span>
+z_krytyczne := evalf(Quantile(Normal(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.05</span>/<span class="hljs-number">2</span>), <span class="hljs-number">4</span>); <span class="hljs-comment"># Wartość krytyczna</span>
+                      z_krytyczne := <span class="hljs-number">1.960</span>
+<span class="hljs-comment">#Teraz wazna rzecz, jesli z_obliczone jest w zakresie z_krytyczne czyli od -z_krytyczne do +z_krytyczne to jest git, to oczywiscie zalezy od hipotezy jaka jest podana bo czasem jest poprawnie jak wyjdzie po za zakres xd                     </span>
+print(<span class="hljs-string">"Tak, przecietny czas wykonywania tego zestawienia jest rowny 140 s"</span>);
+ <span class="hljs-string">"Tak, przecietny czas wykonywania tego zestawienia jest rowny 140 s"</span>
+print(<span class="hljs-string">"Statystyka testowa Z ma standardowy rozkład normalny $N(0, 1)$."</span>);
+<span class="hljs-string">"Statystyka testowa Z ma standardowy rozklad normalny $N(0, 1)$."</span>
+</div></code></pre>
+<p><strong>Zadanie 2.2</strong></p>
+<pre class="hljs"><code><div>
+czas_pracy_twojej_starej := [<span class="hljs-number">3.0</span>, <span class="hljs-number">10.5</span>, <span class="hljs-number">8.0</span>, <span class="hljs-number">13.5</span>, <span class="hljs-number">10.0</span>, <span class="hljs-number">10.5</span>, <span class="hljs-number">8.5</span>, <span class="hljs-number">11.5</span>, <span class="hljs-number">7.5</span>, <span class="hljs-number">13.0</span>, <span class="hljs-number">8.0</span>, <span class="hljs-number">12.0</span>, <span class="hljs-number">7.5</span>, <span class="hljs-number">16.5</span>, <span class="hljs-number">13</span>];
+n1 := nops(czas_pracy_twojej_starej);
+mu01 := <span class="hljs-number">12</span>;
+                           mu01 := <span class="hljs-number">12</span>
+odchylenie1 := evalf(StandardDeviation(czas_pracy_twojej_starej), <span class="hljs-number">4</span>);
+                      odchylenie1 := <span class="hljs-number">3.278</span>
+srednia1 := evalf(Mean(czas_pracy_twojej_starej), <span class="hljs-number">4</span>);
+                       srednia1 := <span class="hljs-number">10.20</span>
+z_obliczone1 := evalf((srednia1 - mu01)*sqrt(n1)/odchylenie1, <span class="hljs-number">4</span>);
+                     z_obliczone1 := <span class="hljs-number">-2.127</span>
+z_krytyczne := evalf(Quantile(StudentT(n1 - <span class="hljs-number">1</span>), <span class="hljs-number">0.03</span>), <span class="hljs-number">4</span>); <span class="hljs-comment"># w tym przypadku obliczamy tylko lewostronnie to czyli nie 1-0.03/2 tylko samo 0.03</span>
+                     z_krytyczne := <span class="hljs-number">-2.046</span>
+print(<span class="hljs-string">"Tak, przecietny czas pracy baterii jest krótszy niz 12 h"</span>);
+   <span class="hljs-string">"Tak, przecietny czas pracy baterii jest krￃﾳtszy niz 12 h"</span>
+print(<span class="hljs-string">"Statystyka testowa ma standardowy rozklad studenta z n-1 stopniami swobody"</span>);
+   <span class="hljs-string">"Statystyka testowa ma standardowy rozklad studenta z n-1 stopniami swobody"</span>
+</div></code></pre>
+<p><strong>Zadanie 2.3</strong></p>
+<pre class="hljs"><code><div>waga_twojej_starej := [<span class="hljs-number">203</span>, <span class="hljs-number">205</span>, <span class="hljs-number">199</span>, <span class="hljs-number">197</span>, <span class="hljs-number">178</span>, <span class="hljs-number">187</span>, <span class="hljs-number">190</span>, <span class="hljs-number">199</span>, <span class="hljs-number">204</span>, <span class="hljs-number">201</span>, <span class="hljs-number">196</span>, <span class="hljs-number">191</span>, <span class="hljs-number">181</span>, <span class="hljs-number">184</span>, <span class="hljs-number">195</span>, <span class="hljs-number">199</span>];
+n2 := nops(waga_twojej_starej);
+mu02 := <span class="hljs-number">200</span>;
+                          mu02 := <span class="hljs-number">200</span>
+odchylenie2 := evalf(StandardDeviation(waga_twojej_starej), <span class="hljs-number">4</span>);
+                      odchylenie2 := <span class="hljs-number">8.316</span>
+srednia2 := evalf(Mean(waga_twojej_starej), <span class="hljs-number">4</span>);
+                       srednia2 := <span class="hljs-number">194.3</span>
+z_obliczone2 := evalf((srednia2 - mu02)*sqrt(n2)/odchylenie2, <span class="hljs-number">4</span>);
+                     z_obliczone2 := <span class="hljs-number">-2.742</span>
+z_krytyczne := evalf(Quantile(StudentT(n2 - <span class="hljs-number">1</span>), <span class="hljs-number">0.04</span>), <span class="hljs-number">4</span>);
+                     z_krytyczne := <span class="hljs-number">-1.878</span>
+print(<span class="hljs-string">"Tak, konsument ma prawo zgłosić tego producenta masła do inspekcji handlowej"</span>);
+   <span class="hljs-string">"Tak, konsument ma prawo zglosil tego producenta masla do inspekcji handlowej"</span>
+print(<span class="hljs-string">"Statystyka testowa ma standard rozklad studenta z n-1 stopniami swobody"</span>);
+    <span class="hljs-string">"Statystyka testowa ma standard rozklad studenta z n-1 stopniami swobody"</span>
+</div></code></pre>
+<p><strong>Zadanie 2.4</strong></p>
+<pre class="hljs"><code><div>srednica_szyi_twojej_starej := [<span class="hljs-number">32.28</span>, <span class="hljs-number">35.05</span>, <span class="hljs-number">39.23</span>, <span class="hljs-number">40.03</span>, <span class="hljs-number">37.25</span>, <span class="hljs-number">33.33</span>, <span class="hljs-number">36.08</span>, <span class="hljs-number">35.02</span>, <span class="hljs-number">38.09</span>, <span class="hljs-number">37.21</span>, <span class="hljs-number">43.70</span>, <span class="hljs-number">31.25</span>, <span class="hljs-number">43.11</span>, <span class="hljs-number">37.93</span>, <span class="hljs-number">41.02</span>, <span class="hljs-number">38.29</span>, <span class="hljs-number">31.88</span>, <span class="hljs-number">37.17</span>, <span class="hljs-number">37.28</span>, <span class="hljs-number">37.09</span>, <span class="hljs-number">36.62</span>, <span class="hljs-number">38.05</span>, <span class="hljs-number">36.93</span>, <span class="hljs-number">36.99</span>, <span class="hljs-number">36.68</span>, <span class="hljs-number">37.90</span>, <span class="hljs-number">34.80</span>, <span class="hljs-number">35.67</span>, <span class="hljs-number">41.52</span>, <span class="hljs-number">37.02</span>];
+n3 := nops(srednica_szyi_twojej_starej);
+mu03 := <span class="hljs-number">35</span>;
+                           mu03 := <span class="hljs-number">35</span>
+
+odchylenie3 := evalf(StandardDeviation(srednica_szyi_twojej_starej), <span class="hljs-number">4</span>);
+                      odchylenie3 := <span class="hljs-number">2.928</span>
+
+srednia3 := evalf(Mean(srednica_szyi_twojej_starej), <span class="hljs-number">4</span>);
+                       srednia3 := <span class="hljs-number">37.15</span>
+
+z_obliczone3 := evalf((srednia3 - mu03)*sqrt(n3)/odchylenie3, <span class="hljs-number">4</span>);
+                     z_obliczone3 := <span class="hljs-number">4.022</span>
+
+z_krytyczne := evalf(Quantile(StudentT(n3 - <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.05</span>), <span class="hljs-number">4</span>); <span class="hljs-comment"># Tu natomiast obliczamy tylko prawostronnie czyli 1-0.05 </span>
+                      z_krytyczne := <span class="hljs-number">1.699</span>
+
+print(<span class="hljs-string">"Tak, mozna uznac ze przeciętna srednica drzew w tym lesie jest wieksza niż 35cm"</span>);
+<span class="hljs-string">"Tak, mozna uznac ze przeciￄﾙtna srednica drzew w tym lesie jest wieksza niz 35cm"</span>
+
+
+print(<span class="hljs-string">"Statystyka testowa ma standard rozklad studenta z n-1 stopniami swobody"</span>);
+    <span class="hljs-string">"Statystyka testowa ma standard rozklad studenta z n-1 stopniami swobody"</span>
+</div></code></pre>
+<p><strong>Zadanie 2.5</strong></p>
+<pre class="hljs"><code><div>czasy_badania_odbytu_twojej_starej := [<span class="hljs-number">40</span>, <span class="hljs-number">28</span>, <span class="hljs-number">57</span>, <span class="hljs-number">32</span>, <span class="hljs-number">18</span>, <span class="hljs-number">26</span>, <span class="hljs-number">48</span>, <span class="hljs-number">30</span>, <span class="hljs-number">43</span>, <span class="hljs-number">30</span>, <span class="hljs-number">45</span>, <span class="hljs-number">23</span>, <span class="hljs-number">39</span>, <span class="hljs-number">27</span>, <span class="hljs-number">55</span>, <span class="hljs-number">25</span>, <span class="hljs-number">43</span>, <span class="hljs-number">35</span>, <span class="hljs-number">24</span>, <span class="hljs-number">38</span>];
+NULL;
+n5 := nops(czasy_badania_odbytu_twojej_starej);
+                            n5 := <span class="hljs-number">20</span>
+
+mu05 := <span class="hljs-number">35</span>;
+srednia5 := evalf(Mean(czasy_badania_odbytu_twojej_starej), <span class="hljs-number">4</span>);
+                       srednia5 := <span class="hljs-number">35.30</span>
+odchylenie5 := evalf(StandardDeviation(czasy_badania_odbytu_twojej_starej), <span class="hljs-number">4</span>);
+                      odchylenie5 := <span class="hljs-number">10.85</span>
+z_obliczone5 := evalf((srednia5 - mu05)*sqrt(n5)/odchylenie5, <span class="hljs-number">4</span>);
+                     z_obliczone5 := <span class="hljs-number">0.1237</span>
+z_krytyczne := evalf(Quantile(StudentT(n5 - <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.05</span>), <span class="hljs-number">4</span>); <span class="hljs-comment"># Sprawdzamy czy wyszedl poza zakres i jesli nie to znaczy ze sie nie zwiekszyl czas</span>
+                      z_krytyczne := <span class="hljs-number">1.729</span>
+print(<span class="hljs-string">"Na podstawie tych danych nie mozna stwierdzic ze czas potrzebny na wykonanie tego badania zwiekszyl się"</span>);
+    <span class="hljs-string">"Na podstawie tych danych nie mozna stwierdzic ze czas potrzebny na wykonanie tego badania zwiekszyl sie"</span>
+print(<span class="hljs-string">"Statystyka testowa ma standard rozkladu studenta z n-1 stopniami swobody"</span>);
+    <span class="hljs-string">"Statystyka testowa ma standard rozkladu studenta z n-1 stopniami swobody"</span>
+</div></code></pre>
+<p><strong>Zadanie 2.6</strong></p>
+<pre class="hljs"><code><div>norma_sekund_twojej_starej_na_pieska := [<span class="hljs-number">40</span>, <span class="hljs-number">28</span>, <span class="hljs-number">57</span>, <span class="hljs-number">32</span>, <span class="hljs-number">18</span>, <span class="hljs-number">26</span>, <span class="hljs-number">48</span>, <span class="hljs-number">30</span>, <span class="hljs-number">43</span>, <span class="hljs-number">30</span>, <span class="hljs-number">45</span>, <span class="hljs-number">23</span>, <span class="hljs-number">39</span>, <span class="hljs-number">27</span>, <span class="hljs-number">55</span>, <span class="hljs-number">25</span>, <span class="hljs-number">43</span>, <span class="hljs-number">35</span>, <span class="hljs-number">24</span>, <span class="hljs-number">38</span>];
+n6 := nops(norma_sekund_twojej_starej_na_pieska);
+mu06 := <span class="hljs-number">35</span>;
+srednia6 := evalf(Mean(norma_sekund_twojej_starej_na_pieska), <span class="hljs-number">4</span>);
+                       srednia6 := <span class="hljs-number">35.30</span>
+odchylenie6 := evalf(StandardDeviation(norma_sekund_twojej_starej_na_pieska), <span class="hljs-number">4</span>);
+                      odchylenie6 := <span class="hljs-number">10.85</span>
+z_obliczone6 := evalf((srednia6 - mu06)*sqrt(n6)/odchylenie6, <span class="hljs-number">4</span>);
+                     z_obliczone6 := <span class="hljs-number">0.1237</span>
+z_krytyczne := evalf(Quantile(StudentT(n6 - <span class="hljs-number">1</span>), <span class="hljs-number">0.03</span>), <span class="hljs-number">4</span>);
+                     z_krytyczne := <span class="hljs-number">-2.000</span>
+print(<span class="hljs-string">"Wydajnosc nie obnizyla sie"</span>);
+                  <span class="hljs-string">"Wydajnosc nie obnizyla sie"</span>
+print(<span class="hljs-string">"Statystyka testowa ma standard rozkladu Studenta z n-1 stopniami swobody"</span>);
+    <span class="hljs-string">"Statystyka testowa ma standard rozkladu Studenta z n-1 stopniami swobody"</span>
+</div></code></pre>
+<p><strong>Zadanie 2.7</strong></p>
+<pre class="hljs"><code><div>awarie_twojej_starej := [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>];
+liczba_dni_twojej_starej := [<span class="hljs-number">13</span>, <span class="hljs-number">33</span>, <span class="hljs-number">20</span>, <span class="hljs-number">15</span>, <span class="hljs-number">10</span>, <span class="hljs-number">7</span>, <span class="hljs-number">2</span>];
+srednia7 := evalf(Mean(awarie_twojej_starej, weights = liczba_dni_twojej_starej), <span class="hljs-number">4</span>);
+                       srednia7 := <span class="hljs-number">2.050</span>
+odchylenie7 := evalf(StandardDeviation(awarie_twojej_starej, weights = liczba_dni_twojej_starej), <span class="hljs-number">4</span>);
+                      odchylenie7 := <span class="hljs-number">1.717</span>
+mu07 := <span class="hljs-number">2</span>;
+n7 := add(liczba_dni_twojej_starej);
+z_obliczone7 := evalf((srednia7 - mu07)*sqrt(n7)/odchylenie7, <span class="hljs-number">4</span>);
+                     z_obliczone7 := <span class="hljs-number">0.2912</span>
+z_krytyczne7 := evalf(Quantile(StudentT(n7 - <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.04</span>), <span class="hljs-number">4</span>);
+                     z_krytyczne7 := <span class="hljs-number">1.769</span>
+print(<span class="hljs-string">"Przecietna ilosc awarii nie jest wieksza od 2"</span>);
+        <span class="hljs-string">"Przecietna ilosc awarii nie jest wieksza od 2"</span>
+print(<span class="hljs-string">"Statystyka testowa ma standard rozkladu Studenta z n-1 stopniami swobody"</span>);
+    <span class="hljs-string">"Statystyka testowa ma standard rozkladu Studenta z n-1 stopniami swobody"</span>
+</div></code></pre>
+<p><strong>Zadanie 2.8</strong></p>
+<pre class="hljs"><code><div>mu08 := <span class="hljs-number">5000</span>;
+odchylenie8 := <span class="hljs-number">800</span>;
+n8 := <span class="hljs-number">100</span>;
+srednia8 := <span class="hljs-number">4800</span>;
+z_obliczone8 := evalf((srednia8 - mu08)*sqrt(n8)/odchylenie8, <span class="hljs-number">4</span>);
+                     z_obliczone8 := <span class="hljs-number">-2.500</span>
+z_krytyczne8 := evalf(Quantile(Normal(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-number">0.05</span>), <span class="hljs-number">4</span>);
+                     z_krytyczne8 := <span class="hljs-number">-1.645</span>
+print(<span class="hljs-string">"Tak, przy poziomie istotnosci 0.05 mozna uznac ze srednia liczba uzytkownikow spadla"</span>);
+  <span class="hljs-string">"Tak, przy poziomie istotnosci 0.05 mozna uznac ze srednia liczba uzytkownikow spadla"</span>
+print(<span class="hljs-string">"Statystyka testowa ma standardowy rozklad normalny 0 do 1"</span>);
+  <span class="hljs-string">"Statystyka testowa ma standardowy rozklad normalny 0 do 1"</span>
+</div></code></pre>
+<p><strong>Zadanie 2.9</strong> Tu sa wariacje zjebane</p>
+<pre class="hljs"><code><div>srednice_cipy_twojej_starej := [<span class="hljs-number">29.5</span>, <span class="hljs-number">32.5</span>, <span class="hljs-number">35.5</span>, <span class="hljs-number">38.5</span>, <span class="hljs-number">41.5</span>];
+liczba_drzew_w_cipie_twojej_starej := [<span class="hljs-number">10</span>, <span class="hljs-number">50</span>, <span class="hljs-number">68</span>, <span class="hljs-number">56</span>, <span class="hljs-number">16</span>];
+mu09 := <span class="hljs-number">9</span>;
+n9 := add(liczba_drzew_w_cipie_twojej_starej);
+                           n9 := <span class="hljs-number">200</span>
+wariacja9 := evalf(Variance(srednice_cipy_twojej_starej, weights = liczba_drzew_w_cipie_twojej_starej), <span class="hljs-number">4</span>);
+                       wariacja9 := <span class="hljs-number">12.77</span>
+c1 := Quantile(ChiSquare(n9 - <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.02</span>/<span class="hljs-number">2</span>);  <span class="hljs-comment">#obliczamy chi kwadrat gorny</span>
+                     c1 := <span class="hljs-number">248.328595992838</span>
+c2 := Quantile(ChiSquare(n9 - <span class="hljs-number">1</span>), <span class="hljs-number">0.02</span>/<span class="hljs-number">2</span>);      <span class="hljs-comment">#obliczamy chi kwadrat dolny</span>
+                     c2 := <span class="hljs-number">155.548465743568</span>
+print(<span class="hljs-string">"Tak, na poziomie istotnosci 0.02 srednica drzew wynosi 9cm^2"</span>);      <span class="hljs-comment"># jesli sie miesci w granicach tych chikwadrat to w tym przypadku znaczy ze hipoteza sie zgadza :)</span>
+ <span class="hljs-string">"Tak, na poziomie istotnosci 0.02 srednica drzew wynosi 9cm^2"</span>
+print(<span class="hljs-string">"Statystyka testowa ma rozklad chi-kwadrat(x^2) z n-1 stopniami swobody"</span>);
+<span class="hljs-string">"Statystyka testowa ma rozklad chi-kwadrat(x^2) z n-1 stopniami swobody"</span>
+</div></code></pre>
+<p><strong>Zadanie 2.10</strong></p>
+<pre class="hljs"><code><div>pomiary_cipy_twojej_starej := [<span class="hljs-number">7.02</span>, <span class="hljs-number">6.83</span>, <span class="hljs-number">7.10</span>, <span class="hljs-number">6.97</span>, <span class="hljs-number">6.98</span>, <span class="hljs-number">7.10</span>, <span class="hljs-number">7.01</span>, <span class="hljs-number">6.93</span>, <span class="hljs-number">7.05</span>, <span class="hljs-number">6.96</span>, <span class="hljs-number">6.75</span>, <span class="hljs-number">7.09</span>, <span class="hljs-number">7.15</span>, <span class="hljs-number">6.85</span>, <span class="hljs-number">6.8</span>];
+odchylenie10 := evalf(StandardDeviation(pomiary_cipy_twojej_starej), <span class="hljs-number">4</span>);
+                     odchylenie10 := <span class="hljs-number">0.1207</span>
+n10 := nops(pomiary_cipy_twojej_starej);
+                           n10 := <span class="hljs-number">15</span>
+mu010 := <span class="hljs-number">0.1</span>;
+srednia10 := evalf(Mean(pomiary_cipy_twojej_starej), <span class="hljs-number">4</span>);
+                       srednia10 := <span class="hljs-number">6.973</span>
+chi_obliczone10 := evalf((n10 - <span class="hljs-number">1</span>)*odchylenie10^<span class="hljs-number">2</span>/mu010^<span class="hljs-number">2</span>, <span class="hljs-number">4</span>);
+                    chi_obliczone10 := <span class="hljs-number">20.40</span>
+c101 := Quantile(ChiSquare(n10 - <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.02</span>/<span class="hljs-number">2</span>);
+                    c101 := <span class="hljs-number">29.1412377244437</span>
+c102 := Quantile(ChiSquare(n10 - <span class="hljs-number">1</span>), <span class="hljs-number">0.02</span>/<span class="hljs-number">2</span>);
+                    c102 := <span class="hljs-number">4.66042543861292</span>
+c1011 := Quantile(ChiSquare(n10 - <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.01</span>/<span class="hljs-number">2</span>);
+                   c1011 := <span class="hljs-number">31.3193496159106</span>
+c1021 := Quantile(ChiSquare(n10 - <span class="hljs-number">1</span>), <span class="hljs-number">0.01</span>/<span class="hljs-number">2</span>);
+                   c1021 := <span class="hljs-number">4.07467505364446</span>
+print(<span class="hljs-string">"Nie, na poziomie istotnosci 0.02 oraz 0.01 nie rozregulowal sie amperomierz"</span>);
+ <span class="hljs-string">"Nie, na poziomie istotnosci 0.02 oraz 0.01 nie rozregulowal sie amperomierz"</span>
+print(<span class="hljs-string">"Statystyyka testowa ma rozklad chi-kwadrat(x^2) z n-1 stopmiami swobody"</span>);
+    <span class="hljs-string">"Statystyyka testowa ma rozklad chi-kwadrat(x^2) z n-1 stopmiami swobody"</span>
+</div></code></pre>
+<p><strong>Zadanie 2.11</strong></p>
+<pre class="hljs"><code><div>wariacja11 := <span class="hljs-number">27.5</span>;
+mu011 := <span class="hljs-number">25</span>;
+n11 := <span class="hljs-number">30</span>;
+c11 := Quantile(ChiSquare(n11 - <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.01</span>);
+                    c11 := <span class="hljs-number">49.5878846941643</span>
+chi_obliczone11 := evalf((n11 - <span class="hljs-number">1</span>)*wariacja11/mu011, <span class="hljs-number">4</span>);
+                    chi_obliczone11 := <span class="hljs-number">31.90</span>
+print(<span class="hljs-string">"Na poziomie istotnosci 0.01 nie można uznac ze czas pracy dojazdu jest wiekszy od 25"</span>);
+  <span class="hljs-string">"Na poziomie istotnosci 0.01 nie moￅﾼna uznac ze czas pracy dojazdu jest wiekszy od 25"</span>
+print(<span class="hljs-string">"Statystyyka testowa ma rozklad chi-kwadrat(x^2) z n-1 stopmiami swobody"</span>);
+    <span class="hljs-string">"Statystyyka testowa ma rozklad chi-kwadrat(x^2) z n-1 stopmiami swobody"</span>
+</div></code></pre>
+<p><strong>Zadanie 2.12</strong></p>
+<pre class="hljs"><code><div>n12 := <span class="hljs-number">30</span>;
+srednice_zwisajacych_cycow_twojej_starej := [<span class="hljs-number">32.28</span>, <span class="hljs-number">35.05</span>, <span class="hljs-number">39.23</span>, <span class="hljs-number">40.13</span>, <span class="hljs-number">37.25</span>, <span class="hljs-number">33.33</span>, <span class="hljs-number">36.08</span>, <span class="hljs-number">35.12</span>, <span class="hljs-number">38.09</span>, <span class="hljs-number">37.21</span>, <span class="hljs-number">43.70</span>, <span class="hljs-number">31.25</span>, <span class="hljs-number">43.11</span>, <span class="hljs-number">37.93</span>, <span class="hljs-number">41.02</span>, <span class="hljs-number">38.29</span>, <span class="hljs-number">31.88</span>, <span class="hljs-number">37.17</span>, <span class="hljs-number">37.28</span>, <span class="hljs-number">37.09</span>, <span class="hljs-number">36.62</span>, <span class="hljs-number">38.05</span>, <span class="hljs-number">36.93</span>, <span class="hljs-number">36.99</span>, <span class="hljs-number">36.68</span>, <span class="hljs-number">37.90</span>, <span class="hljs-number">34.80</span>, <span class="hljs-number">35.67</span>, <span class="hljs-number">38.52</span>, <span class="hljs-number">37.02</span>];
+srednice_zwisajacych_cycow_twojej_starej40 := select(x -&gt; <span class="hljs-number">40</span> &lt; x, srednice_zwisajacych_cycow_twojej_starej);
+ srednice_zwisajacych_cycow_twojej_starej40 := [<span class="hljs-number">40.13</span>, <span class="hljs-number">43.70</span>, <span class="hljs-number">43.11</span>, <span class="hljs-number">41.02</span>]
+m12 := nops(srednice_zwisajacych_cycow_twojej_starej40);
+                            m12 := <span class="hljs-number">4</span>
+mu012 := <span class="hljs-number">0.15</span>;
+p12 := evalf(m12/n12, <span class="hljs-number">4</span>);
+                         p12 := <span class="hljs-number">0.1333</span>
+z_obliczone12 := evalf((p12 - mu012)/sqrt(mu012*(<span class="hljs-number">1</span> - mu012)/n12), <span class="hljs-number">4</span>);
+                    z_obliczone12 := <span class="hljs-number">-0.2562</span>
+z_krytyczne12 := evalf(Quantile(Normal(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-number">0.04</span>), <span class="hljs-number">4</span>);
+                    z_krytyczne12 := <span class="hljs-number">-1.751</span>
+print(<span class="hljs-string">"Nie ma podstaw do odrzucenia hipotezy zerowej. Nie można uznać, że drzew o średnicy &gt; 40cm jest istotnie mniej niż 15%."</span>); <span class="hljs-comment"># to jest zjebane ale 13.33% jest blisko 15% wiec statystycznie jesli jedno drzewo by sie roznilo to by był inny wynik dlatego nie mozna odrzucic hipotezy zerowej</span>
+<span class="hljs-string">"Nie ma podstaw do odrzucenia hipotezy zerowej. Nie mozna uznac, ze drzew o srednicy &gt; 40cm jest istotnie mniej niz 15%."</span>
+print(<span class="hljs-string">"Statystyka testowa ma rozklad normalny 0 1"</span>);
+          <span class="hljs-string">"Statystyka testowa ma rozklad normalny 0 1"</span>
+</div></code></pre>
+<p><strong>Zadanie 2.13</strong></p>
+<pre class="hljs"><code><div>p0 := <span class="hljs-number">0.08</span>;
+n13 := <span class="hljs-number">100</span>;
+m13 := <span class="hljs-number">3</span>;
+p_cos := evalf(m13/n13, <span class="hljs-number">4</span>);
+                        p_cos := <span class="hljs-number">0.03000</span>
+z_obliczone13 := evalf((p_cos - p0)/sqrt(p0*(<span class="hljs-number">1</span> - p0)/n13), <span class="hljs-number">4</span>);
+                    z_obliczone13 := <span class="hljs-number">-1.843</span>
+z_krytyczne13 := evalf(Quantile(Normal(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-number">0.02</span>), <span class="hljs-number">4</span>);
+                    z_krytyczne13 := <span class="hljs-number">-2.054</span>
+print(<span class="hljs-string">"Nie zalecam kierownikowi wdrożenia nowego procesu produkcyjnego bo mogl to byc po prostu przypadek a wynik jest bardzo bliski"</span>);
+<span class="hljs-string">"Nie zalecam kierownikowi wdrozenia nowego procesu produkcyjnego bo mogl to byc po prostu przypadek a wynik jest bardzo bliski"</span>
+print(<span class="hljs-string">"Statystyka testowa ma rozklad normalny 0 1"</span>);
+          <span class="hljs-string">"Statystyka testowa ma rozklad normalny 0 1"</span>
+</div></code></pre>
+<p><strong>Zadanie 2.14</strong></p>
+<pre class="hljs"><code><div>n14 := <span class="hljs-number">150</span>;
+m14 := <span class="hljs-number">53</span>;
+p014 := <span class="hljs-number">0.30</span>;
+p14 := evalf(m14/n14, <span class="hljs-number">4</span>);
+                         p14 := <span class="hljs-number">0.3533</span>
+z_obliczone14 := evalf((p14 - p014)/sqrt(p014*(<span class="hljs-number">1</span> - p014)/n14), <span class="hljs-number">4</span>);
+                     z_obliczone14 := <span class="hljs-number">1.424</span>
+z_krytyczne14 := evalf(Quantile(Normal(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.05</span>), <span class="hljs-number">4</span>);
+                     z_krytyczne14 := <span class="hljs-number">1.645</span>
+print(<span class="hljs-string">"Nie mozna stwierdzic ze wiecej niz 30% pracownikow ma zaklocenia sluchu"</span>);
+    <span class="hljs-string">"Nie mozna stwierdzic ze wiecej niz 30% pracownikow ma zaklocenia sluchu"</span>
+print(<span class="hljs-string">"Statystyka testowa ma rozklad normalny 0 1"</span>);
+          <span class="hljs-string">"Statystyka testowa ma rozklad normalny 0 1"</span>
+</div></code></pre>
+<p><strong>Zadanie 2.15</strong></p>
+<pre class="hljs"><code><div>p015 := <span class="hljs-number">0.39</span>;
+n15 := <span class="hljs-number">300</span>;
+p15 := <span class="hljs-number">0.34</span>;
+z_obliczone := evalf((p15 - p015)/sqrt(p015*(<span class="hljs-number">1</span> - p015)/n15), <span class="hljs-number">4</span>);
+                     z_obliczone := <span class="hljs-number">-1.776</span>
+z_krytyczne := evalf(Quantile(Normal(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-number">0.04</span>), <span class="hljs-number">4</span>);
+                     z_krytyczne := <span class="hljs-number">-1.751</span>
+print(<span class="hljs-string">"Tak, mozna powiedziec ze na poziomie istotnosci 0.04 partia cieszy sie mniejszym poparciem"</span>);
+ <span class="hljs-string">"Tak, mozna powiedziec ze na poziomie istotnosci 0.04 partia cieszy sie mniejszym poparciem"</span>
+print(<span class="hljs-string">"Statystyka testowa ma rozklad normalny 0 1"</span>);
+          <span class="hljs-string">"Statystyka testowa ma rozklad normalny 0 1"</span>
+</div></code></pre>
+<p><strong>Zadanie 2.16</strong></p>
+<pre class="hljs"><code><div>p016 := <span class="hljs-number">0.1</span>;
+n16 := <span class="hljs-number">200</span>;
+p16 := evalf(<span class="hljs-number">28</span>/n16, <span class="hljs-number">4</span>);
+z_obliczone16 := evalf((p16 - p016)/sqrt(p016*(<span class="hljs-number">1</span> - p016)/n16), <span class="hljs-number">4</span>);
+                     z_obliczone16 := <span class="hljs-number">1.886</span>
+z_krytyczne16 := evalf(Quantile(Normal(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.03</span>), <span class="hljs-number">4</span>);
+                     z_krytyczne16 := <span class="hljs-number">1.881</span>
+print(<span class="hljs-string">"Tak, mamy wystarczajace dowody by podwazyc zapewnienia producenta"</span>);
+    <span class="hljs-string">"Tak, mamy wystarczajace dowody by podwazyc zapewnienia producenta"</span>
+print(<span class="hljs-string">"Statystyka testowa ma rozklad normalny 0 1"</span>);
+          <span class="hljs-string">"Statystyka testowa ma rozklad normalny 0 1"</span>
+</div></code></pre>
+
+</body>
+
+</html>
