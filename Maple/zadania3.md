@@ -151,3 +151,45 @@ t_obliczone := wariacja2/wariacja1;
 z_krytyczne := evalf(Quantile(FRatioDistribution(n2 - 1, n1 - 1), 1 - 0.01/2), 4); # wez nie pytaj co to kurwa jest :)
                       z_krytyczne := 6.089
 ```
+
+
+**Zadanie 3.8**
+```python
+Amper := [7.02, 6.83, 7.10, 6.97, 6.98, 7.12, 7.01, 6.93, 7.05, 6.96, 7.11, 7.09, 6.93];
+Meter := [7.01, 6.73, 7.15, 6.97, 7.18, 7.10, 7.08, 6.95, 7.03, 6.92];
+n1 := nops(Amper);
+n2 := nops(Meter);
+wariacja1 := evalf(Variance(Amper), 4);
+wariacja2 := evalf(Variance(Meter), 4);
+t_obliczone := wariacja2/wariacja1;
+                   t_obliczone := 2.315103813
+z_krytyczne := evalf(Quantile(FRatioDistribution(n2 - 1, n1 - 1), 1 - 0.03/2), 4);
+                      z_krytyczne := 3.950
+print("Polecam kupic amperomierze Amper bo nie roznia się zbytnio od amperomierzy Meter a są tansze");
+"Polecam kupic amperomierze Amper bo nie roznia siￄﾙ zbytnio od amperomierzy Meter a sￄﾅ tansze"
+print("Statystyka testowa ma rozklad F-Snedecora z stopniami swobody n2-1 i n1 -1");
+"Statystyka testowa ma rozklad F-Snedecora z stopniami swobody n2-1 i n1 -1"
+```
+
+
+**Zadanie 3.9**
+```python
+liczba_usterek1 := [0, 1, 2, 3, 4];
+liczba_wyrobow1 := [48, 95, 202, 103, 52];
+liczba_wyrobow2 := [30, 88, 142, 97, 43];
+n1 := add(liczba_wyrobow1);
+k1 := liczba_wyrobow1[1] + liczba_wyrobow1[2];
+n2 := add(liczba_wyrobow2);
+k2 := liczba_wyrobow2[1] + liczba_wyrobow2[2];
+p1 := evalf(k1/n1, 4);
+p2 := evalf(k2/n2, 4);
+p_sr := evalf((k1 + k2)/(n1 + n2), 4);
+z_obliczone := evalf((p1 - p2)/sqrt(p_sr*(1 - p_sr)*(1/n1 + 1/n2)), 4);
+                     z_obliczone := -0.2957
+z_krytyczne := evalf(Quantile(Normal(0, 1), 1 - 0.02/2), 4);
+                      z_krytyczne := 2.326
+print("Roznica miedzy 28.6% a 29.5% jest statystycznie nieistotna, nie odrzucamy hipotezy");
+ "Roznica miedzy 28.6% a 29.5% jest statystycznie nieistotna, nie odrzucamy hipotezy"
+print("Statystyka testowa ma rozkald normalny 0 1");
+          "Statystyka testowa ma rozkald normalny 0 1"
+```
