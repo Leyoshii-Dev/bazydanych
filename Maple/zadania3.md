@@ -193,3 +193,126 @@ print("Roznica miedzy 28.6% a 29.5% jest statystycznie nieistotna, nie odrzucamy
 print("Statystyka testowa ma rozkald normalny 0 1");
           "Statystyka testowa ma rozkald normalny 0 1"
 ```
+
+**Zadanie 3.10**
+```python
+liczba_awarii := [0, 1, 2, 3, 4];
+liczba_dni1 := [139, 20, 11, 7, 5];
+liczba_dni2 := [148, 14, 11, 4, 6];
+n1 := add(liczba_dni1);
+k1 := n1 - liczba_dni1[1] - liczba_dni1[2];
+n2 := add(liczba_dni2);
+k2 := n2 - liczba_dni2[1] - liczba_dni2[2];
+p1 := evalf(k1/n1, 4);
+p2 := evalf(k2/n2, 4);
+p_sr := evalf((k1 + k2)/(n1 + n2), 4);
+z_obliczone := evalf((p1 - p2)/sqrt(p_sr*(1 - p_sr)*(1/n1 + 1/n2)), 4);
+                     z_obliczone := 0.3403
+z_krytyczne := evalf(Quantile(Normal(0, 1), 1 - 0.02/2), 4);
+                      z_krytyczne := 2.326
+print("Procent dni w ktorych byly conajmniej 2 awarie byl jednakowy w obydwu okresach roku");
+"Procent dni w ktorych byly conajmniej 2 awarie byl jednakowy w obydwu okresach roku"
+print("Statystyka testowa rozkladu normalna 0 1");
+           "Statystyka testowa rozkladu normalna 0 1"
+```
+
+**Zadanie 3.11**
+```python
+n1 := 87;
+                            n1 := 87
+k1 := 21;
+                            k1 := 21
+n2 := 113;
+                           n2 := 113
+k2 := 9;
+                            k2 := 9
+p1 := evalf(k1/n1);
+                       p1 := 0.2413793103
+p2 := evalf(k2/n2);
+                      p2 := 0.07964601770
+p_sr := evalf((k1 + k2)/(n1 + n2), 4);
+z_obliczone := evalf((p1 - p2)/sqrt(p_sr*(1 - p_sr)*(1/n1 + 1/n2)), 4);
+                      z_obliczone := 3.177
+z_krytyczne := evalf(Quantile(Normal(0, 1), 1 - 0.01), 4);
+                      z_krytyczne := 2.326
+print("Tak odsetek zmarłych na ta chorobe jest wyzszy wsrod chorych z pierwszej grupy");
+"Tak odsetek zmarￅﾂych na ta chorobe jest wyzszy wsrod chorych z pierwszej grupy"
+print("Statystyka testowa ma rozklad normalny 0 1");
+          "Statystyka testowa ma rozklad normalny 0 1"
+```
+
+**Zadanie 3.12**
+```python
+baterie1 := [506, 376, 473, 400, 542, 534, 476, 356, 422, 504, 438, 496, 523, 466, 430];
+baterie2 := [419, 491, 403, 460, 487, 410, 458, 434, 393, 408, 457, 414, 382, 549, 418, 508, 431];
+n1 := nops(baterie1);
+n2 := nops(baterie2);
+srednia1 := evalf(Mean(baterie1), 4);
+srednia2 := evalf(Mean(baterie2), 4);
+ochylenie1 := evalf(StandardDeviation(baterie1), 4);
+ochylenie2 := evalf(StandardDeviation(baterie2), 4);
+z_obliczone1 := evalf((srednia1 - srednia2)/sqrt(ochylenie1^2/n1 + ochylenie2^2/n2), 4);
+                     z_obliczone1 := 1.100
+z_krytyczne := evalf(Quantile(StudentT(n1 + n2 - 2), 1 - 0.03), 4);
+                      z_krytyczne := 1.955
+print("Na podstawie wyników czas pracy baterii 1 producenta nie jest dłuższy");
+"Na podstawie wynikￃﾳw czas pracy baterii 1 producenta nie jest dluzszy"
+print("Statystyka testowa ma rozklad studenta z n1 +n2-2 stopniami swobody");
+ "Statystyka testowa ma rozklad studenta z n1 +n2-2 stopniami swobody"
+```
+
+**Zadanie 3.13**
+```python
+n1 := 130;
+k1 := 14;
+n2 := 150;
+k2 := 13;
+p1 := evalf(k1/n1, 4);
+p2 := evalf(k2/n2, 4);
+p_sr := evalf((k1 + k2)/(n1 + n2));
+z_obliczone := evalf((p2 - p1)/sqrt(p_sr*(1 - p_sr)*(1/n1 + 1/n2)), 4);
+                     z_obliczone := -0.5946
+z_krytyczne := evalf(Quantile(Normal(0, 1), 0.03), 4);
+                     z_krytyczne := -1.881
+print("Nie mozna stwierdzic ze odzial II na poziomie 0.03 powoduje lepsza jakosc produkcji");
+ "Nie mozna stwierdzic ze odzial II na poziomie 0.03 powoduje lepsza jakosc produkcji"
+print("Statystyka testowa ma rozklad normalny 0 1");
+          "Statystyka testowa ma rozklad normalny 0 1"
+```
+
+**Zadanie 3.14**
+```python
+stopien1 := [3.52, 3.81, 3.63, 4.02, 4.25, 3.37, 3.92, 4.11, 3.67, 4.07];
+stopien2 := [3.61, 3.75, 3.92, 4.06, 4.52, 3.56, 3.86, 4.06, 3.84, 4.25];
+wynik2 := stopien2 - stopien1;
+ wynik2 := [0.09, -0.06, 0.29, 0.04, 0.27, 0.19, -0.06, -0.05, 0.17, 0.18]
+srednia := evalf(Mean(wynik2), 4);
+                       srednia := 0.1060
+odchylenie := evalf(StandardDeviation(wynik2), 4);
+                      odchylenie := 0.1339
+t_obliczone := evalf(srednia*sqrt(nops(wynik2))/odchylenie);
+                   t_obliczone := 2.503371411
+z_krytyczne := evalf(Quantile(StudentT(nops(wynik2) - 1), 1 - 0.02), 4);
+                      z_krytyczne := 2.398
+z_krytyczne1 := evalf(Quantile(StudentT(nops(wynik2) - 1), 1 - 0.01), 4);
+                     z_krytyczne1 := 2.821
+print("Na poziomie istotnosci 0.02 studenci drugiego stopnia maja lepsze srednie ale juz na poziomie istotnosci 0.01 nie maja");
+"Na poziomie istotnosci 0.02 studenci drugiego stopnia maja lepsze srednie ale juz na poziomie istotnosci 0.01 nie maja"
+print("Statystyka testowa ma rozklad studenta z n-1 stopniami swobody");
+"Statystyka testowa ma rozklad studenta z n-1 stopniami swobody"
+```
+
+**Zadanie 3.15**
+```python
+n := 30;
+zaklad1 := 65;
+zaklad2 := 90;
+t_obliczone := evalf(zaklad2/zaklad1, 4);
+                      t_obliczone := 1.385
+z_krytyczne := evalf(Quantile(FRatioDistribution(n - 1, n - 1), 1 - 0.03/2), 4);
+                      z_krytyczne := 2.280
+print("Tak wariacje czasu dojazdu do pracy w obydwu zakladach sa jednakowe");
+  "Tak wariacje czasu dojazdu do pracy w obydwu zakladach sa jednakowe"
+print("Statystyka testowa ma rozklad F-Snedecora z stopniami swobody n-1 i n -1");
+"Statystyka testowa ma rozklad F-Snedecora z stopniami swobody n-1 i n -1"
+```

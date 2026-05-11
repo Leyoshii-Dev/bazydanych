@@ -481,6 +481,183 @@ print(<span class="hljs-string">"Tak, dieta jest skuteczna"</span>);
 print(<span class="hljs-string">"Statystyka testowa ma rozklad studenta z n1-1 stopniami swobody"</span>);
 <span class="hljs-string">"Statystyka testowa ma rozklad studenta z n1-1 stopniami swobody"</span>
 </div></code></pre>
+<p><strong>Zadanie 3.6</strong></p>
+<pre class="hljs"><code><div>stary_algorytm := [<span class="hljs-number">12</span>, <span class="hljs-number">15</span>, <span class="hljs-number">11</span>, <span class="hljs-number">18</span>, <span class="hljs-number">14</span>, <span class="hljs-number">16</span>, <span class="hljs-number">13</span>, <span class="hljs-number">17</span>, <span class="hljs-number">19</span>, <span class="hljs-number">15</span>];
+nowy_algorytm := [<span class="hljs-number">10</span>, <span class="hljs-number">14</span>, <span class="hljs-number">9</span>, <span class="hljs-number">15</span>, <span class="hljs-number">13</span>, <span class="hljs-number">14</span>, <span class="hljs-number">11</span>, <span class="hljs-number">15</span>, <span class="hljs-number">16</span>, <span class="hljs-number">13</span>];
+roznica := stary_algorytm - nowy_algorytm;
+           roznica := [<span class="hljs-number">2</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>]
+srednia := evalf(Mean(roznica), <span class="hljs-number">4</span>);
+odchylenie := evalf(StandardDeviation(roznica), <span class="hljs-number">4</span>);
+n := nops(roznica);
+t_obliczone := evalf(srednia*sqrt(n)/odchylenie, <span class="hljs-number">4</span>);
+                      t_obliczone := <span class="hljs-number">9.486</span>
+z_krytyczne := evalf(Quantile(StudentT(n - <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.01</span>), <span class="hljs-number">4</span>);
+                      z_krytyczne := <span class="hljs-number">2.821</span>
+print(<span class="hljs-string">"Algorytm jest o wiele lepszy"</span>);
+                 <span class="hljs-string">"Algorytm jest o wiele lepszy"</span>
+print(<span class="hljs-string">"Statystyka testowa ma rozklad Studenta o n-1 stopniach swobody"</span>);
+<span class="hljs-string">"Statystyka testowa ma rozklad Studenta o n-1 stopniach swobody"</span>
+</div></code></pre>
+<p><strong>Zadanie 3.7</strong></p>
+<pre class="hljs"><code><div>amp1 := [<span class="hljs-number">7.02</span>, <span class="hljs-number">6.83</span>, <span class="hljs-number">7.10</span>, <span class="hljs-number">6.97</span>, <span class="hljs-number">6.98</span>, <span class="hljs-number">7.12</span>, <span class="hljs-number">7.01</span>, <span class="hljs-number">6.93</span>, <span class="hljs-number">7.05</span>, <span class="hljs-number">6.96</span>];
+amp2 := [<span class="hljs-number">4.31</span>, <span class="hljs-number">4.11</span>, <span class="hljs-number">3.94</span>, <span class="hljs-number">3.92</span>, <span class="hljs-number">3.91</span>, <span class="hljs-number">3.90</span>, <span class="hljs-number">3.89</span>, <span class="hljs-number">4.20</span>, <span class="hljs-number">3.95</span>, <span class="hljs-number">4.00</span>, <span class="hljs-number">3.75</span>, <span class="hljs-number">3.86</span>, <span class="hljs-number">4.03</span>, <span class="hljs-number">4.06</span>, <span class="hljs-number">4.17</span>];
+n1 := nops(amp1);
+n2 := nops(amp2);
+wariacja1 := evalf(Variance(amp1), <span class="hljs-number">4</span>);
+wariacja2 := evalf(Variance(amp2), <span class="hljs-number">4</span>);
+NULL;
+t_obliczone := wariacja2/wariacja1;
+                   t_obliczone := <span class="hljs-number">3.075084364</span>
+z_krytyczne := evalf(Quantile(FRatioDistribution(n2 - <span class="hljs-number">1</span>, n1 - <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.01</span>/<span class="hljs-number">2</span>), <span class="hljs-number">4</span>); <span class="hljs-comment"># wez nie pytaj co to kurwa jest :)</span>
+                      z_krytyczne := <span class="hljs-number">6.089</span>
+</div></code></pre>
+<p><strong>Zadanie 3.8</strong></p>
+<pre class="hljs"><code><div>Amper := [<span class="hljs-number">7.02</span>, <span class="hljs-number">6.83</span>, <span class="hljs-number">7.10</span>, <span class="hljs-number">6.97</span>, <span class="hljs-number">6.98</span>, <span class="hljs-number">7.12</span>, <span class="hljs-number">7.01</span>, <span class="hljs-number">6.93</span>, <span class="hljs-number">7.05</span>, <span class="hljs-number">6.96</span>, <span class="hljs-number">7.11</span>, <span class="hljs-number">7.09</span>, <span class="hljs-number">6.93</span>];
+Meter := [<span class="hljs-number">7.01</span>, <span class="hljs-number">6.73</span>, <span class="hljs-number">7.15</span>, <span class="hljs-number">6.97</span>, <span class="hljs-number">7.18</span>, <span class="hljs-number">7.10</span>, <span class="hljs-number">7.08</span>, <span class="hljs-number">6.95</span>, <span class="hljs-number">7.03</span>, <span class="hljs-number">6.92</span>];
+n1 := nops(Amper);
+n2 := nops(Meter);
+wariacja1 := evalf(Variance(Amper), <span class="hljs-number">4</span>);
+wariacja2 := evalf(Variance(Meter), <span class="hljs-number">4</span>);
+t_obliczone := wariacja2/wariacja1;
+                   t_obliczone := <span class="hljs-number">2.315103813</span>
+z_krytyczne := evalf(Quantile(FRatioDistribution(n2 - <span class="hljs-number">1</span>, n1 - <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.03</span>/<span class="hljs-number">2</span>), <span class="hljs-number">4</span>);
+                      z_krytyczne := <span class="hljs-number">3.950</span>
+print(<span class="hljs-string">"Polecam kupic amperomierze Amper bo nie roznia się zbytnio od amperomierzy Meter a są tansze"</span>);
+<span class="hljs-string">"Polecam kupic amperomierze Amper bo nie roznia siￄﾙ zbytnio od amperomierzy Meter a sￄﾅ tansze"</span>
+print(<span class="hljs-string">"Statystyka testowa ma rozklad F-Snedecora z stopniami swobody n2-1 i n1 -1"</span>);
+<span class="hljs-string">"Statystyka testowa ma rozklad F-Snedecora z stopniami swobody n2-1 i n1 -1"</span>
+</div></code></pre>
+<p><strong>Zadanie 3.9</strong></p>
+<pre class="hljs"><code><div>liczba_usterek1 := [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+liczba_wyrobow1 := [<span class="hljs-number">48</span>, <span class="hljs-number">95</span>, <span class="hljs-number">202</span>, <span class="hljs-number">103</span>, <span class="hljs-number">52</span>];
+liczba_wyrobow2 := [<span class="hljs-number">30</span>, <span class="hljs-number">88</span>, <span class="hljs-number">142</span>, <span class="hljs-number">97</span>, <span class="hljs-number">43</span>];
+n1 := add(liczba_wyrobow1);
+k1 := liczba_wyrobow1[<span class="hljs-number">1</span>] + liczba_wyrobow1[<span class="hljs-number">2</span>];
+n2 := add(liczba_wyrobow2);
+k2 := liczba_wyrobow2[<span class="hljs-number">1</span>] + liczba_wyrobow2[<span class="hljs-number">2</span>];
+p1 := evalf(k1/n1, <span class="hljs-number">4</span>);
+p2 := evalf(k2/n2, <span class="hljs-number">4</span>);
+p_sr := evalf((k1 + k2)/(n1 + n2), <span class="hljs-number">4</span>);
+z_obliczone := evalf((p1 - p2)/sqrt(p_sr*(<span class="hljs-number">1</span> - p_sr)*(<span class="hljs-number">1</span>/n1 + <span class="hljs-number">1</span>/n2)), <span class="hljs-number">4</span>);
+                     z_obliczone := <span class="hljs-number">-0.2957</span>
+z_krytyczne := evalf(Quantile(Normal(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.02</span>/<span class="hljs-number">2</span>), <span class="hljs-number">4</span>);
+                      z_krytyczne := <span class="hljs-number">2.326</span>
+print(<span class="hljs-string">"Roznica miedzy 28.6% a 29.5% jest statystycznie nieistotna, nie odrzucamy hipotezy"</span>);
+ <span class="hljs-string">"Roznica miedzy 28.6% a 29.5% jest statystycznie nieistotna, nie odrzucamy hipotezy"</span>
+print(<span class="hljs-string">"Statystyka testowa ma rozkald normalny 0 1"</span>);
+          <span class="hljs-string">"Statystyka testowa ma rozkald normalny 0 1"</span>
+</div></code></pre>
+<p><strong>Zadanie 3.10</strong></p>
+<pre class="hljs"><code><div>liczba_awarii := [<span class="hljs-number">0</span>, <span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>];
+liczba_dni1 := [<span class="hljs-number">139</span>, <span class="hljs-number">20</span>, <span class="hljs-number">11</span>, <span class="hljs-number">7</span>, <span class="hljs-number">5</span>];
+liczba_dni2 := [<span class="hljs-number">148</span>, <span class="hljs-number">14</span>, <span class="hljs-number">11</span>, <span class="hljs-number">4</span>, <span class="hljs-number">6</span>];
+n1 := add(liczba_dni1);
+k1 := n1 - liczba_dni1[<span class="hljs-number">1</span>] - liczba_dni1[<span class="hljs-number">2</span>];
+n2 := add(liczba_dni2);
+k2 := n2 - liczba_dni2[<span class="hljs-number">1</span>] - liczba_dni2[<span class="hljs-number">2</span>];
+p1 := evalf(k1/n1, <span class="hljs-number">4</span>);
+p2 := evalf(k2/n2, <span class="hljs-number">4</span>);
+p_sr := evalf((k1 + k2)/(n1 + n2), <span class="hljs-number">4</span>);
+z_obliczone := evalf((p1 - p2)/sqrt(p_sr*(<span class="hljs-number">1</span> - p_sr)*(<span class="hljs-number">1</span>/n1 + <span class="hljs-number">1</span>/n2)), <span class="hljs-number">4</span>);
+                     z_obliczone := <span class="hljs-number">0.3403</span>
+z_krytyczne := evalf(Quantile(Normal(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.02</span>/<span class="hljs-number">2</span>), <span class="hljs-number">4</span>);
+                      z_krytyczne := <span class="hljs-number">2.326</span>
+print(<span class="hljs-string">"Procent dni w ktorych byly conajmniej 2 awarie byl jednakowy w obydwu okresach roku"</span>);
+<span class="hljs-string">"Procent dni w ktorych byly conajmniej 2 awarie byl jednakowy w obydwu okresach roku"</span>
+print(<span class="hljs-string">"Statystyka testowa rozkladu normalna 0 1"</span>);
+           <span class="hljs-string">"Statystyka testowa rozkladu normalna 0 1"</span>
+</div></code></pre>
+<p><strong>Zadanie 3.11</strong></p>
+<pre class="hljs"><code><div>n1 := <span class="hljs-number">87</span>;
+                            n1 := <span class="hljs-number">87</span>
+k1 := <span class="hljs-number">21</span>;
+                            k1 := <span class="hljs-number">21</span>
+n2 := <span class="hljs-number">113</span>;
+                           n2 := <span class="hljs-number">113</span>
+k2 := <span class="hljs-number">9</span>;
+                            k2 := <span class="hljs-number">9</span>
+p1 := evalf(k1/n1);
+                       p1 := <span class="hljs-number">0.2413793103</span>
+p2 := evalf(k2/n2);
+                      p2 := <span class="hljs-number">0.07964601770</span>
+p_sr := evalf((k1 + k2)/(n1 + n2), <span class="hljs-number">4</span>);
+z_obliczone := evalf((p1 - p2)/sqrt(p_sr*(<span class="hljs-number">1</span> - p_sr)*(<span class="hljs-number">1</span>/n1 + <span class="hljs-number">1</span>/n2)), <span class="hljs-number">4</span>);
+                      z_obliczone := <span class="hljs-number">3.177</span>
+z_krytyczne := evalf(Quantile(Normal(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.01</span>), <span class="hljs-number">4</span>);
+                      z_krytyczne := <span class="hljs-number">2.326</span>
+print(<span class="hljs-string">"Tak odsetek zmarłych na ta chorobe jest wyzszy wsrod chorych z pierwszej grupy"</span>);
+<span class="hljs-string">"Tak odsetek zmarￅﾂych na ta chorobe jest wyzszy wsrod chorych z pierwszej grupy"</span>
+print(<span class="hljs-string">"Statystyka testowa ma rozklad normalny 0 1"</span>);
+          <span class="hljs-string">"Statystyka testowa ma rozklad normalny 0 1"</span>
+</div></code></pre>
+<p><strong>Zadanie 3.12</strong></p>
+<pre class="hljs"><code><div>baterie1 := [<span class="hljs-number">506</span>, <span class="hljs-number">376</span>, <span class="hljs-number">473</span>, <span class="hljs-number">400</span>, <span class="hljs-number">542</span>, <span class="hljs-number">534</span>, <span class="hljs-number">476</span>, <span class="hljs-number">356</span>, <span class="hljs-number">422</span>, <span class="hljs-number">504</span>, <span class="hljs-number">438</span>, <span class="hljs-number">496</span>, <span class="hljs-number">523</span>, <span class="hljs-number">466</span>, <span class="hljs-number">430</span>];
+baterie2 := [<span class="hljs-number">419</span>, <span class="hljs-number">491</span>, <span class="hljs-number">403</span>, <span class="hljs-number">460</span>, <span class="hljs-number">487</span>, <span class="hljs-number">410</span>, <span class="hljs-number">458</span>, <span class="hljs-number">434</span>, <span class="hljs-number">393</span>, <span class="hljs-number">408</span>, <span class="hljs-number">457</span>, <span class="hljs-number">414</span>, <span class="hljs-number">382</span>, <span class="hljs-number">549</span>, <span class="hljs-number">418</span>, <span class="hljs-number">508</span>, <span class="hljs-number">431</span>];
+n1 := nops(baterie1);
+n2 := nops(baterie2);
+srednia1 := evalf(Mean(baterie1), <span class="hljs-number">4</span>);
+srednia2 := evalf(Mean(baterie2), <span class="hljs-number">4</span>);
+ochylenie1 := evalf(StandardDeviation(baterie1), <span class="hljs-number">4</span>);
+ochylenie2 := evalf(StandardDeviation(baterie2), <span class="hljs-number">4</span>);
+z_obliczone1 := evalf((srednia1 - srednia2)/sqrt(ochylenie1^<span class="hljs-number">2</span>/n1 + ochylenie2^<span class="hljs-number">2</span>/n2), <span class="hljs-number">4</span>);
+                     z_obliczone1 := <span class="hljs-number">1.100</span>
+z_krytyczne := evalf(Quantile(StudentT(n1 + n2 - <span class="hljs-number">2</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.03</span>), <span class="hljs-number">4</span>);
+                      z_krytyczne := <span class="hljs-number">1.955</span>
+print(<span class="hljs-string">"Na podstawie wyników czas pracy baterii 1 producenta nie jest dłuższy"</span>);
+<span class="hljs-string">"Na podstawie wynikￃﾳw czas pracy baterii 1 producenta nie jest dluzszy"</span>
+print(<span class="hljs-string">"Statystyka testowa ma rozklad studenta z n1 +n2-2 stopniami swobody"</span>);
+ <span class="hljs-string">"Statystyka testowa ma rozklad studenta z n1 +n2-2 stopniami swobody"</span>
+</div></code></pre>
+<p><strong>Zadanie 3.13</strong></p>
+<pre class="hljs"><code><div>n1 := <span class="hljs-number">130</span>;
+k1 := <span class="hljs-number">14</span>;
+n2 := <span class="hljs-number">150</span>;
+k2 := <span class="hljs-number">13</span>;
+p1 := evalf(k1/n1, <span class="hljs-number">4</span>);
+p2 := evalf(k2/n2, <span class="hljs-number">4</span>);
+p_sr := evalf((k1 + k2)/(n1 + n2));
+z_obliczone := evalf((p2 - p1)/sqrt(p_sr*(<span class="hljs-number">1</span> - p_sr)*(<span class="hljs-number">1</span>/n1 + <span class="hljs-number">1</span>/n2)), <span class="hljs-number">4</span>);
+                     z_obliczone := <span class="hljs-number">-0.5946</span>
+z_krytyczne := evalf(Quantile(Normal(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>), <span class="hljs-number">0.03</span>), <span class="hljs-number">4</span>);
+                     z_krytyczne := <span class="hljs-number">-1.881</span>
+print(<span class="hljs-string">"Nie mozna stwierdzic ze odzial II na poziomie 0.03 powoduje lepsza jakosc produkcji"</span>);
+ <span class="hljs-string">"Nie mozna stwierdzic ze odzial II na poziomie 0.03 powoduje lepsza jakosc produkcji"</span>
+print(<span class="hljs-string">"Statystyka testowa ma rozklad normalny 0 1"</span>);
+          <span class="hljs-string">"Statystyka testowa ma rozklad normalny 0 1"</span>
+</div></code></pre>
+<p><strong>Zadanie 3.14</strong></p>
+<pre class="hljs"><code><div>stopien1 := [<span class="hljs-number">3.52</span>, <span class="hljs-number">3.81</span>, <span class="hljs-number">3.63</span>, <span class="hljs-number">4.02</span>, <span class="hljs-number">4.25</span>, <span class="hljs-number">3.37</span>, <span class="hljs-number">3.92</span>, <span class="hljs-number">4.11</span>, <span class="hljs-number">3.67</span>, <span class="hljs-number">4.07</span>];
+stopien2 := [<span class="hljs-number">3.61</span>, <span class="hljs-number">3.75</span>, <span class="hljs-number">3.92</span>, <span class="hljs-number">4.06</span>, <span class="hljs-number">4.52</span>, <span class="hljs-number">3.56</span>, <span class="hljs-number">3.86</span>, <span class="hljs-number">4.06</span>, <span class="hljs-number">3.84</span>, <span class="hljs-number">4.25</span>];
+wynik2 := stopien2 - stopien1;
+ wynik2 := [<span class="hljs-number">0.09</span>, <span class="hljs-number">-0.06</span>, <span class="hljs-number">0.29</span>, <span class="hljs-number">0.04</span>, <span class="hljs-number">0.27</span>, <span class="hljs-number">0.19</span>, <span class="hljs-number">-0.06</span>, <span class="hljs-number">-0.05</span>, <span class="hljs-number">0.17</span>, <span class="hljs-number">0.18</span>]
+srednia := evalf(Mean(wynik2), <span class="hljs-number">4</span>);
+                       srednia := <span class="hljs-number">0.1060</span>
+odchylenie := evalf(StandardDeviation(wynik2), <span class="hljs-number">4</span>);
+                      odchylenie := <span class="hljs-number">0.1339</span>
+t_obliczone := evalf(srednia*sqrt(nops(wynik2))/odchylenie);
+                   t_obliczone := <span class="hljs-number">2.503371411</span>
+z_krytyczne := evalf(Quantile(StudentT(nops(wynik2) - <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.02</span>), <span class="hljs-number">4</span>);
+                      z_krytyczne := <span class="hljs-number">2.398</span>
+z_krytyczne1 := evalf(Quantile(StudentT(nops(wynik2) - <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.01</span>), <span class="hljs-number">4</span>);
+                     z_krytyczne1 := <span class="hljs-number">2.821</span>
+print(<span class="hljs-string">"Na poziomie istotnosci 0.02 studenci drugiego stopnia maja lepsze srednie ale juz na poziomie istotnosci 0.01 nie maja"</span>);
+<span class="hljs-string">"Na poziomie istotnosci 0.02 studenci drugiego stopnia maja lepsze srednie ale juz na poziomie istotnosci 0.01 nie maja"</span>
+print(<span class="hljs-string">"Statystyka testowa ma rozklad studenta z n-1 stopniami swobody"</span>);
+<span class="hljs-string">"Statystyka testowa ma rozklad studenta z n-1 stopniami swobody"</span>
+</div></code></pre>
+<p><strong>Zadanie 3.15</strong></p>
+<pre class="hljs"><code><div>n := <span class="hljs-number">30</span>;
+zaklad1 := <span class="hljs-number">65</span>;
+zaklad2 := <span class="hljs-number">90</span>;
+t_obliczone := evalf(zaklad2/zaklad1, <span class="hljs-number">4</span>);
+                      t_obliczone := <span class="hljs-number">1.385</span>
+z_krytyczne := evalf(Quantile(FRatioDistribution(n - <span class="hljs-number">1</span>, n - <span class="hljs-number">1</span>), <span class="hljs-number">1</span> - <span class="hljs-number">0.03</span>/<span class="hljs-number">2</span>), <span class="hljs-number">4</span>);
+                      z_krytyczne := <span class="hljs-number">2.280</span>
+print(<span class="hljs-string">"Tak wariacje czasu dojazdu do pracy w obydwu zakladach sa jednakowe"</span>);
+  <span class="hljs-string">"Tak wariacje czasu dojazdu do pracy w obydwu zakladach sa jednakowe"</span>
+print(<span class="hljs-string">"Statystyka testowa ma rozklad F-Snedecora z stopniami swobody n-1 i n -1"</span>);
+<span class="hljs-string">"Statystyka testowa ma rozklad F-Snedecora z stopniami swobody n-1 i n -1"</span>
+</div></code></pre>
 
 </body>
 
