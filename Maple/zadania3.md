@@ -116,3 +116,38 @@ print("Tak, dieta jest skuteczna");
 print("Statystyka testowa ma rozklad studenta z n1-1 stopniami swobody");
 "Statystyka testowa ma rozklad studenta z n1-1 stopniami swobody"
 ```
+
+
+**Zadanie 3.6**
+```python
+stary_algorytm := [12, 15, 11, 18, 14, 16, 13, 17, 19, 15];
+nowy_algorytm := [10, 14, 9, 15, 13, 14, 11, 15, 16, 13];
+roznica := stary_algorytm - nowy_algorytm;
+           roznica := [2, 1, 2, 3, 1, 2, 2, 2, 3, 2]
+srednia := evalf(Mean(roznica), 4);
+odchylenie := evalf(StandardDeviation(roznica), 4);
+n := nops(roznica);
+t_obliczone := evalf(srednia*sqrt(n)/odchylenie, 4);
+                      t_obliczone := 9.486
+z_krytyczne := evalf(Quantile(StudentT(n - 1), 1 - 0.01), 4);
+                      z_krytyczne := 2.821
+print("Algorytm jest o wiele lepszy");
+                 "Algorytm jest o wiele lepszy"
+print("Statystyka testowa ma rozklad Studenta o n-1 stopniach swobody");
+"Statystyka testowa ma rozklad Studenta o n-1 stopniach swobody"
+```
+
+**Zadanie 3.7**
+```python
+amp1 := [7.02, 6.83, 7.10, 6.97, 6.98, 7.12, 7.01, 6.93, 7.05, 6.96];
+amp2 := [4.31, 4.11, 3.94, 3.92, 3.91, 3.90, 3.89, 4.20, 3.95, 4.00, 3.75, 3.86, 4.03, 4.06, 4.17];
+n1 := nops(amp1);
+n2 := nops(amp2);
+wariacja1 := evalf(Variance(amp1), 4);
+wariacja2 := evalf(Variance(amp2), 4);
+NULL;
+t_obliczone := wariacja2/wariacja1;
+                   t_obliczone := 3.075084364
+z_krytyczne := evalf(Quantile(FRatioDistribution(n2 - 1, n1 - 1), 1 - 0.01/2), 4); # wez nie pytaj co to kurwa jest :)
+                      z_krytyczne := 6.089
+```
